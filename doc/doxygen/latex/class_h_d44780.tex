@@ -1,0 +1,159 @@
+\hypertarget{class_h_d44780}{\section{H\-D44780 Class Reference}
+\label{class_h_d44780}\index{H\-D44780@{H\-D44780}}
+}
+
+
+{\ttfamily \#include $<$H\-D44780.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_h_d44780_a3ce0042a1d21279fe247899f2202d1c0}{H\-D44780} (\hyperlink{class_h_d44780phy}{H\-D44780phy} $\ast$phy, int size\-X, int size\-Y)
+\item 
+virtual \hyperlink{class_h_d44780_ae68a9f161a90e5ff6b808698782c98c2}{$\sim$\-H\-D44780} ()
+\item 
+void \hyperlink{class_h_d44780_ab1d3d8de393ee96330db651a3629a9de}{init} ()
+\begin{DoxyCompactList}\small\item\em Function initializes the display. \end{DoxyCompactList}\item 
+void \hyperlink{class_h_d44780_ae2a068c9f02651e55e75bfc4665186f9}{clear} ()
+\begin{DoxyCompactList}\small\item\em Function clears the L\-C\-D and moves the cursor to home position. \end{DoxyCompactList}\item 
+void \hyperlink{class_h_d44780_a8b7743cd54c5407a4e58f6f1ef597806}{home} ()
+\begin{DoxyCompactList}\small\item\em Function moves the cursor to home location. \end{DoxyCompactList}\item 
+void \hyperlink{class_h_d44780_aa3f807a4e495ebd2dfb6c225fb4a6d56}{goto\-X\-Y} (uint8\-\_\-t x, uint8\-\_\-t y)
+\begin{DoxyCompactList}\small\item\em Function moves the cursor to location (x,y) \end{DoxyCompactList}\item 
+void \hyperlink{class_h_d44780_a18706af55597a38e864a43bce4b3a8e4}{putcc} (char c)
+\begin{DoxyCompactList}\small\item\em Function prints one character at current cursor position. If the cursor is at the end of the line, the. \end{DoxyCompactList}\item 
+void \hyperlink{class_h_d44780_a5aa861aa3fcc0ce2fe27220ecd341334}{puts} (char $\ast$s)
+\begin{DoxyCompactList}\small\item\em Function prints a string of characters at current cursor location. Control characters are not interpreted. \end{DoxyCompactList}\item 
+void \hyperlink{class_h_d44780_a3cf62b60d4b8549c41d4978d662b9873}{print} (char $\ast$s)
+\begin{DoxyCompactList}\small\item\em Function prints a string of characters at current cursor location. Function interprets basic A\-N\-S\-I control characters\-: \end{DoxyCompactList}\item 
+void \hyperlink{class_h_d44780_ad4a36a48a44caf0c4b1e271e2d39713f}{define\-Custom\-Character} (uint8\-\_\-t c, uint8\-\_\-t $\ast$def)
+\begin{DoxyCompactList}\small\item\em Function defined a custom user character. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_h_d44780_a3ce0042a1d21279fe247899f2202d1c0}{\index{H\-D44780@{H\-D44780}!H\-D44780@{H\-D44780}}
+\index{H\-D44780@{H\-D44780}!HD44780@{H\-D44780}}
+\subsubsection[{H\-D44780}]{\setlength{\rightskip}{0pt plus 5cm}H\-D44780\-::\-H\-D44780 (
+\begin{DoxyParamCaption}
+\item[{{\bf H\-D44780phy} $\ast$}]{phy, }
+\item[{int}]{size\-X, }
+\item[{int}]{size\-Y}
+\end{DoxyParamCaption}
+)}}\label{class_h_d44780_a3ce0042a1d21279fe247899f2202d1c0}
+\hypertarget{class_h_d44780_ae68a9f161a90e5ff6b808698782c98c2}{\index{H\-D44780@{H\-D44780}!$\sim$\-H\-D44780@{$\sim$\-H\-D44780}}
+\index{$\sim$\-H\-D44780@{$\sim$\-H\-D44780}!HD44780@{H\-D44780}}
+\subsubsection[{$\sim$\-H\-D44780}]{\setlength{\rightskip}{0pt plus 5cm}H\-D44780\-::$\sim$\-H\-D44780 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_h_d44780_ae68a9f161a90e5ff6b808698782c98c2}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_h_d44780_ae2a068c9f02651e55e75bfc4665186f9}{\index{H\-D44780@{H\-D44780}!clear@{clear}}
+\index{clear@{clear}!HD44780@{H\-D44780}}
+\subsubsection[{clear}]{\setlength{\rightskip}{0pt plus 5cm}void H\-D44780\-::clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_h_d44780_ae2a068c9f02651e55e75bfc4665186f9}
+
+
+Function clears the L\-C\-D and moves the cursor to home position. 
+
+\hypertarget{class_h_d44780_ad4a36a48a44caf0c4b1e271e2d39713f}{\index{H\-D44780@{H\-D44780}!define\-Custom\-Character@{define\-Custom\-Character}}
+\index{define\-Custom\-Character@{define\-Custom\-Character}!HD44780@{H\-D44780}}
+\subsubsection[{define\-Custom\-Character}]{\setlength{\rightskip}{0pt plus 5cm}void H\-D44780\-::define\-Custom\-Character (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{c, }
+\item[{uint8\-\_\-t $\ast$}]{def}
+\end{DoxyParamCaption}
+)}}\label{class_h_d44780_ad4a36a48a44caf0c4b1e271e2d39713f}
+
+
+Function defined a custom user character. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & index of the character. \\
+\hline
+{\em def} & pointer to an array of 8 bytes holding definition of the character. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_h_d44780_aa3f807a4e495ebd2dfb6c225fb4a6d56}{\index{H\-D44780@{H\-D44780}!goto\-X\-Y@{goto\-X\-Y}}
+\index{goto\-X\-Y@{goto\-X\-Y}!HD44780@{H\-D44780}}
+\subsubsection[{goto\-X\-Y}]{\setlength{\rightskip}{0pt plus 5cm}void H\-D44780\-::goto\-X\-Y (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{x, }
+\item[{uint8\-\_\-t}]{y}
+\end{DoxyParamCaption}
+)}}\label{class_h_d44780_aa3f807a4e495ebd2dfb6c225fb4a6d56}
+
+
+Function moves the cursor to location (x,y) 
+
+\hypertarget{class_h_d44780_a8b7743cd54c5407a4e58f6f1ef597806}{\index{H\-D44780@{H\-D44780}!home@{home}}
+\index{home@{home}!HD44780@{H\-D44780}}
+\subsubsection[{home}]{\setlength{\rightskip}{0pt plus 5cm}void H\-D44780\-::home (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_h_d44780_a8b7743cd54c5407a4e58f6f1ef597806}
+
+
+Function moves the cursor to home location. 
+
+\hypertarget{class_h_d44780_ab1d3d8de393ee96330db651a3629a9de}{\index{H\-D44780@{H\-D44780}!init@{init}}
+\index{init@{init}!HD44780@{H\-D44780}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void H\-D44780\-::init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_h_d44780_ab1d3d8de393ee96330db651a3629a9de}
+
+
+Function initializes the display. 
+
+\hypertarget{class_h_d44780_a3cf62b60d4b8549c41d4978d662b9873}{\index{H\-D44780@{H\-D44780}!print@{print}}
+\index{print@{print}!HD44780@{H\-D44780}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}void H\-D44780\-::print (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{class_h_d44780_a3cf62b60d4b8549c41d4978d662b9873}
+
+
+Function prints a string of characters at current cursor location. Function interprets basic A\-N\-S\-I control characters\-: 
+
+
+\begin{DoxyItemize}
+\item Line feed '\textbackslash{}n'
+\item Carriage return '\textbackslash{}r' 
+\end{DoxyItemize}\hypertarget{class_h_d44780_a18706af55597a38e864a43bce4b3a8e4}{\index{H\-D44780@{H\-D44780}!putcc@{putcc}}
+\index{putcc@{putcc}!HD44780@{H\-D44780}}
+\subsubsection[{putcc}]{\setlength{\rightskip}{0pt plus 5cm}void H\-D44780\-::putcc (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}}\label{class_h_d44780_a18706af55597a38e864a43bce4b3a8e4}
+
+
+Function prints one character at current cursor position. If the cursor is at the end of the line, the. 
+
+\hypertarget{class_h_d44780_a5aa861aa3fcc0ce2fe27220ecd341334}{\index{H\-D44780@{H\-D44780}!puts@{puts}}
+\index{puts@{puts}!HD44780@{H\-D44780}}
+\subsubsection[{puts}]{\setlength{\rightskip}{0pt plus 5cm}void H\-D44780\-::puts (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{class_h_d44780_a5aa861aa3fcc0ce2fe27220ecd341334}
+
+
+Function prints a string of characters at current cursor location. Control characters are not interpreted. 
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/device/\hyperlink{_h_d44780_8h}{H\-D44780.\-h}\item 
+src/\hyperlink{_h_d44780_8cpp}{H\-D44780.\-cpp}\end{DoxyCompactItemize}

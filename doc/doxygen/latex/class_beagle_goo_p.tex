@@ -1,0 +1,264 @@
+\hypertarget{class_beagle_goo_p}{\section{Beagle\-Goo\-P Class Reference}
+\label{class_beagle_goo_p}\index{Beagle\-Goo\-P@{Beagle\-Goo\-P}}
+}
+
+
+{\ttfamily \#include $<$Beagle\-Goo\-P.\-h$>$}
+
+Inheritance diagram for Beagle\-Goo\-P\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_beagle_goo_p}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{class_beagle_goo_p_a7c5b14071a87506c912b6d14f139136f}{name\-Pin} (int i, char $\ast$name)
+\item 
+virtual void \hyperlink{class_beagle_goo_p_a716e0b3664ed88ad427b329524311e03}{name\-Pins} (char $\ast$names\mbox{[}$\,$\mbox{]})
+\item 
+virtual int \hyperlink{class_beagle_goo_p_a91d2290d2c289b310d24f959371d3414}{find\-Pin\-Index} (char $\ast$name)
+\item 
+virtual void \hyperlink{class_beagle_goo_p_ac4d38d90c905cf318f5017b3c18203cd}{enable\-Output} (bool enable)
+\item 
+virtual void \hyperlink{class_beagle_goo_p_a2900cd6005cd471066d598e4866ad66f}{enable\-Output} (int i, bool enable)
+\item 
+virtual void \hyperlink{class_beagle_goo_p_a418b335ab7c154291a543fe18949f730}{enable\-Output} (int $\ast$outs, int num)
+\item 
+virtual void \hyperlink{class_beagle_goo_p_a4127207e947efe8952540fd69b949b35}{enable\-Output} (char $\ast$$\ast$out\-Names, int num)
+\item 
+virtual void \hyperlink{class_beagle_goo_p_a5da234ad09723ae929135e96e32cf497}{write} (uint32\-\_\-t v)
+\item 
+virtual void \hyperlink{class_beagle_goo_p_afa97c0b593fa9032c873654ee40140f5}{set} (uint32\-\_\-t v)
+\item 
+virtual void \hyperlink{class_beagle_goo_p_a8997d7bc2665b7cbd100abe613657e94}{set\-Bit} (int bit)
+\item 
+virtual void \hyperlink{class_beagle_goo_p_a39772670c58f71b5d7e4ca9e39eb8d86}{clear} (uint32\-\_\-t v)
+\item 
+virtual void \hyperlink{class_beagle_goo_p_a00a85a024ac1e9a3dbf04d4b065cc16a}{clear\-Bit} (int bit)
+\item 
+virtual uint32\-\_\-t \hyperlink{class_beagle_goo_p_a4a6ed00aa61f7d81de93cb880ba93d63}{read} ()
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_beagle_goo_p_a68d52fe38a514aef4add4867c370b174}{Beagle\-Goo}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_beagle_goo_p_a39772670c58f71b5d7e4ca9e39eb8d86}{\index{Beagle\-Goo\-P@{Beagle\-Goo\-P}!clear@{clear}}
+\index{clear@{clear}!BeagleGooP@{Beagle\-Goo\-P}}
+\subsubsection[{clear}]{\setlength{\rightskip}{0pt plus 5cm}void Beagle\-Goo\-P\-::clear (
+\begin{DoxyParamCaption}
+\item[{uint32\-\_\-t}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_beagle_goo_p_a39772670c58f71b5d7e4ca9e39eb8d86}
+Method clears G\-P\-I\-O lines for which corresponding bit in the parameter {\itshape v} is set to 1. Lines whose bits are set to 0 remain unchanged. 
+\begin{DoxyParams}{Parameters}
+{\em v} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_g_p_i_opin_abc101fb598fa749ae58743e8b2decbbc}{G\-P\-I\-Opin}.
+
+\hypertarget{class_beagle_goo_p_a00a85a024ac1e9a3dbf04d4b065cc16a}{\index{Beagle\-Goo\-P@{Beagle\-Goo\-P}!clear\-Bit@{clear\-Bit}}
+\index{clear\-Bit@{clear\-Bit}!BeagleGooP@{Beagle\-Goo\-P}}
+\subsubsection[{clear\-Bit}]{\setlength{\rightskip}{0pt plus 5cm}void Beagle\-Goo\-P\-::clear\-Bit (
+\begin{DoxyParamCaption}
+\item[{int}]{bit}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_beagle_goo_p_a00a85a024ac1e9a3dbf04d4b065cc16a}
+Method clears bit-\/th bit. 
+\begin{DoxyParams}{Parameters}
+{\em bit} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_g_p_i_opin_a7b79f39cb611f1b1e0a95c3a35dbc94b}{G\-P\-I\-Opin}.
+
+\hypertarget{class_beagle_goo_p_ac4d38d90c905cf318f5017b3c18203cd}{\index{Beagle\-Goo\-P@{Beagle\-Goo\-P}!enable\-Output@{enable\-Output}}
+\index{enable\-Output@{enable\-Output}!BeagleGooP@{Beagle\-Goo\-P}}
+\subsubsection[{enable\-Output}]{\setlength{\rightskip}{0pt plus 5cm}void Beagle\-Goo\-P\-::enable\-Output (
+\begin{DoxyParamCaption}
+\item[{bool}]{enable}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_beagle_goo_p_ac4d38d90c905cf318f5017b3c18203cd}
+Method enables (if enable==true) or disables (enable==false) output buffers on all lines in the block 
+\begin{DoxyParams}{Parameters}
+{\em enable} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_g_p_i_opin_a444117958e6fb28524deeefefe75c13b}{G\-P\-I\-Opin}.
+
+\hypertarget{class_beagle_goo_p_a2900cd6005cd471066d598e4866ad66f}{\index{Beagle\-Goo\-P@{Beagle\-Goo\-P}!enable\-Output@{enable\-Output}}
+\index{enable\-Output@{enable\-Output}!BeagleGooP@{Beagle\-Goo\-P}}
+\subsubsection[{enable\-Output}]{\setlength{\rightskip}{0pt plus 5cm}void Beagle\-Goo\-P\-::enable\-Output (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{bool}]{enable}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_beagle_goo_p_a2900cd6005cd471066d598e4866ad66f}
+Method enables (if enable==true) or disables (enable==false) output buffers on i-\/th line in the block 
+\begin{DoxyParams}{Parameters}
+{\em i} & \\
+\hline
+{\em enable} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_g_p_i_opin_a832df9e2b1d14f8434069d952d372d6d}{G\-P\-I\-Opin}.
+
+\hypertarget{class_beagle_goo_p_a418b335ab7c154291a543fe18949f730}{\index{Beagle\-Goo\-P@{Beagle\-Goo\-P}!enable\-Output@{enable\-Output}}
+\index{enable\-Output@{enable\-Output}!BeagleGooP@{Beagle\-Goo\-P}}
+\subsubsection[{enable\-Output}]{\setlength{\rightskip}{0pt plus 5cm}void Beagle\-Goo\-P\-::enable\-Output (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{outs, }
+\item[{int}]{num}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_beagle_goo_p_a418b335ab7c154291a543fe18949f730}
+Method enables output buffers on lines listed in the {\itshape outs} array. Output buffers on all pins from the block not listed in the array will be disabled. Array contains indexes of the output lines, number of elements in the array is {\itshape num}. 
+\begin{DoxyParams}{Parameters}
+{\em outs} & \\
+\hline
+{\em num} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_g_p_i_opin_a4e1d95ff89bb7a2b60870c318f3740a5}{G\-P\-I\-Opin}.
+
+\hypertarget{class_beagle_goo_p_a4127207e947efe8952540fd69b949b35}{\index{Beagle\-Goo\-P@{Beagle\-Goo\-P}!enable\-Output@{enable\-Output}}
+\index{enable\-Output@{enable\-Output}!BeagleGooP@{Beagle\-Goo\-P}}
+\subsubsection[{enable\-Output}]{\setlength{\rightskip}{0pt plus 5cm}void Beagle\-Goo\-P\-::enable\-Output (
+\begin{DoxyParamCaption}
+\item[{char $\ast$$\ast$}]{out\-Names, }
+\item[{int}]{num}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_beagle_goo_p_a4127207e947efe8952540fd69b949b35}
+Method enables output buffers on lines listed in the {\itshape oot\-Names} array. Output buffers on all pins from the block not listed in the array will be disabled. Array contains references to strings with names of the output lines, number of elements in the array is {\itshape num}. 
+\begin{DoxyParams}{Parameters}
+{\em out\-Names} & \\
+\hline
+{\em num} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_g_p_i_opin_a3ce477ef4fcfced2764c489d5262ee81}{G\-P\-I\-Opin}.
+
+\hypertarget{class_beagle_goo_p_a91d2290d2c289b310d24f959371d3414}{\index{Beagle\-Goo\-P@{Beagle\-Goo\-P}!find\-Pin\-Index@{find\-Pin\-Index}}
+\index{find\-Pin\-Index@{find\-Pin\-Index}!BeagleGooP@{Beagle\-Goo\-P}}
+\subsubsection[{find\-Pin\-Index}]{\setlength{\rightskip}{0pt plus 5cm}int Beagle\-Goo\-P\-::find\-Pin\-Index (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_beagle_goo_p_a91d2290d2c289b310d24f959371d3414}
+
+
+Implements \hyperlink{class_g_p_i_opin_a52fd993a558bc7dacd6b5c9060dd610f}{G\-P\-I\-Opin}.
+
+\hypertarget{class_beagle_goo_p_a7c5b14071a87506c912b6d14f139136f}{\index{Beagle\-Goo\-P@{Beagle\-Goo\-P}!name\-Pin@{name\-Pin}}
+\index{name\-Pin@{name\-Pin}!BeagleGooP@{Beagle\-Goo\-P}}
+\subsubsection[{name\-Pin}]{\setlength{\rightskip}{0pt plus 5cm}void Beagle\-Goo\-P\-::name\-Pin (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_beagle_goo_p_a7c5b14071a87506c912b6d14f139136f}
+
+
+Implements \hyperlink{class_g_p_i_opin_a3feb6f38bd934e63d0704c9e178b443e}{G\-P\-I\-Opin}.
+
+\hypertarget{class_beagle_goo_p_a716e0b3664ed88ad427b329524311e03}{\index{Beagle\-Goo\-P@{Beagle\-Goo\-P}!name\-Pins@{name\-Pins}}
+\index{name\-Pins@{name\-Pins}!BeagleGooP@{Beagle\-Goo\-P}}
+\subsubsection[{name\-Pins}]{\setlength{\rightskip}{0pt plus 5cm}void Beagle\-Goo\-P\-::name\-Pins (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{names\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_beagle_goo_p_a716e0b3664ed88ad427b329524311e03}
+
+
+Implements \hyperlink{class_g_p_i_opin_a6d11afb8376b7ea7c5f7996fc364f64a}{G\-P\-I\-Opin}.
+
+\hypertarget{class_beagle_goo_p_a4a6ed00aa61f7d81de93cb880ba93d63}{\index{Beagle\-Goo\-P@{Beagle\-Goo\-P}!read@{read}}
+\index{read@{read}!BeagleGooP@{Beagle\-Goo\-P}}
+\subsubsection[{read}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t Beagle\-Goo\-P\-::read (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_beagle_goo_p_a4a6ed00aa61f7d81de93cb880ba93d63}
+Function returns value read from the G\-P\-I\-O block. \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_g_p_i_opin_ac1a7a08dfd7828fc6f4384f390b75c0e}{G\-P\-I\-Opin}.
+
+\hypertarget{class_beagle_goo_p_afa97c0b593fa9032c873654ee40140f5}{\index{Beagle\-Goo\-P@{Beagle\-Goo\-P}!set@{set}}
+\index{set@{set}!BeagleGooP@{Beagle\-Goo\-P}}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}void Beagle\-Goo\-P\-::set (
+\begin{DoxyParamCaption}
+\item[{uint32\-\_\-t}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_beagle_goo_p_afa97c0b593fa9032c873654ee40140f5}
+Method sets G\-P\-I\-O lines for which corresponding bit in the parameter {\itshape v} is set to 1. Lines whose bits are set to 0 remain unchanged. 
+\begin{DoxyParams}{Parameters}
+{\em v} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_g_p_i_opin_a75314dc1bf78be651b660a1b8df5537a}{G\-P\-I\-Opin}.
+
+\hypertarget{class_beagle_goo_p_a8997d7bc2665b7cbd100abe613657e94}{\index{Beagle\-Goo\-P@{Beagle\-Goo\-P}!set\-Bit@{set\-Bit}}
+\index{set\-Bit@{set\-Bit}!BeagleGooP@{Beagle\-Goo\-P}}
+\subsubsection[{set\-Bit}]{\setlength{\rightskip}{0pt plus 5cm}void Beagle\-Goo\-P\-::set\-Bit (
+\begin{DoxyParamCaption}
+\item[{int}]{bit}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_beagle_goo_p_a8997d7bc2665b7cbd100abe613657e94}
+Method sets i-\/th bit. 
+\begin{DoxyParams}{Parameters}
+{\em bit} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_g_p_i_opin_a7baef314398bbff5261b41e3373e68c8}{G\-P\-I\-Opin}.
+
+\hypertarget{class_beagle_goo_p_a5da234ad09723ae929135e96e32cf497}{\index{Beagle\-Goo\-P@{Beagle\-Goo\-P}!write@{write}}
+\index{write@{write}!BeagleGooP@{Beagle\-Goo\-P}}
+\subsubsection[{write}]{\setlength{\rightskip}{0pt plus 5cm}void Beagle\-Goo\-P\-::write (
+\begin{DoxyParamCaption}
+\item[{uint32\-\_\-t}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_beagle_goo_p_a5da234ad09723ae929135e96e32cf497}
+Function writes the value to the pin. Write semantics is determined by the semantics parameter when G\-P\-I\-Os are claimed. 
+\begin{DoxyParams}{Parameters}
+{\em v} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_g_p_i_opin_a5dd506e32835b1e35edf62649f3beaa6}{G\-P\-I\-Opin}.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_beagle_goo_p_a68d52fe38a514aef4add4867c370b174}{\index{Beagle\-Goo\-P@{Beagle\-Goo\-P}!Beagle\-Goo@{Beagle\-Goo}}
+\index{Beagle\-Goo@{Beagle\-Goo}!BeagleGooP@{Beagle\-Goo\-P}}
+\subsubsection[{Beagle\-Goo}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf Beagle\-Goo}\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_beagle_goo_p_a68d52fe38a514aef4add4867c370b174}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/beaglebone/\hyperlink{_beagle_goo_p_8h}{Beagle\-Goo\-P.\-h}\item 
+src/\hyperlink{_beagle_goo_p_8cpp}{Beagle\-Goo\-P.\-cpp}\end{DoxyCompactItemize}

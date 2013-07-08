@@ -1,0 +1,34 @@
+\hypertarget{debug_8h}{\section{include/debug.h File Reference}
+\label{debug_8h}\index{include/debug.\-h@{include/debug.\-h}}
+}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{debug_8h_ac2d33ccaf63f5d5b66552b95426c0137}{D\-E\-B\-U\-G\-\_\-\-L\-E\-V\-E\-L}~-\/1
+\item 
+\#define \hyperlink{debug_8h_a5ed91c6fa16b273dcf5a09956f7fa539}{debug}(level, format,...)~\{if(level$<$=\hyperlink{debug_8h_ac2d33ccaf63f5d5b66552b95426c0137}{D\-E\-B\-U\-G\-\_\-\-L\-E\-V\-E\-L})\{printf( \char`\"{}\%s\-:\%i\-:\char`\"{}\#format\char`\"{}\textbackslash{}n\char`\"{},\-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\-,\-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\-,\#\#\-\_\-\-\_\-\-V\-A\-\_\-\-A\-R\-G\-S\-\_\-\-\_\-);\}\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{debug_8h_a5ed91c6fa16b273dcf5a09956f7fa539}{\index{debug.\-h@{debug.\-h}!debug@{debug}}
+\index{debug@{debug}!debug.h@{debug.\-h}}
+\subsubsection[{debug}]{\setlength{\rightskip}{0pt plus 5cm}\#define debug(
+\begin{DoxyParamCaption}
+\item[{}]{level, }
+\item[{}]{format, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~\{if(level$<$={\bf D\-E\-B\-U\-G\-\_\-\-L\-E\-V\-E\-L})\{printf( \char`\"{}\%s\-:\%i\-:\char`\"{}\#format\char`\"{}\textbackslash{}n\char`\"{},\-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\-,\-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\-,\#\#\-\_\-\-\_\-\-V\-A\-\_\-\-A\-R\-G\-S\-\_\-\-\_\-);\}\}}}\label{debug_8h_a5ed91c6fa16b273dcf5a09956f7fa539}
+Debug macro Params\-: 
+\begin{DoxyParams}{Parameters}
+{\em level} & -\/ level of details of debug message. \\
+\hline
+{\em format} & -\/ Formatting string for the debug message \\
+\hline
+{\em ...} & -\/ \\
+\hline
+\end{DoxyParams}
+\hypertarget{debug_8h_ac2d33ccaf63f5d5b66552b95426c0137}{\index{debug.\-h@{debug.\-h}!D\-E\-B\-U\-G\-\_\-\-L\-E\-V\-E\-L@{D\-E\-B\-U\-G\-\_\-\-L\-E\-V\-E\-L}}
+\index{D\-E\-B\-U\-G\-\_\-\-L\-E\-V\-E\-L@{D\-E\-B\-U\-G\-\_\-\-L\-E\-V\-E\-L}!debug.h@{debug.\-h}}
+\subsubsection[{D\-E\-B\-U\-G\-\_\-\-L\-E\-V\-E\-L}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-E\-B\-U\-G\-\_\-\-L\-E\-V\-E\-L~-\/1}}\label{debug_8h_ac2d33ccaf63f5d5b66552b95426c0137}

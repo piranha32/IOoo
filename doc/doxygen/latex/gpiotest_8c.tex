@@ -1,0 +1,72 @@
+\hypertarget{gpiotest_8c}{\section{src/gpiotest.c File Reference}
+\label{gpiotest_8c}\index{src/gpiotest.\-c@{src/gpiotest.\-c}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$fcntl.\-h$>$}\\*
+{\ttfamily \#include $<$sys/mman.\-h$>$}\\*
+{\ttfamily \#include $<$unistd.\-h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpiotest_8c_afcf510c4849f0d00a6a9be4c3fd06951}{B\-U\-I\-L\-D\-\_\-\-T\-E\-S\-T\-E\-R}
+\item 
+\#define \hyperlink{gpiotest_8c_af042aacdd1e062b2be5de959f98e6ad2}{D\-A\-T\-A\-\_\-\-O\-U\-T\-\_\-\-R\-E\-G}~0x13\-C
+\item 
+\#define \hyperlink{gpiotest_8c_a192aee11f30b27525c51ff6004a6b116}{G\-P\-I\-O\-\_\-\-O\-E\-\_\-\-R\-E\-G}~0x134
+\item 
+\#define \hyperlink{gpiotest_8c_a1a8a7c50c3b61df889944e5057b9cbfa}{D\-A\-T\-A\-\_\-\-C\-L\-E\-A\-R\-\_\-\-R\-E\-G}~0x190
+\item 
+\#define \hyperlink{gpiotest_8c_ac7a1ac4701daff731ecd242fafa76ed3}{D\-A\-T\-A\-\_\-\-S\-E\-T\-\_\-\-R\-E\-G}~0x194
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{gpiotest_8c_a64ac2928127cbdaaec10e34c53e82572}{print\-\_\-gpio\-\_\-conf\-\_\-info} (char $\ast$name, unsigned int info)
+\item 
+void \hyperlink{gpiotest_8c_a50abafa4958dc4cec49d105a18f32dbc}{print\-\_\-gpio\-\_\-infos} (unsigned long $\ast$m\-\_\-control\-Module)
+\item 
+int \hyperlink{gpiotest_8c_a6f2c0f4bbc65166d01847c6dd91f5380}{\-\_\-main} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{gpiotest_8c_afcf510c4849f0d00a6a9be4c3fd06951}{\index{gpiotest.\-c@{gpiotest.\-c}!B\-U\-I\-L\-D\-\_\-\-T\-E\-S\-T\-E\-R@{B\-U\-I\-L\-D\-\_\-\-T\-E\-S\-T\-E\-R}}
+\index{B\-U\-I\-L\-D\-\_\-\-T\-E\-S\-T\-E\-R@{B\-U\-I\-L\-D\-\_\-\-T\-E\-S\-T\-E\-R}!gpiotest.c@{gpiotest.\-c}}
+\subsubsection[{B\-U\-I\-L\-D\-\_\-\-T\-E\-S\-T\-E\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-U\-I\-L\-D\-\_\-\-T\-E\-S\-T\-E\-R}}\label{gpiotest_8c_afcf510c4849f0d00a6a9be4c3fd06951}
+\hypertarget{gpiotest_8c_a1a8a7c50c3b61df889944e5057b9cbfa}{\index{gpiotest.\-c@{gpiotest.\-c}!D\-A\-T\-A\-\_\-\-C\-L\-E\-A\-R\-\_\-\-R\-E\-G@{D\-A\-T\-A\-\_\-\-C\-L\-E\-A\-R\-\_\-\-R\-E\-G}}
+\index{D\-A\-T\-A\-\_\-\-C\-L\-E\-A\-R\-\_\-\-R\-E\-G@{D\-A\-T\-A\-\_\-\-C\-L\-E\-A\-R\-\_\-\-R\-E\-G}!gpiotest.c@{gpiotest.\-c}}
+\subsubsection[{D\-A\-T\-A\-\_\-\-C\-L\-E\-A\-R\-\_\-\-R\-E\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-A\-T\-A\-\_\-\-C\-L\-E\-A\-R\-\_\-\-R\-E\-G~0x190}}\label{gpiotest_8c_a1a8a7c50c3b61df889944e5057b9cbfa}
+\hypertarget{gpiotest_8c_af042aacdd1e062b2be5de959f98e6ad2}{\index{gpiotest.\-c@{gpiotest.\-c}!D\-A\-T\-A\-\_\-\-O\-U\-T\-\_\-\-R\-E\-G@{D\-A\-T\-A\-\_\-\-O\-U\-T\-\_\-\-R\-E\-G}}
+\index{D\-A\-T\-A\-\_\-\-O\-U\-T\-\_\-\-R\-E\-G@{D\-A\-T\-A\-\_\-\-O\-U\-T\-\_\-\-R\-E\-G}!gpiotest.c@{gpiotest.\-c}}
+\subsubsection[{D\-A\-T\-A\-\_\-\-O\-U\-T\-\_\-\-R\-E\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-A\-T\-A\-\_\-\-O\-U\-T\-\_\-\-R\-E\-G~0x13\-C}}\label{gpiotest_8c_af042aacdd1e062b2be5de959f98e6ad2}
+\hypertarget{gpiotest_8c_ac7a1ac4701daff731ecd242fafa76ed3}{\index{gpiotest.\-c@{gpiotest.\-c}!D\-A\-T\-A\-\_\-\-S\-E\-T\-\_\-\-R\-E\-G@{D\-A\-T\-A\-\_\-\-S\-E\-T\-\_\-\-R\-E\-G}}
+\index{D\-A\-T\-A\-\_\-\-S\-E\-T\-\_\-\-R\-E\-G@{D\-A\-T\-A\-\_\-\-S\-E\-T\-\_\-\-R\-E\-G}!gpiotest.c@{gpiotest.\-c}}
+\subsubsection[{D\-A\-T\-A\-\_\-\-S\-E\-T\-\_\-\-R\-E\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-A\-T\-A\-\_\-\-S\-E\-T\-\_\-\-R\-E\-G~0x194}}\label{gpiotest_8c_ac7a1ac4701daff731ecd242fafa76ed3}
+\hypertarget{gpiotest_8c_a192aee11f30b27525c51ff6004a6b116}{\index{gpiotest.\-c@{gpiotest.\-c}!G\-P\-I\-O\-\_\-\-O\-E\-\_\-\-R\-E\-G@{G\-P\-I\-O\-\_\-\-O\-E\-\_\-\-R\-E\-G}}
+\index{G\-P\-I\-O\-\_\-\-O\-E\-\_\-\-R\-E\-G@{G\-P\-I\-O\-\_\-\-O\-E\-\_\-\-R\-E\-G}!gpiotest.c@{gpiotest.\-c}}
+\subsubsection[{G\-P\-I\-O\-\_\-\-O\-E\-\_\-\-R\-E\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\-P\-I\-O\-\_\-\-O\-E\-\_\-\-R\-E\-G~0x134}}\label{gpiotest_8c_a192aee11f30b27525c51ff6004a6b116}
+
+
+\subsection{Function Documentation}
+\hypertarget{gpiotest_8c_a6f2c0f4bbc65166d01847c6dd91f5380}{\index{gpiotest.\-c@{gpiotest.\-c}!\-\_\-main@{\-\_\-main}}
+\index{\-\_\-main@{\-\_\-main}!gpiotest.c@{gpiotest.\-c}}
+\subsubsection[{\-\_\-main}]{\setlength{\rightskip}{0pt plus 5cm}int \-\_\-main (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{gpiotest_8c_a6f2c0f4bbc65166d01847c6dd91f5380}
+\hypertarget{gpiotest_8c_a64ac2928127cbdaaec10e34c53e82572}{\index{gpiotest.\-c@{gpiotest.\-c}!print\-\_\-gpio\-\_\-conf\-\_\-info@{print\-\_\-gpio\-\_\-conf\-\_\-info}}
+\index{print\-\_\-gpio\-\_\-conf\-\_\-info@{print\-\_\-gpio\-\_\-conf\-\_\-info}!gpiotest.c@{gpiotest.\-c}}
+\subsubsection[{print\-\_\-gpio\-\_\-conf\-\_\-info}]{\setlength{\rightskip}{0pt plus 5cm}void print\-\_\-gpio\-\_\-conf\-\_\-info (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name, }
+\item[{unsigned int}]{info}
+\end{DoxyParamCaption}
+)}}\label{gpiotest_8c_a64ac2928127cbdaaec10e34c53e82572}
+\hypertarget{gpiotest_8c_a50abafa4958dc4cec49d105a18f32dbc}{\index{gpiotest.\-c@{gpiotest.\-c}!print\-\_\-gpio\-\_\-infos@{print\-\_\-gpio\-\_\-infos}}
+\index{print\-\_\-gpio\-\_\-infos@{print\-\_\-gpio\-\_\-infos}!gpiotest.c@{gpiotest.\-c}}
+\subsubsection[{print\-\_\-gpio\-\_\-infos}]{\setlength{\rightskip}{0pt plus 5cm}void print\-\_\-gpio\-\_\-infos (
+\begin{DoxyParamCaption}
+\item[{unsigned long $\ast$}]{m\-\_\-control\-Module}
+\end{DoxyParamCaption}
+)}}\label{gpiotest_8c_a50abafa4958dc4cec49d105a18f32dbc}

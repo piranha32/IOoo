@@ -1,0 +1,208 @@
+\hypertarget{struct_beagle_goo}{\section{Beagle\-Goo Class Reference}
+\label{struct_beagle_goo}\index{Beagle\-Goo@{Beagle\-Goo}}
+}
+
+
+{\ttfamily \#include $<$Beagle\-Goo.\-h$>$}
+
+Inheritance diagram for Beagle\-Goo\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{struct_beagle_goo}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_beagle_goo_1_1_g_p_i_o_info}{G\-P\-I\-O\-Info}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{struct_beagle_goo_a19514c99eb2f17004ad19ffb2cd0b1d5}{$\sim$\-Beagle\-Goo} ()
+\item 
+virtual \hyperlink{class_g_p_i_opin}{G\-P\-I\-Opin} $\ast$ \hyperlink{struct_beagle_goo_aa5aa13bba2ba0bc364202c7856410463}{claim} (char $\ast$names\mbox{[}$\,$\mbox{]}, int num, \hyperlink{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03}{gpio\-Write\-Semantics} semantics, \hyperlink{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10}{gpio\-Flags} flags=\hyperlink{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10aa64ecca268265aa77389ee957e01fd63}{gpio\-Flags\-None})
+\begin{DoxyCompactList}\small\item\em Method allocates G\-P\-I\-O pins and returns a G\-P\-I\-O\-Pin object. Method allocates a block of pins specified by names passed in {\itshape names} argument. Number of pins in the block is determined by {\itshape num} argument. If flag {\itshape gpio\-Exclusive} is present, only non-\/allocated pins can be allocated, the pins are marked as exclusive and can not be shared with other blocks. If the {\itshape gpio\-Exclusive} flag has not been specified, pins can be shared with other blocks. If sharing conflict has been detected, no pins must be allocated and the method must return N\-U\-L\-L. Argument {\itshape semantics} determines how write operations should be handled. If the requested write semantics is not supported by the hardware platfoom, no pins must be allocated and method must return N\-U\-L\-L. \end{DoxyCompactList}\item 
+virtual void \hyperlink{struct_beagle_goo_a67436fe547740cf9ff11f5942175b2fc}{release} (\hyperlink{class_g_p_i_opin}{G\-P\-I\-Opin} $\ast$$\ast$gpio)
+\begin{DoxyCompactList}\small\item\em Releases a block of G\-P\-I\-O pins. Method releases allocated block of G\-P\-I\-O pins. Methods releases memory allocated for the block, destroys the object and assigns N\-U\-L\-L to the referencing variable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_beagle_goo_1_1_g_p_i_o_info}{G\-P\-I\-O\-Info} $\ast$ \hyperlink{struct_beagle_goo_a2870e374462486c977ed462d169bbc07}{\-\_\-find\-Gpio} (char $\ast$name)
+\item 
+\hyperlink{struct_beagle_goo_a06b2b0e2d3b22016edb11b515fad8f0a}{Beagle\-Goo} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{struct_beagle_goo_a64e92bad467b29cb868bec64d1f6be6f}{active}
+\item 
+int \hyperlink{struct_beagle_goo_a1d4a232a0dbb10d38249e239c7e04788}{gpio\-Fd}
+\item 
+uint32\-\_\-t $\ast$ \hyperlink{struct_beagle_goo_aaa05aec2adfcadae3912e861ae35d50b}{gpios} \mbox{[}4\mbox{]}
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static struct \hyperlink{struct_beagle_goo_1_1_g_p_i_o_info}{G\-P\-I\-O\-Info} \hyperlink{struct_beagle_goo_a2856c2fe9e24825ffd5691ab9a53d1f8}{gpio\-Infos} \mbox{[}$\,$\mbox{]}
+\item 
+static uint16\-\_\-t \hyperlink{struct_beagle_goo_a13b31f0a40c07bd0ca8c9d9fa51ae60a}{addrs} \mbox{[}$\,$\mbox{]}
+\item 
+static const uint32\-\_\-t \hyperlink{struct_beagle_goo_a709c4761b20d2db44096036573d3285f}{gpio\-Addrs} \mbox{[}$\,$\mbox{]}
+\item 
+static const int \hyperlink{struct_beagle_goo_ae4b9d09b2bfaf386c5d6fb9fdee0d4fa}{Max\-Gpio\-Name\-Len} = 32
+\item 
+static const int \hyperlink{struct_beagle_goo_a0d7150aa275f183b3c552ab89584f272}{Gpio\-Mem\-Block\-Length} = 0xfff
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{struct_beagle_goo_a3c53b8008fd7b4a4dc43d5c025cfb91f}{Beagle\-Goo\-P}
+\item 
+class \hyperlink{struct_beagle_goo_ad655c01bbbf0f8f066500cb0ea296455}{G\-P\-I\-Ooo}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+pin info 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{struct_beagle_goo_a06b2b0e2d3b22016edb11b515fad8f0a}{\index{Beagle\-Goo@{Beagle\-Goo}!Beagle\-Goo@{Beagle\-Goo}}
+\index{Beagle\-Goo@{Beagle\-Goo}!BeagleGoo@{Beagle\-Goo}}
+\subsubsection[{Beagle\-Goo}]{\setlength{\rightskip}{0pt plus 5cm}Beagle\-Goo\-::\-Beagle\-Goo (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{struct_beagle_goo_a06b2b0e2d3b22016edb11b515fad8f0a}
+\hypertarget{struct_beagle_goo_a19514c99eb2f17004ad19ffb2cd0b1d5}{\index{Beagle\-Goo@{Beagle\-Goo}!$\sim$\-Beagle\-Goo@{$\sim$\-Beagle\-Goo}}
+\index{$\sim$\-Beagle\-Goo@{$\sim$\-Beagle\-Goo}!BeagleGoo@{Beagle\-Goo}}
+\subsubsection[{$\sim$\-Beagle\-Goo}]{\setlength{\rightskip}{0pt plus 5cm}Beagle\-Goo\-::$\sim$\-Beagle\-Goo (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{struct_beagle_goo_a19514c99eb2f17004ad19ffb2cd0b1d5}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{struct_beagle_goo_a2870e374462486c977ed462d169bbc07}{\index{Beagle\-Goo@{Beagle\-Goo}!\-\_\-find\-Gpio@{\-\_\-find\-Gpio}}
+\index{\-\_\-find\-Gpio@{\-\_\-find\-Gpio}!BeagleGoo@{Beagle\-Goo}}
+\subsubsection[{\-\_\-find\-Gpio}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf Beagle\-Goo\-::\-G\-P\-I\-O\-Info} $\ast$ Beagle\-Goo\-::\-\_\-find\-Gpio (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [protected]}}}\label{struct_beagle_goo_a2870e374462486c977ed462d169bbc07}
+\hypertarget{struct_beagle_goo_aa5aa13bba2ba0bc364202c7856410463}{\index{Beagle\-Goo@{Beagle\-Goo}!claim@{claim}}
+\index{claim@{claim}!BeagleGoo@{Beagle\-Goo}}
+\subsubsection[{claim}]{\setlength{\rightskip}{0pt plus 5cm}{\bf G\-P\-I\-Opin} $\ast$ Beagle\-Goo\-::claim (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{names\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{num, }
+\item[{{\bf gpio\-Write\-Semantics}}]{semantics, }
+\item[{{\bf gpio\-Flags}}]{flags = {\ttfamily {\bf gpio\-Flags\-None}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{struct_beagle_goo_aa5aa13bba2ba0bc364202c7856410463}
+
+
+Method allocates G\-P\-I\-O pins and returns a G\-P\-I\-O\-Pin object. Method allocates a block of pins specified by names passed in {\itshape names} argument. Number of pins in the block is determined by {\itshape num} argument. If flag {\itshape gpio\-Exclusive} is present, only non-\/allocated pins can be allocated, the pins are marked as exclusive and can not be shared with other blocks. If the {\itshape gpio\-Exclusive} flag has not been specified, pins can be shared with other blocks. If sharing conflict has been detected, no pins must be allocated and the method must return N\-U\-L\-L. Argument {\itshape semantics} determines how write operations should be handled. If the requested write semantics is not supported by the hardware platfoom, no pins must be allocated and method must return N\-U\-L\-L. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em names} & -\/ an array of system names of pins in the block. Pin names are implementation-\/dependent. The array should have {\itshape num} entries. \\
+\hline
+{\em num} & -\/ number of pins in the block. \\
+\hline
+{\em semantics} & -\/ write semantics. Uses constants defined by {\itshape gpio\-Write\-Semantics} enum. \\
+\hline
+{\em flags} & -\/ Flags governing pin allocation. Defined by {\itshape gpio\-Flags} enum. Optional parameter. Default value is no flags. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_g_p_i_ooo_a8d7ac44872a6d12ad439afe4e914f07e}{G\-P\-I\-Ooo}.
+
+\hypertarget{struct_beagle_goo_a67436fe547740cf9ff11f5942175b2fc}{\index{Beagle\-Goo@{Beagle\-Goo}!release@{release}}
+\index{release@{release}!BeagleGoo@{Beagle\-Goo}}
+\subsubsection[{release}]{\setlength{\rightskip}{0pt plus 5cm}void Beagle\-Goo\-::release (
+\begin{DoxyParamCaption}
+\item[{{\bf G\-P\-I\-Opin} $\ast$$\ast$}]{gpio}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{struct_beagle_goo_a67436fe547740cf9ff11f5942175b2fc}
+
+
+Releases a block of G\-P\-I\-O pins. Method releases allocated block of G\-P\-I\-O pins. Methods releases memory allocated for the block, destroys the object and assigns N\-U\-L\-L to the referencing variable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpio} & -\/ pointer to a variable with reference to an object describing a block of G\-P\-I\-O pins. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_g_p_i_ooo_ab8a52d0d5ef2fbb9ca92baa51174e3ee}{G\-P\-I\-Ooo}.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{struct_beagle_goo_a3c53b8008fd7b4a4dc43d5c025cfb91f}{\index{Beagle\-Goo@{Beagle\-Goo}!Beagle\-Goo\-P@{Beagle\-Goo\-P}}
+\index{Beagle\-Goo\-P@{Beagle\-Goo\-P}!BeagleGoo@{Beagle\-Goo}}
+\subsubsection[{Beagle\-Goo\-P}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf Beagle\-Goo\-P}\hspace{0.3cm}{\ttfamily [friend]}}}\label{struct_beagle_goo_a3c53b8008fd7b4a4dc43d5c025cfb91f}
+\hypertarget{struct_beagle_goo_ad655c01bbbf0f8f066500cb0ea296455}{\index{Beagle\-Goo@{Beagle\-Goo}!G\-P\-I\-Ooo@{G\-P\-I\-Ooo}}
+\index{G\-P\-I\-Ooo@{G\-P\-I\-Ooo}!BeagleGoo@{Beagle\-Goo}}
+\subsubsection[{G\-P\-I\-Ooo}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf G\-P\-I\-Ooo}\hspace{0.3cm}{\ttfamily [friend]}}}\label{struct_beagle_goo_ad655c01bbbf0f8f066500cb0ea296455}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_beagle_goo_a64e92bad467b29cb868bec64d1f6be6f}{\index{Beagle\-Goo@{Beagle\-Goo}!active@{active}}
+\index{active@{active}!BeagleGoo@{Beagle\-Goo}}
+\subsubsection[{active}]{\setlength{\rightskip}{0pt plus 5cm}bool Beagle\-Goo\-::active\hspace{0.3cm}{\ttfamily [protected]}}}\label{struct_beagle_goo_a64e92bad467b29cb868bec64d1f6be6f}
+\hypertarget{struct_beagle_goo_a13b31f0a40c07bd0ca8c9d9fa51ae60a}{\index{Beagle\-Goo@{Beagle\-Goo}!addrs@{addrs}}
+\index{addrs@{addrs}!BeagleGoo@{Beagle\-Goo}}
+\subsubsection[{addrs}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t Beagle\-Goo\-::addrs\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{struct_beagle_goo_a13b31f0a40c07bd0ca8c9d9fa51ae60a}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+
+        \{ 0x0818, 0x081C, 0x0808,                       
+                        0x080C, 0x0890, 0x0894, 0x089C, 0x0898, 
+                        0x0834, 0x0830, 0x0824, 0x0828, 0x083C, 
+                        0x0838, 0x082C, 0x088C, 0x0820, 0x0884, 
+                        0x0880, 0x0814, 0x0810, 0x0804, 0x0800, 
+                        0x087C, 0x08E0, 0x08E8, 0x08E4, 0x08EC, 
+                        0x08D8, 0x08DC, 0x08D4, 0x08CC, 0x08D0, 
+                        0x08C8, 0x08C0, 0x08C4, 0x08B8, 0x08BC, 
+                        0x08B0, 0x08B4, 0x08A8, 0x08AC, 0x08A0, 
+                        0x08A4                                  
+                \}
+\end{DoxyCode}
+\hypertarget{struct_beagle_goo_a709c4761b20d2db44096036573d3285f}{\index{Beagle\-Goo@{Beagle\-Goo}!gpio\-Addrs@{gpio\-Addrs}}
+\index{gpio\-Addrs@{gpio\-Addrs}!BeagleGoo@{Beagle\-Goo}}
+\subsubsection[{gpio\-Addrs}]{\setlength{\rightskip}{0pt plus 5cm}const uint32\-\_\-t Beagle\-Goo\-::gpio\-Addrs\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{struct_beagle_goo_a709c4761b20d2db44096036573d3285f}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+
+        \{ 0x44E07000, 0x4804C000, 0x481AC000, 0x481AE000 \}
+\end{DoxyCode}
+Base addresses for G\-P\-I\-O blocks in memory \hypertarget{struct_beagle_goo_a1d4a232a0dbb10d38249e239c7e04788}{\index{Beagle\-Goo@{Beagle\-Goo}!gpio\-Fd@{gpio\-Fd}}
+\index{gpio\-Fd@{gpio\-Fd}!BeagleGoo@{Beagle\-Goo}}
+\subsubsection[{gpio\-Fd}]{\setlength{\rightskip}{0pt plus 5cm}int Beagle\-Goo\-::gpio\-Fd\hspace{0.3cm}{\ttfamily [protected]}}}\label{struct_beagle_goo_a1d4a232a0dbb10d38249e239c7e04788}
+\hypertarget{struct_beagle_goo_a2856c2fe9e24825ffd5691ab9a53d1f8}{\index{Beagle\-Goo@{Beagle\-Goo}!gpio\-Infos@{gpio\-Infos}}
+\index{gpio\-Infos@{gpio\-Infos}!BeagleGoo@{Beagle\-Goo}}
+\subsubsection[{gpio\-Infos}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf G\-P\-I\-O\-Info} Beagle\-Goo\-::gpio\-Infos\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{struct_beagle_goo_a2856c2fe9e24825ffd5691ab9a53d1f8}
+\hypertarget{struct_beagle_goo_a0d7150aa275f183b3c552ab89584f272}{\index{Beagle\-Goo@{Beagle\-Goo}!Gpio\-Mem\-Block\-Length@{Gpio\-Mem\-Block\-Length}}
+\index{Gpio\-Mem\-Block\-Length@{Gpio\-Mem\-Block\-Length}!BeagleGoo@{Beagle\-Goo}}
+\subsubsection[{Gpio\-Mem\-Block\-Length}]{\setlength{\rightskip}{0pt plus 5cm}const int Beagle\-Goo\-::\-Gpio\-Mem\-Block\-Length = 0xfff\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{struct_beagle_goo_a0d7150aa275f183b3c552ab89584f272}
+\hypertarget{struct_beagle_goo_aaa05aec2adfcadae3912e861ae35d50b}{\index{Beagle\-Goo@{Beagle\-Goo}!gpios@{gpios}}
+\index{gpios@{gpios}!BeagleGoo@{Beagle\-Goo}}
+\subsubsection[{gpios}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t$\ast$ Beagle\-Goo\-::gpios\mbox{[}4\mbox{]}\hspace{0.3cm}{\ttfamily [protected]}}}\label{struct_beagle_goo_aaa05aec2adfcadae3912e861ae35d50b}
+\hypertarget{struct_beagle_goo_ae4b9d09b2bfaf386c5d6fb9fdee0d4fa}{\index{Beagle\-Goo@{Beagle\-Goo}!Max\-Gpio\-Name\-Len@{Max\-Gpio\-Name\-Len}}
+\index{Max\-Gpio\-Name\-Len@{Max\-Gpio\-Name\-Len}!BeagleGoo@{Beagle\-Goo}}
+\subsubsection[{Max\-Gpio\-Name\-Len}]{\setlength{\rightskip}{0pt plus 5cm}const int Beagle\-Goo\-::\-Max\-Gpio\-Name\-Len = 32\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{struct_beagle_goo_ae4b9d09b2bfaf386c5d6fb9fdee0d4fa}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{_beagle_goo_8cpp}{Beagle\-Goo.\-cpp}\item 
+include/beaglebone/\hyperlink{_beagle_goo_8h}{Beagle\-Goo.\-h}\end{DoxyCompactItemize}

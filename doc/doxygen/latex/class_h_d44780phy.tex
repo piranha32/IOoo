@@ -1,0 +1,292 @@
+\hypertarget{class_h_d44780phy}{\section{H\-D44780phy Class Reference}
+\label{class_h_d44780phy}\index{H\-D44780phy@{H\-D44780phy}}
+}
+
+
+{\ttfamily \#include $<$H\-D44780phy.\-h$>$}
+
+Inheritance diagram for H\-D44780phy\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_h_d44780phy}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \hyperlink{class_h_d44780phy_a76851a61a3a88766704db9f31098d21fac3d8b04a4b6fa7db3d0bfc61170e1d72}{R\-Scommand} = 0, 
+\hyperlink{class_h_d44780phy_a76851a61a3a88766704db9f31098d21fa2108dbcf0cc7b6cdcbc6235a4e765654}{R\-Sdata} = 1
+ \}
+\item 
+enum \{ \hyperlink{class_h_d44780phy_a5bf3a330184d4cfdc6297c1265ce6746ac7b87f6864ebbc4bef3d14967ec3bc97}{R\-Wwrite} = 0, 
+\hyperlink{class_h_d44780phy_a5bf3a330184d4cfdc6297c1265ce6746a2777116400417dda3d881ec137a361fc}{R\-Wread} = 1
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_h_d44780phy_a1e285c5a059e498acbd65d411ca7cb4d}{H\-D44780phy} ()
+\item 
+virtual \hyperlink{class_h_d44780phy_a7ec413f9bde27b85f43554b1cdc4860a}{$\sim$\-H\-D44780phy} ()
+\item 
+virtual void \hyperlink{class_h_d44780phy_a279090fa11ae5dffd881b62ed972637b}{write} (uint8\-\_\-t n, uint8\-\_\-t x)=0
+\begin{DoxyCompactList}\small\item\em Method writes byte v to the display. Method writes byte v to the n-\/th chip on the display. It must implement all operations necessary to write the data. If the display uses 4bit interface, the method must split the value into nibbles and write them in correct order. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_h_d44780phy_ad3caa3cc36f03230ed9c209bb576a050}{supports\-Read} ()=0
+\begin{DoxyCompactList}\small\item\em Method reports status of support for reading from the display. Method should return true if the higher level implementation can relay on reading from the display (e.\-g. status checking v.\-s. delays between operations. \end{DoxyCompactList}\item 
+virtual uint8\-\_\-t \hyperlink{class_h_d44780phy_abdee2bf5155e9915c9bb47b948edd7e1}{read} (uint8\-\_\-t n)=0
+\begin{DoxyCompactList}\small\item\em Method reads the data from the display Method reads the data lines from the the n-\/th chip on the display. Register read by the method is selected by the R\-S line. If the hardware interface does not support reading from the display, value returned by the read function is not determined. Ability to read from the display should be tested with {\itshape support\-Read()}. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_h_d44780phy_ab3f91533a8063062dec767d524d704b1}{busy} (uint8\-\_\-t n)=0
+\begin{DoxyCompactList}\small\item\em Method checks status of B\-U\-S\-Y flag If the implementation does not support readback, method should always return false;. \end{DoxyCompactList}\item 
+virtual uint8\-\_\-t \hyperlink{class_h_d44780phy_a0e848e19d8a5c2c9605b7bf6bcc5394c}{current\-Data\-Address} (uint8\-\_\-t n)=0
+\begin{DoxyCompactList}\small\item\em Method reads value of the internal. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_h_d44780phy_aa6ec16b9e1ca1400b0c20815d1dd1938}{set\-E} (uint8\-\_\-t num, uint8\-\_\-t v)=0
+\begin{DoxyCompactList}\small\item\em Function sets selected E line to requested state. Function sets selected E line to requested state. Selection of enable line allows to support big displays with more than one controllers on board. Enable lines are numbered staring from 0. Value of {\itshape num} can not be ignored. If the hardware interface uses only one enable line, the method should respond only to num set to 0. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_h_d44780phy_a982aed1944e85dcabd0702af526ab2fe}{set\-R\-S} (uint8\-\_\-t v)=0
+\begin{DoxyCompactList}\small\item\em Method sets status of R\-S line. Method sets status of R\-S line selecting instruction (for write), status (for read) registers or data memory (R/\-W). Data\-: R\-S = 1 Instruction\-: R\-S = 0. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_h_d44780phy_a2885ef9168fc5a6c73233f8c7e9ed404}{set\-R\-W} (uint8\-\_\-t v)=0
+\begin{DoxyCompactList}\small\item\em Method sets status of R\-W line. Method sets status of R\-W line. If the hardware interface does not support readback, this method can be empty. Read\-: R\-W=1 Write\-: R\-W=0. \end{DoxyCompactList}\item 
+int \hyperlink{class_h_d44780phy_a621aad1a63c6fe9f061c0914c6afefe9}{get\-Bits} () const 
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_h_d44780phy_aa50b8a72c2a3418cda74b4693e8e1253}{bits}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class defines interface to the display. Higher level functions use the interface for low level communication. Implementation of the interface should support 8 or 4 bit communication (depending on hardware implementation), exposing to the higher layer only 8-\/bit interface. The implementation must honor multiple chip select (enable) lines, for displays with multiple \hyperlink{class_h_d44780}{H\-D44780} chips on board. All requests to chips with indexes beyond the number of supported enable lines should be ignored.
+
+The class should not be use to drive multiple displays connected to the data and control bus, unless they are supposed to act as one composite display. To drive multiple independent displays sharing data and control bus each display, each display should have a separate instance of \hyperlink{class_h_d44780phy}{H\-D44780phy} object, controlled by separate blocks of I\-O lines sharing the data and control lines, with different enable lines. 
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{class_h_d44780phy_a76851a61a3a88766704db9f31098d21f}{\subsubsection[{anonymous enum}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}}\label{class_h_d44780phy_a76851a61a3a88766704db9f31098d21f}
+Constants for set\-R\-S \begin{Desc}
+\item[Enumerator\-: ]\par
+\begin{description}
+\index{R\-Scommand@{R\-Scommand}!H\-D44780phy@{H\-D44780phy}}\index{H\-D44780phy@{H\-D44780phy}!R\-Scommand@{R\-Scommand}}\item[{\em 
+\hypertarget{class_h_d44780phy_a76851a61a3a88766704db9f31098d21fac3d8b04a4b6fa7db3d0bfc61170e1d72}{R\-Scommand}\label{class_h_d44780phy_a76851a61a3a88766704db9f31098d21fac3d8b04a4b6fa7db3d0bfc61170e1d72}
+}]R\-Scommand -\/ sets command mode. \index{R\-Sdata@{R\-Sdata}!H\-D44780phy@{H\-D44780phy}}\index{H\-D44780phy@{H\-D44780phy}!R\-Sdata@{R\-Sdata}}\item[{\em 
+\hypertarget{class_h_d44780phy_a76851a61a3a88766704db9f31098d21fa2108dbcf0cc7b6cdcbc6235a4e765654}{R\-Sdata}\label{class_h_d44780phy_a76851a61a3a88766704db9f31098d21fa2108dbcf0cc7b6cdcbc6235a4e765654}
+}]R\-Sdata -\/ sets data mode. \end{description}
+\end{Desc}
+
+\hypertarget{class_h_d44780phy_a5bf3a330184d4cfdc6297c1265ce6746}{\subsubsection[{anonymous enum}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}}\label{class_h_d44780phy_a5bf3a330184d4cfdc6297c1265ce6746}
+constants for set\-R\-W \begin{Desc}
+\item[Enumerator\-: ]\par
+\begin{description}
+\index{R\-Wwrite@{R\-Wwrite}!H\-D44780phy@{H\-D44780phy}}\index{H\-D44780phy@{H\-D44780phy}!R\-Wwrite@{R\-Wwrite}}\item[{\em 
+\hypertarget{class_h_d44780phy_a5bf3a330184d4cfdc6297c1265ce6746ac7b87f6864ebbc4bef3d14967ec3bc97}{R\-Wwrite}\label{class_h_d44780phy_a5bf3a330184d4cfdc6297c1265ce6746ac7b87f6864ebbc4bef3d14967ec3bc97}
+}]R\-Wwrite -\/ sets write mode. \index{R\-Wread@{R\-Wread}!H\-D44780phy@{H\-D44780phy}}\index{H\-D44780phy@{H\-D44780phy}!R\-Wread@{R\-Wread}}\item[{\em 
+\hypertarget{class_h_d44780phy_a5bf3a330184d4cfdc6297c1265ce6746a2777116400417dda3d881ec137a361fc}{R\-Wread}\label{class_h_d44780phy_a5bf3a330184d4cfdc6297c1265ce6746a2777116400417dda3d881ec137a361fc}
+}]R\-Wread -\/ sets read mode. \end{description}
+\end{Desc}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_h_d44780phy_a1e285c5a059e498acbd65d411ca7cb4d}{\index{H\-D44780phy@{H\-D44780phy}!H\-D44780phy@{H\-D44780phy}}
+\index{H\-D44780phy@{H\-D44780phy}!HD44780phy@{H\-D44780phy}}
+\subsubsection[{H\-D44780phy}]{\setlength{\rightskip}{0pt plus 5cm}H\-D44780phy\-::\-H\-D44780phy (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_h_d44780phy_a1e285c5a059e498acbd65d411ca7cb4d}
+\hypertarget{class_h_d44780phy_a7ec413f9bde27b85f43554b1cdc4860a}{\index{H\-D44780phy@{H\-D44780phy}!$\sim$\-H\-D44780phy@{$\sim$\-H\-D44780phy}}
+\index{$\sim$\-H\-D44780phy@{$\sim$\-H\-D44780phy}!HD44780phy@{H\-D44780phy}}
+\subsubsection[{$\sim$\-H\-D44780phy}]{\setlength{\rightskip}{0pt plus 5cm}virtual H\-D44780phy\-::$\sim$\-H\-D44780phy (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_h_d44780phy_a7ec413f9bde27b85f43554b1cdc4860a}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_h_d44780phy_ab3f91533a8063062dec767d524d704b1}{\index{H\-D44780phy@{H\-D44780phy}!busy@{busy}}
+\index{busy@{busy}!HD44780phy@{H\-D44780phy}}
+\subsubsection[{busy}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool H\-D44780phy\-::busy (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{n}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_h_d44780phy_ab3f91533a8063062dec767d524d704b1}
+
+
+Method checks status of B\-U\-S\-Y flag If the implementation does not support readback, method should always return false;. 
+
+D\-N\-I
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & -\/ index of the chip on the display \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the display reports B\-U\-S\-Y state. False if the display is busy performing internal operations or readback is not supported. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_h_d44780gpio_phy_aca1ef4ea05900362e4feb63f062d0b3e}{H\-D44780gpio\-Phy}.
+
+\hypertarget{class_h_d44780phy_a0e848e19d8a5c2c9605b7bf6bcc5394c}{\index{H\-D44780phy@{H\-D44780phy}!current\-Data\-Address@{current\-Data\-Address}}
+\index{current\-Data\-Address@{current\-Data\-Address}!HD44780phy@{H\-D44780phy}}
+\subsubsection[{current\-Data\-Address}]{\setlength{\rightskip}{0pt plus 5cm}virtual uint8\-\_\-t H\-D44780phy\-::current\-Data\-Address (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{n}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_h_d44780phy_a0e848e19d8a5c2c9605b7bf6bcc5394c}
+
+
+Method reads value of the internal. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_h_d44780gpio_phy_a933e313ac7a5362b6a55a3db9af337a3}{H\-D44780gpio\-Phy}.
+
+\hypertarget{class_h_d44780phy_a621aad1a63c6fe9f061c0914c6afefe9}{\index{H\-D44780phy@{H\-D44780phy}!get\-Bits@{get\-Bits}}
+\index{get\-Bits@{get\-Bits}!HD44780phy@{H\-D44780phy}}
+\subsubsection[{get\-Bits}]{\setlength{\rightskip}{0pt plus 5cm}int H\-D44780phy\-::get\-Bits (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_h_d44780phy_a621aad1a63c6fe9f061c0914c6afefe9}
+\hypertarget{class_h_d44780phy_abdee2bf5155e9915c9bb47b948edd7e1}{\index{H\-D44780phy@{H\-D44780phy}!read@{read}}
+\index{read@{read}!HD44780phy@{H\-D44780phy}}
+\subsubsection[{read}]{\setlength{\rightskip}{0pt plus 5cm}virtual uint8\-\_\-t H\-D44780phy\-::read (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{n}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_h_d44780phy_abdee2bf5155e9915c9bb47b948edd7e1}
+
+
+Method reads the data from the display Method reads the data lines from the the n-\/th chip on the display. Register read by the method is selected by the R\-S line. If the hardware interface does not support reading from the display, value returned by the read function is not determined. Ability to read from the display should be tested with {\itshape support\-Read()}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & -\/ index of the chip on the display \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value read from the display. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_h_d44780gpio_phy_a0a30a28c612d067c3023c4fb5f1388a0}{H\-D44780gpio\-Phy}.
+
+\hypertarget{class_h_d44780phy_aa6ec16b9e1ca1400b0c20815d1dd1938}{\index{H\-D44780phy@{H\-D44780phy}!set\-E@{set\-E}}
+\index{set\-E@{set\-E}!HD44780phy@{H\-D44780phy}}
+\subsubsection[{set\-E}]{\setlength{\rightskip}{0pt plus 5cm}virtual void H\-D44780phy\-::set\-E (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{num, }
+\item[{uint8\-\_\-t}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_h_d44780phy_aa6ec16b9e1ca1400b0c20815d1dd1938}
+
+
+Function sets selected E line to requested state. Function sets selected E line to requested state. Selection of enable line allows to support big displays with more than one controllers on board. Enable lines are numbered staring from 0. Value of {\itshape num} can not be ignored. If the hardware interface uses only one enable line, the method should respond only to num set to 0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num} & Index of E line. \\
+\hline
+{\em v} & Status of E line. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_h_d44780gpio_phy_a58958f3a1c2e702da568aac6c4c8c32f}{H\-D44780gpio\-Phy}.
+
+\hypertarget{class_h_d44780phy_a982aed1944e85dcabd0702af526ab2fe}{\index{H\-D44780phy@{H\-D44780phy}!set\-R\-S@{set\-R\-S}}
+\index{set\-R\-S@{set\-R\-S}!HD44780phy@{H\-D44780phy}}
+\subsubsection[{set\-R\-S}]{\setlength{\rightskip}{0pt plus 5cm}virtual void H\-D44780phy\-::set\-R\-S (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_h_d44780phy_a982aed1944e85dcabd0702af526ab2fe}
+
+
+Method sets status of R\-S line. Method sets status of R\-S line selecting instruction (for write), status (for read) registers or data memory (R/\-W). Data\-: R\-S = 1 Instruction\-: R\-S = 0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & requested status of R\-S line. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_h_d44780gpio_phy_ae396a22b3a46bd163a4b65b1eeb007af}{H\-D44780gpio\-Phy}.
+
+\hypertarget{class_h_d44780phy_a2885ef9168fc5a6c73233f8c7e9ed404}{\index{H\-D44780phy@{H\-D44780phy}!set\-R\-W@{set\-R\-W}}
+\index{set\-R\-W@{set\-R\-W}!HD44780phy@{H\-D44780phy}}
+\subsubsection[{set\-R\-W}]{\setlength{\rightskip}{0pt plus 5cm}virtual void H\-D44780phy\-::set\-R\-W (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_h_d44780phy_a2885ef9168fc5a6c73233f8c7e9ed404}
+
+
+Method sets status of R\-W line. Method sets status of R\-W line. If the hardware interface does not support readback, this method can be empty. Read\-: R\-W=1 Write\-: R\-W=0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & requested status of R\-S line. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_h_d44780gpio_phy_a5465139b8680c044b1ef1a040027f2d3}{H\-D44780gpio\-Phy}.
+
+\hypertarget{class_h_d44780phy_ad3caa3cc36f03230ed9c209bb576a050}{\index{H\-D44780phy@{H\-D44780phy}!supports\-Read@{supports\-Read}}
+\index{supports\-Read@{supports\-Read}!HD44780phy@{H\-D44780phy}}
+\subsubsection[{supports\-Read}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool H\-D44780phy\-::supports\-Read (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_h_d44780phy_ad3caa3cc36f03230ed9c209bb576a050}
+
+
+Method reports status of support for reading from the display. Method should return true if the higher level implementation can relay on reading from the display (e.\-g. status checking v.\-s. delays between operations. 
+
+\begin{DoxyReturn}{Returns}
+true of reading B\-U\-S\-Y flag is supported. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_h_d44780gpio_phy_a9c2ca3dca1582a529ef154e492ed214a}{H\-D44780gpio\-Phy}.
+
+\hypertarget{class_h_d44780phy_a279090fa11ae5dffd881b62ed972637b}{\index{H\-D44780phy@{H\-D44780phy}!write@{write}}
+\index{write@{write}!HD44780phy@{H\-D44780phy}}
+\subsubsection[{write}]{\setlength{\rightskip}{0pt plus 5cm}virtual void H\-D44780phy\-::write (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{n, }
+\item[{uint8\-\_\-t}]{x}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_h_d44780phy_a279090fa11ae5dffd881b62ed972637b}
+
+
+Method writes byte v to the display. Method writes byte v to the n-\/th chip on the display. It must implement all operations necessary to write the data. If the display uses 4bit interface, the method must split the value into nibbles and write them in correct order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & -\/ index of the chip on the display \\
+\hline
+{\em x} & value to be written \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_h_d44780gpio_phy_a1c8e591c8c4c8287f70a7ba398ebb744}{H\-D44780gpio\-Phy}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_h_d44780phy_aa50b8a72c2a3418cda74b4693e8e1253}{\index{H\-D44780phy@{H\-D44780phy}!bits@{bits}}
+\index{bits@{bits}!HD44780phy@{H\-D44780phy}}
+\subsubsection[{bits}]{\setlength{\rightskip}{0pt plus 5cm}int H\-D44780phy\-::bits\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_h_d44780phy_aa50b8a72c2a3418cda74b4693e8e1253}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+include/device/\hyperlink{_h_d44780phy_8h}{H\-D44780phy.\-h}\end{DoxyCompactItemize}

@@ -1,0 +1,206 @@
+\hypertarget{class_g_p_i_ooo}{\section{G\-P\-I\-Ooo Class Reference}
+\label{class_g_p_i_ooo}\index{G\-P\-I\-Ooo@{G\-P\-I\-Ooo}}
+}
+
+
+Object-\/oriented implementation of G\-P\-I\-O Class defines interface for object-\/oriented handling of G\-P\-I\-O operations. Should be used as parent class for platform-\/specific implementations.  
+
+
+
+
+{\ttfamily \#include $<$G\-P\-I\-Ooo.\-h$>$}
+
+Inheritance diagram for G\-P\-I\-Ooo\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_g_p_i_ooo}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10}{gpio\-Flags} \{ \hyperlink{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10aa64ecca268265aa77389ee957e01fd63}{gpio\-Flags\-None} =  0, 
+\hyperlink{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10a42607c5a4f579963b6426f81d2266c62}{gpio\-Exclusive} =  1
+ \}
+\item 
+enum \hyperlink{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03}{gpio\-Write\-Semantics} \{ \hyperlink{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03a21aadd48a3896150795cd7fde8c93969}{gpio\-Write} =  1, 
+\hyperlink{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03a359f92e59dfc786c8eb730a95179fd1b}{gpio\-Write\-Atomic}, 
+\hyperlink{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03a551b9df4fca015828bfdfbce0e4e9c31}{gpio\-Write\-Set\-Before\-Clear}, 
+\hyperlink{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03a4b8a43356457a0d5e5994ab8f1341a7f}{gpio\-Write\-Clear\-Before\-Set}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{class_g_p_i_ooo_a99319510b178ed4e1dfc448e53a6c4b3}{$\sim$\-G\-P\-I\-Ooo} ()
+\item 
+virtual \hyperlink{class_g_p_i_opin}{G\-P\-I\-Opin} $\ast$ \hyperlink{class_g_p_i_ooo_a07164321fda879306394d7550454dbb2}{claim} (char $\ast$names\mbox{[}$\,$\mbox{]}, int num)
+\begin{DoxyCompactList}\small\item\em Simplified version of G\-P\-I\-Opin\-::claim() Simplified version of G\-P\-I\-Opin\-::claim(). Assumes {\itshape gpio\-Write} semantics and no options. \end{DoxyCompactList}\item 
+virtual \hyperlink{class_g_p_i_opin}{G\-P\-I\-Opin} $\ast$ \hyperlink{class_g_p_i_ooo_a8d7ac44872a6d12ad439afe4e914f07e}{claim} (char $\ast$names\mbox{[}$\,$\mbox{]}, int num, \hyperlink{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03}{gpio\-Write\-Semantics} semantics, \hyperlink{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10}{gpio\-Flags} flags=\hyperlink{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10aa64ecca268265aa77389ee957e01fd63}{gpio\-Flags\-None})=0
+\begin{DoxyCompactList}\small\item\em Method allocates G\-P\-I\-O pins and returns a G\-P\-I\-O\-Pin object. Method allocates a block of pins specified by names passed in {\itshape names} argument. Number of pins in the block is determined by {\itshape num} argument. If flag {\itshape gpio\-Exclusive} is present, only non-\/allocated pins can be allocated, the pins are marked as exclusive and can not be shared with other blocks. If the {\itshape gpio\-Exclusive} flag has not been specified, pins can be shared with other blocks. If sharing conflict has been detected, no pins must be allocated and the method must return N\-U\-L\-L. Argument {\itshape semantics} determines how write operations should be handled. If the requested write semantics is not supported by the hardware platfoom, no pins must be allocated and method must return N\-U\-L\-L. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_g_p_i_ooo_ab8a52d0d5ef2fbb9ca92baa51174e3ee}{release} (\hyperlink{class_g_p_i_opin}{G\-P\-I\-Opin} $\ast$$\ast$gpio)=0
+\begin{DoxyCompactList}\small\item\em Releases a block of G\-P\-I\-O pins. Method releases allocated block of G\-P\-I\-O pins. Methods releases memory allocated for the block, destroys the object and assigns N\-U\-L\-L to the referencing variable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_g_p_i_ooo}{G\-P\-I\-Ooo} $\ast$ \hyperlink{class_g_p_i_ooo_a6bbf91045352182749934096c3f4c42d}{get\-Instance} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static class \hyperlink{struct_beagle_goo}{Beagle\-Goo} \hyperlink{class_g_p_i_ooo_a8b49cf33628e0cb0e77c534ad971eef9}{inst} ()
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_g_p_i_ooo_a266ea875ace024757dd1209ea5c0a327}{G\-P\-I\-Opin}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Object-\/oriented implementation of G\-P\-I\-O Class defines interface for object-\/oriented handling of G\-P\-I\-O operations. Should be used as parent class for platform-\/specific implementations. 
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10}{\index{G\-P\-I\-Ooo@{G\-P\-I\-Ooo}!gpio\-Flags@{gpio\-Flags}}
+\index{gpio\-Flags@{gpio\-Flags}!GPIOoo@{G\-P\-I\-Ooo}}
+\subsubsection[{gpio\-Flags}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf G\-P\-I\-Ooo\-::gpio\-Flags}}}\label{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10}
+Options flags for G\-P\-I\-O pin allocation. \begin{Desc}
+\item[Enumerator\-: ]\par
+\begin{description}
+\index{gpio\-Flags\-None@{gpio\-Flags\-None}!G\-P\-I\-Ooo@{G\-P\-I\-Ooo}}\index{G\-P\-I\-Ooo@{G\-P\-I\-Ooo}!gpio\-Flags\-None@{gpio\-Flags\-None}}\item[{\em 
+\hypertarget{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10aa64ecca268265aa77389ee957e01fd63}{gpio\-Flags\-None}\label{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10aa64ecca268265aa77389ee957e01fd63}
+}]gpio\-Flags\-None -\/ No flags \index{gpio\-Exclusive@{gpio\-Exclusive}!G\-P\-I\-Ooo@{G\-P\-I\-Ooo}}\index{G\-P\-I\-Ooo@{G\-P\-I\-Ooo}!gpio\-Exclusive@{gpio\-Exclusive}}\item[{\em 
+\hypertarget{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10a42607c5a4f579963b6426f81d2266c62}{gpio\-Exclusive}\label{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10a42607c5a4f579963b6426f81d2266c62}
+}]gpio\-Exclusive -\/ G\-P\-I\-Os allocated exclusively. Allocating with this flag disables sharing with other blocks. \end{description}
+\end{Desc}
+
+\hypertarget{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03}{\index{G\-P\-I\-Ooo@{G\-P\-I\-Ooo}!gpio\-Write\-Semantics@{gpio\-Write\-Semantics}}
+\index{gpio\-Write\-Semantics@{gpio\-Write\-Semantics}!GPIOoo@{G\-P\-I\-Ooo}}
+\subsubsection[{gpio\-Write\-Semantics}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf G\-P\-I\-Ooo\-::gpio\-Write\-Semantics}}}\label{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03}
+Enum defines semantics of write operation to G\-P\-I\-Os. \begin{Desc}
+\item[Enumerator\-: ]\par
+\begin{description}
+\index{gpio\-Write@{gpio\-Write}!G\-P\-I\-Ooo@{G\-P\-I\-Ooo}}\index{G\-P\-I\-Ooo@{G\-P\-I\-Ooo}!gpio\-Write@{gpio\-Write}}\item[{\em 
+\hypertarget{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03a21aadd48a3896150795cd7fde8c93969}{gpio\-Write}\label{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03a21aadd48a3896150795cd7fde8c93969}
+}]State of the port can be affected by writes to the pins on the same G\-P\-I\-O port. gpio\-Write -\/ Simple write to the port. Prone to race conditions, offers no multi-\/process safety. \index{gpio\-Write\-Atomic@{gpio\-Write\-Atomic}!G\-P\-I\-Ooo@{G\-P\-I\-Ooo}}\index{G\-P\-I\-Ooo@{G\-P\-I\-Ooo}!gpio\-Write\-Atomic@{gpio\-Write\-Atomic}}\item[{\em 
+\hypertarget{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03a359f92e59dfc786c8eb730a95179fd1b}{gpio\-Write\-Atomic}\label{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03a359f92e59dfc786c8eb730a95179fd1b}
+}]gpio\-Write\-Atomic -\/ Atomic write to the port. Write to the port must be guaranteed to be successful and effective. \index{gpio\-Write\-Set\-Before\-Clear@{gpio\-Write\-Set\-Before\-Clear}!G\-P\-I\-Ooo@{G\-P\-I\-Ooo}}\index{G\-P\-I\-Ooo@{G\-P\-I\-Ooo}!gpio\-Write\-Set\-Before\-Clear@{gpio\-Write\-Set\-Before\-Clear}}\item[{\em 
+\hypertarget{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03a551b9df4fca015828bfdfbce0e4e9c31}{gpio\-Write\-Set\-Before\-Clear}\label{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03a551b9df4fca015828bfdfbce0e4e9c31}
+}]gpio\-Write\-Set\-Before\-Clear -\/ In two-\/step implementation of writing to the pins, pins with value '1' are set before pins with value '0' are cleared. For a short period of time the state of the pins in the G\-P\-I\-O block will be equal to bitwise O\-R of the previous and next states. \index{gpio\-Write\-Clear\-Before\-Set@{gpio\-Write\-Clear\-Before\-Set}!G\-P\-I\-Ooo@{G\-P\-I\-Ooo}}\index{G\-P\-I\-Ooo@{G\-P\-I\-Ooo}!gpio\-Write\-Clear\-Before\-Set@{gpio\-Write\-Clear\-Before\-Set}}\item[{\em 
+\hypertarget{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03a4b8a43356457a0d5e5994ab8f1341a7f}{gpio\-Write\-Clear\-Before\-Set}\label{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03a4b8a43356457a0d5e5994ab8f1341a7f}
+}]gpio\-Write\-Clear\-Before\-Set -\/ In two-\/step implementation of writing to the pins, pins with value '0' are cleared before pins with value '1' are set. For a short period of time the state of the pins in the G\-P\-I\-O block will be equal to bitwise A\-N\-D of the previous and next states. \end{description}
+\end{Desc}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_g_p_i_ooo_a99319510b178ed4e1dfc448e53a6c4b3}{\index{G\-P\-I\-Ooo@{G\-P\-I\-Ooo}!$\sim$\-G\-P\-I\-Ooo@{$\sim$\-G\-P\-I\-Ooo}}
+\index{$\sim$\-G\-P\-I\-Ooo@{$\sim$\-G\-P\-I\-Ooo}!GPIOoo@{G\-P\-I\-Ooo}}
+\subsubsection[{$\sim$\-G\-P\-I\-Ooo}]{\setlength{\rightskip}{0pt plus 5cm}G\-P\-I\-Ooo\-::$\sim$\-G\-P\-I\-Ooo (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_g_p_i_ooo_a99319510b178ed4e1dfc448e53a6c4b3}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_g_p_i_ooo_a07164321fda879306394d7550454dbb2}{\index{G\-P\-I\-Ooo@{G\-P\-I\-Ooo}!claim@{claim}}
+\index{claim@{claim}!GPIOoo@{G\-P\-I\-Ooo}}
+\subsubsection[{claim}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf G\-P\-I\-Opin}$\ast$ G\-P\-I\-Ooo\-::claim (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{names\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{num}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_g_p_i_ooo_a07164321fda879306394d7550454dbb2}
+
+
+Simplified version of G\-P\-I\-Opin\-::claim() Simplified version of G\-P\-I\-Opin\-::claim(). Assumes {\itshape gpio\-Write} semantics and no options. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em names} & -\/ an array of system names of pins in the block. Pin names are implementation-\/dependent. The array should have {\itshape num} entries. \\
+\hline
+{\em num} & -\/ number of pins in the block. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_g_p_i_ooo_a8d7ac44872a6d12ad439afe4e914f07e}{\index{G\-P\-I\-Ooo@{G\-P\-I\-Ooo}!claim@{claim}}
+\index{claim@{claim}!GPIOoo@{G\-P\-I\-Ooo}}
+\subsubsection[{claim}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf G\-P\-I\-Opin}$\ast$ G\-P\-I\-Ooo\-::claim (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{names\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{num, }
+\item[{{\bf gpio\-Write\-Semantics}}]{semantics, }
+\item[{{\bf gpio\-Flags}}]{flags = {\ttfamily {\bf gpio\-Flags\-None}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_g_p_i_ooo_a8d7ac44872a6d12ad439afe4e914f07e}
+
+
+Method allocates G\-P\-I\-O pins and returns a G\-P\-I\-O\-Pin object. Method allocates a block of pins specified by names passed in {\itshape names} argument. Number of pins in the block is determined by {\itshape num} argument. If flag {\itshape gpio\-Exclusive} is present, only non-\/allocated pins can be allocated, the pins are marked as exclusive and can not be shared with other blocks. If the {\itshape gpio\-Exclusive} flag has not been specified, pins can be shared with other blocks. If sharing conflict has been detected, no pins must be allocated and the method must return N\-U\-L\-L. Argument {\itshape semantics} determines how write operations should be handled. If the requested write semantics is not supported by the hardware platfoom, no pins must be allocated and method must return N\-U\-L\-L. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em names} & -\/ an array of system names of pins in the block. Pin names are implementation-\/dependent. The array should have {\itshape num} entries. \\
+\hline
+{\em num} & -\/ number of pins in the block. \\
+\hline
+{\em semantics} & -\/ write semantics. Uses constants defined by {\itshape gpio\-Write\-Semantics} enum. \\
+\hline
+{\em flags} & -\/ Flags governing pin allocation. Defined by {\itshape gpio\-Flags} enum. Optional parameter. Default value is no flags. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{struct_beagle_goo_aa5aa13bba2ba0bc364202c7856410463}{Beagle\-Goo}.
+
+\hypertarget{class_g_p_i_ooo_a6bbf91045352182749934096c3f4c42d}{\index{G\-P\-I\-Ooo@{G\-P\-I\-Ooo}!get\-Instance@{get\-Instance}}
+\index{get\-Instance@{get\-Instance}!GPIOoo@{G\-P\-I\-Ooo}}
+\subsubsection[{get\-Instance}]{\setlength{\rightskip}{0pt plus 5cm}class {\bf G\-P\-I\-Ooo} $\ast$ G\-P\-I\-Ooo\-::get\-Instance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_g_p_i_ooo_a6bbf91045352182749934096c3f4c42d}
+\hypertarget{class_g_p_i_ooo_a8b49cf33628e0cb0e77c534ad971eef9}{\index{G\-P\-I\-Ooo@{G\-P\-I\-Ooo}!inst@{inst}}
+\index{inst@{inst}!GPIOoo@{G\-P\-I\-Ooo}}
+\subsubsection[{inst}]{\setlength{\rightskip}{0pt plus 5cm}static class {\bf Beagle\-Goo} G\-P\-I\-Ooo\-::inst (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{class_g_p_i_ooo_a8b49cf33628e0cb0e77c534ad971eef9}
+\hypertarget{class_g_p_i_ooo_ab8a52d0d5ef2fbb9ca92baa51174e3ee}{\index{G\-P\-I\-Ooo@{G\-P\-I\-Ooo}!release@{release}}
+\index{release@{release}!GPIOoo@{G\-P\-I\-Ooo}}
+\subsubsection[{release}]{\setlength{\rightskip}{0pt plus 5cm}virtual void G\-P\-I\-Ooo\-::release (
+\begin{DoxyParamCaption}
+\item[{{\bf G\-P\-I\-Opin} $\ast$$\ast$}]{gpio}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_g_p_i_ooo_ab8a52d0d5ef2fbb9ca92baa51174e3ee}
+
+
+Releases a block of G\-P\-I\-O pins. Method releases allocated block of G\-P\-I\-O pins. Methods releases memory allocated for the block, destroys the object and assigns N\-U\-L\-L to the referencing variable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpio} & -\/ pointer to a variable with reference to an object describing a block of G\-P\-I\-O pins. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{struct_beagle_goo_a67436fe547740cf9ff11f5942175b2fc}{Beagle\-Goo}.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_g_p_i_ooo_a266ea875ace024757dd1209ea5c0a327}{\index{G\-P\-I\-Ooo@{G\-P\-I\-Ooo}!G\-P\-I\-Opin@{G\-P\-I\-Opin}}
+\index{G\-P\-I\-Opin@{G\-P\-I\-Opin}!GPIOoo@{G\-P\-I\-Ooo}}
+\subsubsection[{G\-P\-I\-Opin}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf G\-P\-I\-Opin}\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_g_p_i_ooo_a266ea875ace024757dd1209ea5c0a327}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{_g_p_i_ooo_8h}{G\-P\-I\-Ooo.\-h}\item 
+src/\hyperlink{_g_p_i_ooo_8cpp}{G\-P\-I\-Ooo.\-cpp}\end{DoxyCompactItemize}

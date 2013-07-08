@@ -1,0 +1,47 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+    	compatible = "ti,beaglebone", "ti,beaglebone-black";
+
+	/* identification */
+    	part-number = "hd44780_pins";
+	version = "00A0";
+
+    	fragment@0 {
+        	target = <&am33xx_pinmux>;
+        	__overlay__ {
+            		pinctrl_lcd_pins: lcd_gpios {
+                		pinctrl-single,pins = <
+	                 		0x070 0x17 /* RS: P9_11 = gpio0[30] */
+					0x078 0x17 /* E:  p9_12 = gpio1[28] */
+					0x04c 0x17 /* D0: p9_16 = gpio1[19] */
+					0x15c 0x17 /* D1: p9_17 = gpio0[5] */
+	                 		0x158 0x17 /* D2: P9_18 = gpio0[4] */
+					0x154 0x17 /* D3: p9_21 = gpio0[3] */
+
+					0x184 0x17 /* D4: p9_24 = gpio0[15] */
+					0x1ac 0x17 /* D5: p9_25 = gpio3[21] */
+					0x180 0x17 /* D6: p9_26 = gpio0[14] */
+					0x1a4 0x17 /* D7: p9_27 = gpio3[19] */
+             			>;
+            		};
+        	};
+    	};
+
+	fragment@1 {
+		target = <&ocp>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <1>;
+			lcd_gpios {
+				compatible = "bone-pinmux-helper";
+				pinctrl-names = "default";
+				pinctrl-0 = <&pinctrl_lcd_pins>;
+				status = "okay";
+			};
+		};
+	};
+
+};
+

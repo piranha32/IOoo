@@ -1,0 +1,144 @@
+\hypertarget{class_s_p_i}{\section{S\-P\-I Class Reference}
+\label{class_s_p_i}\index{S\-P\-I@{S\-P\-I}}
+}
+
+
+{\ttfamily \#include $<$S\-P\-I.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_s_p_i_a2ba081c29fbdecc704c6bf00b24d5205}{S\-P\-I} ()
+\item 
+int \hyperlink{class_s_p_i_a52ceb41efea8b56cd6c5fc20cd36ca33}{open} (int bus, int channel)
+\item 
+int \hyperlink{class_s_p_i_ab60d93bf6b639c0b4dad9da4f5854a94}{close} ()
+\item 
+int \hyperlink{class_s_p_i_a81ff077c6af077ef9d1ee2d56a8a310b}{set\-Mode} (uint8\-\_\-t mode)
+\item 
+int \hyperlink{class_s_p_i_afad281dadda690a5bb1ad456c2ddb924}{set\-Clock\-Polarity} (uint8\-\_\-t pol)
+\item 
+int \hyperlink{class_s_p_i_acc43a43a985c6e73723852d621324ef8}{set\-Clock\-Phase} (uint8\-\_\-t phase)
+\item 
+int \hyperlink{class_s_p_i_aedcab28ad20f691db0f3450ed825fd69}{set\-L\-S\-B\-First} (bool lsb\-\_\-first)
+\item 
+int \hyperlink{class_s_p_i_a4e6b7a9b89809663c91712ceff00920b}{set\-Bits\-Per\-Word} (int bits)
+\item 
+int \hyperlink{class_s_p_i_a3de287340d081fc813fd21269b014183}{set\-Speed} (uint32\-\_\-t speed)
+\item 
+int \hyperlink{class_s_p_i_a7349053056a1e712eb6f5c1f122186d0}{write} (uint8\-\_\-t wbuf\mbox{[}$\,$\mbox{]}, int len)
+\item 
+int \hyperlink{class_s_p_i_a001a78d9fbd2ea73b0fcb7b5efa816e0}{read} (uint8\-\_\-t rbuf\mbox{[}$\,$\mbox{]}, int len)
+\item 
+int \hyperlink{class_s_p_i_adcd3b90ca766fb1b69666cf3402726fe}{xfer1} (uint8\-\_\-t wbuf\mbox{[}$\,$\mbox{]}, uint8\-\_\-t rbuf\mbox{[}$\,$\mbox{]}, int len)
+\item 
+virtual \hyperlink{class_s_p_i_a6babebf1ea3e8ff0330f43a3e2312ac4}{$\sim$\-S\-P\-I} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_s_p_i_a2ba081c29fbdecc704c6bf00b24d5205}{\index{S\-P\-I@{S\-P\-I}!S\-P\-I@{S\-P\-I}}
+\index{S\-P\-I@{S\-P\-I}!SPI@{S\-P\-I}}
+\subsubsection[{S\-P\-I}]{\setlength{\rightskip}{0pt plus 5cm}S\-P\-I\-::\-S\-P\-I (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_s_p_i_a2ba081c29fbdecc704c6bf00b24d5205}
+\hypertarget{class_s_p_i_a6babebf1ea3e8ff0330f43a3e2312ac4}{\index{S\-P\-I@{S\-P\-I}!$\sim$\-S\-P\-I@{$\sim$\-S\-P\-I}}
+\index{$\sim$\-S\-P\-I@{$\sim$\-S\-P\-I}!SPI@{S\-P\-I}}
+\subsubsection[{$\sim$\-S\-P\-I}]{\setlength{\rightskip}{0pt plus 5cm}S\-P\-I\-::$\sim$\-S\-P\-I (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_s_p_i_a6babebf1ea3e8ff0330f43a3e2312ac4}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_s_p_i_ab60d93bf6b639c0b4dad9da4f5854a94}{\index{S\-P\-I@{S\-P\-I}!close@{close}}
+\index{close@{close}!SPI@{S\-P\-I}}
+\subsubsection[{close}]{\setlength{\rightskip}{0pt plus 5cm}int S\-P\-I\-::close (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_s_p_i_ab60d93bf6b639c0b4dad9da4f5854a94}
+\hypertarget{class_s_p_i_a52ceb41efea8b56cd6c5fc20cd36ca33}{\index{S\-P\-I@{S\-P\-I}!open@{open}}
+\index{open@{open}!SPI@{S\-P\-I}}
+\subsubsection[{open}]{\setlength{\rightskip}{0pt plus 5cm}int S\-P\-I\-::open (
+\begin{DoxyParamCaption}
+\item[{int}]{bus, }
+\item[{int}]{channel}
+\end{DoxyParamCaption}
+)}}\label{class_s_p_i_a52ceb41efea8b56cd6c5fc20cd36ca33}
+\hypertarget{class_s_p_i_a001a78d9fbd2ea73b0fcb7b5efa816e0}{\index{S\-P\-I@{S\-P\-I}!read@{read}}
+\index{read@{read}!SPI@{S\-P\-I}}
+\subsubsection[{read}]{\setlength{\rightskip}{0pt plus 5cm}int S\-P\-I\-::read (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{rbuf\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}}\label{class_s_p_i_a001a78d9fbd2ea73b0fcb7b5efa816e0}
+\hypertarget{class_s_p_i_a4e6b7a9b89809663c91712ceff00920b}{\index{S\-P\-I@{S\-P\-I}!set\-Bits\-Per\-Word@{set\-Bits\-Per\-Word}}
+\index{set\-Bits\-Per\-Word@{set\-Bits\-Per\-Word}!SPI@{S\-P\-I}}
+\subsubsection[{set\-Bits\-Per\-Word}]{\setlength{\rightskip}{0pt plus 5cm}int S\-P\-I\-::set\-Bits\-Per\-Word (
+\begin{DoxyParamCaption}
+\item[{int}]{bits}
+\end{DoxyParamCaption}
+)}}\label{class_s_p_i_a4e6b7a9b89809663c91712ceff00920b}
+\hypertarget{class_s_p_i_acc43a43a985c6e73723852d621324ef8}{\index{S\-P\-I@{S\-P\-I}!set\-Clock\-Phase@{set\-Clock\-Phase}}
+\index{set\-Clock\-Phase@{set\-Clock\-Phase}!SPI@{S\-P\-I}}
+\subsubsection[{set\-Clock\-Phase}]{\setlength{\rightskip}{0pt plus 5cm}int S\-P\-I\-::set\-Clock\-Phase (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{phase}
+\end{DoxyParamCaption}
+)}}\label{class_s_p_i_acc43a43a985c6e73723852d621324ef8}
+\hypertarget{class_s_p_i_afad281dadda690a5bb1ad456c2ddb924}{\index{S\-P\-I@{S\-P\-I}!set\-Clock\-Polarity@{set\-Clock\-Polarity}}
+\index{set\-Clock\-Polarity@{set\-Clock\-Polarity}!SPI@{S\-P\-I}}
+\subsubsection[{set\-Clock\-Polarity}]{\setlength{\rightskip}{0pt plus 5cm}int S\-P\-I\-::set\-Clock\-Polarity (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{pol}
+\end{DoxyParamCaption}
+)}}\label{class_s_p_i_afad281dadda690a5bb1ad456c2ddb924}
+\hypertarget{class_s_p_i_aedcab28ad20f691db0f3450ed825fd69}{\index{S\-P\-I@{S\-P\-I}!set\-L\-S\-B\-First@{set\-L\-S\-B\-First}}
+\index{set\-L\-S\-B\-First@{set\-L\-S\-B\-First}!SPI@{S\-P\-I}}
+\subsubsection[{set\-L\-S\-B\-First}]{\setlength{\rightskip}{0pt plus 5cm}int S\-P\-I\-::set\-L\-S\-B\-First (
+\begin{DoxyParamCaption}
+\item[{bool}]{lsb\-\_\-first}
+\end{DoxyParamCaption}
+)}}\label{class_s_p_i_aedcab28ad20f691db0f3450ed825fd69}
+\hypertarget{class_s_p_i_a81ff077c6af077ef9d1ee2d56a8a310b}{\index{S\-P\-I@{S\-P\-I}!set\-Mode@{set\-Mode}}
+\index{set\-Mode@{set\-Mode}!SPI@{S\-P\-I}}
+\subsubsection[{set\-Mode}]{\setlength{\rightskip}{0pt plus 5cm}int S\-P\-I\-::set\-Mode (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{mode}
+\end{DoxyParamCaption}
+)}}\label{class_s_p_i_a81ff077c6af077ef9d1ee2d56a8a310b}
+\hypertarget{class_s_p_i_a3de287340d081fc813fd21269b014183}{\index{S\-P\-I@{S\-P\-I}!set\-Speed@{set\-Speed}}
+\index{set\-Speed@{set\-Speed}!SPI@{S\-P\-I}}
+\subsubsection[{set\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}int S\-P\-I\-::set\-Speed (
+\begin{DoxyParamCaption}
+\item[{uint32\-\_\-t}]{speed}
+\end{DoxyParamCaption}
+)}}\label{class_s_p_i_a3de287340d081fc813fd21269b014183}
+\hypertarget{class_s_p_i_a7349053056a1e712eb6f5c1f122186d0}{\index{S\-P\-I@{S\-P\-I}!write@{write}}
+\index{write@{write}!SPI@{S\-P\-I}}
+\subsubsection[{write}]{\setlength{\rightskip}{0pt plus 5cm}int S\-P\-I\-::write (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{wbuf\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}}\label{class_s_p_i_a7349053056a1e712eb6f5c1f122186d0}
+\hypertarget{class_s_p_i_adcd3b90ca766fb1b69666cf3402726fe}{\index{S\-P\-I@{S\-P\-I}!xfer1@{xfer1}}
+\index{xfer1@{xfer1}!SPI@{S\-P\-I}}
+\subsubsection[{xfer1}]{\setlength{\rightskip}{0pt plus 5cm}int S\-P\-I\-::xfer1 (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{wbuf\mbox{[}$\,$\mbox{]}, }
+\item[{uint8\-\_\-t}]{rbuf\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}}\label{class_s_p_i_adcd3b90ca766fb1b69666cf3402726fe}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{_s_p_i_8h}{S\-P\-I.\-h}\item 
+src/\hyperlink{_s_p_i_8cpp}{S\-P\-I.\-cpp}\end{DoxyCompactItemize}

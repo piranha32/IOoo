@@ -1,0 +1,309 @@
+\hypertarget{class_g_p_i_opin}{\section{G\-P\-I\-Opin Class Reference}
+\label{class_g_p_i_opin}\index{G\-P\-I\-Opin@{G\-P\-I\-Opin}}
+}
+
+
+{\ttfamily \#include $<$G\-P\-I\-Opin.\-h$>$}
+
+Inheritance diagram for G\-P\-I\-Opin\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_g_p_i_opin}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{class_g_p_i_opin_a28e3ff135999c7bfe6f9ebb6b2c8512e}{$\sim$\-G\-P\-I\-Opin} ()
+\item 
+virtual void \hyperlink{class_g_p_i_opin_a3feb6f38bd934e63d0704c9e178b443e}{name\-Pin} (int i, char $\ast$name)=0
+\item 
+virtual void \hyperlink{class_g_p_i_opin_a6d11afb8376b7ea7c5f7996fc364f64a}{name\-Pins} (char $\ast$names\mbox{[}$\,$\mbox{]})=0
+\item 
+virtual int \hyperlink{class_g_p_i_opin_a52fd993a558bc7dacd6b5c9060dd610f}{find\-Pin\-Index} (char $\ast$name)=0
+\item 
+virtual void \hyperlink{class_g_p_i_opin_a444117958e6fb28524deeefefe75c13b}{enable\-Output} (bool enable)=0
+\item 
+virtual void \hyperlink{class_g_p_i_opin_a832df9e2b1d14f8434069d952d372d6d}{enable\-Output} (int i, bool enable)=0
+\item 
+virtual void \hyperlink{class_g_p_i_opin_a4e1d95ff89bb7a2b60870c318f3740a5}{enable\-Output} (int $\ast$outs, int num)=0
+\item 
+virtual void \hyperlink{class_g_p_i_opin_a3ce477ef4fcfced2764c489d5262ee81}{enable\-Output} (char $\ast$$\ast$out\-Names, int num)=0
+\item 
+virtual void \hyperlink{class_g_p_i_opin_a5dd506e32835b1e35edf62649f3beaa6}{write} (uint32\-\_\-t v)=0
+\item 
+virtual void \hyperlink{class_g_p_i_opin_a75314dc1bf78be651b660a1b8df5537a}{set} (uint32\-\_\-t v)=0
+\item 
+virtual void \hyperlink{class_g_p_i_opin_a7baef314398bbff5261b41e3373e68c8}{set\-Bit} (int bit)=0
+\item 
+virtual void \hyperlink{class_g_p_i_opin_abc101fb598fa749ae58743e8b2decbbc}{clear} (uint32\-\_\-t v)=0
+\item 
+virtual void \hyperlink{class_g_p_i_opin_a7b79f39cb611f1b1e0a95c3a35dbc94b}{clear\-Bit} (int bit)=0
+\item 
+virtual uint32\-\_\-t \hyperlink{class_g_p_i_opin_ac1a7a08dfd7828fc6f4384f390b75c0e}{read} ()=0
+\item 
+bool \hyperlink{class_g_p_i_opin_aa6bfbc72b6c3d58b0e01f3fec428b1b1}{is\-Valid} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_g_p_i_opin_ae83b7a3f257d0a621b3cf41da8e79e23}{G\-P\-I\-Opin} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_g_p_i_opin_ab51fd28869cad5b9fdb38a983cb2d1c5}{active}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_g_p_i_opin_a44d5d3921b935cbde07cb645da31fdae}{G\-P\-I\-O}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_g_p_i_opin_ae83b7a3f257d0a621b3cf41da8e79e23}{\index{G\-P\-I\-Opin@{G\-P\-I\-Opin}!G\-P\-I\-Opin@{G\-P\-I\-Opin}}
+\index{G\-P\-I\-Opin@{G\-P\-I\-Opin}!GPIOpin@{G\-P\-I\-Opin}}
+\subsubsection[{G\-P\-I\-Opin}]{\setlength{\rightskip}{0pt plus 5cm}G\-P\-I\-Opin\-::\-G\-P\-I\-Opin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}}\label{class_g_p_i_opin_ae83b7a3f257d0a621b3cf41da8e79e23}
+\hypertarget{class_g_p_i_opin_a28e3ff135999c7bfe6f9ebb6b2c8512e}{\index{G\-P\-I\-Opin@{G\-P\-I\-Opin}!$\sim$\-G\-P\-I\-Opin@{$\sim$\-G\-P\-I\-Opin}}
+\index{$\sim$\-G\-P\-I\-Opin@{$\sim$\-G\-P\-I\-Opin}!GPIOpin@{G\-P\-I\-Opin}}
+\subsubsection[{$\sim$\-G\-P\-I\-Opin}]{\setlength{\rightskip}{0pt plus 5cm}virtual G\-P\-I\-Opin\-::$\sim$\-G\-P\-I\-Opin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_g_p_i_opin_a28e3ff135999c7bfe6f9ebb6b2c8512e}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_g_p_i_opin_abc101fb598fa749ae58743e8b2decbbc}{\index{G\-P\-I\-Opin@{G\-P\-I\-Opin}!clear@{clear}}
+\index{clear@{clear}!GPIOpin@{G\-P\-I\-Opin}}
+\subsubsection[{clear}]{\setlength{\rightskip}{0pt plus 5cm}virtual void G\-P\-I\-Opin\-::clear (
+\begin{DoxyParamCaption}
+\item[{uint32\-\_\-t}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_g_p_i_opin_abc101fb598fa749ae58743e8b2decbbc}
+Method clears G\-P\-I\-O lines for which corresponding bit in the parameter {\itshape v} is set to 1. Lines whose bits are set to 0 remain unchanged. 
+\begin{DoxyParams}{Parameters}
+{\em v} & \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_beagle_goo_p_a39772670c58f71b5d7e4ca9e39eb8d86}{Beagle\-Goo\-P}.
+
+\hypertarget{class_g_p_i_opin_a7b79f39cb611f1b1e0a95c3a35dbc94b}{\index{G\-P\-I\-Opin@{G\-P\-I\-Opin}!clear\-Bit@{clear\-Bit}}
+\index{clear\-Bit@{clear\-Bit}!GPIOpin@{G\-P\-I\-Opin}}
+\subsubsection[{clear\-Bit}]{\setlength{\rightskip}{0pt plus 5cm}virtual void G\-P\-I\-Opin\-::clear\-Bit (
+\begin{DoxyParamCaption}
+\item[{int}]{bit}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_g_p_i_opin_a7b79f39cb611f1b1e0a95c3a35dbc94b}
+Method clears bit-\/th bit. 
+\begin{DoxyParams}{Parameters}
+{\em bit} & \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_beagle_goo_p_a00a85a024ac1e9a3dbf04d4b065cc16a}{Beagle\-Goo\-P}.
+
+\hypertarget{class_g_p_i_opin_a444117958e6fb28524deeefefe75c13b}{\index{G\-P\-I\-Opin@{G\-P\-I\-Opin}!enable\-Output@{enable\-Output}}
+\index{enable\-Output@{enable\-Output}!GPIOpin@{G\-P\-I\-Opin}}
+\subsubsection[{enable\-Output}]{\setlength{\rightskip}{0pt plus 5cm}virtual void G\-P\-I\-Opin\-::enable\-Output (
+\begin{DoxyParamCaption}
+\item[{bool}]{enable}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_g_p_i_opin_a444117958e6fb28524deeefefe75c13b}
+Method enables (if enable==true) or disables (enable==false) output buffers on all lines in the block 
+\begin{DoxyParams}{Parameters}
+{\em enable} & \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_beagle_goo_p_ac4d38d90c905cf318f5017b3c18203cd}{Beagle\-Goo\-P}.
+
+\hypertarget{class_g_p_i_opin_a832df9e2b1d14f8434069d952d372d6d}{\index{G\-P\-I\-Opin@{G\-P\-I\-Opin}!enable\-Output@{enable\-Output}}
+\index{enable\-Output@{enable\-Output}!GPIOpin@{G\-P\-I\-Opin}}
+\subsubsection[{enable\-Output}]{\setlength{\rightskip}{0pt plus 5cm}virtual void G\-P\-I\-Opin\-::enable\-Output (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{bool}]{enable}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_g_p_i_opin_a832df9e2b1d14f8434069d952d372d6d}
+Method enables (if enable==true) or disables (enable==false) output buffers on i-\/th line in the block 
+\begin{DoxyParams}{Parameters}
+{\em i} & \\
+\hline
+{\em enable} & \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_beagle_goo_p_a2900cd6005cd471066d598e4866ad66f}{Beagle\-Goo\-P}.
+
+\hypertarget{class_g_p_i_opin_a4e1d95ff89bb7a2b60870c318f3740a5}{\index{G\-P\-I\-Opin@{G\-P\-I\-Opin}!enable\-Output@{enable\-Output}}
+\index{enable\-Output@{enable\-Output}!GPIOpin@{G\-P\-I\-Opin}}
+\subsubsection[{enable\-Output}]{\setlength{\rightskip}{0pt plus 5cm}virtual void G\-P\-I\-Opin\-::enable\-Output (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{outs, }
+\item[{int}]{num}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_g_p_i_opin_a4e1d95ff89bb7a2b60870c318f3740a5}
+Method enables output buffers on lines listed in the {\itshape outs} array. Output buffers on all pins from the block not listed in the array will be disabled. Array contains indexes of the output lines, number of elements in the array is {\itshape num}. 
+\begin{DoxyParams}{Parameters}
+{\em outs} & \\
+\hline
+{\em num} & \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_beagle_goo_p_a418b335ab7c154291a543fe18949f730}{Beagle\-Goo\-P}.
+
+\hypertarget{class_g_p_i_opin_a3ce477ef4fcfced2764c489d5262ee81}{\index{G\-P\-I\-Opin@{G\-P\-I\-Opin}!enable\-Output@{enable\-Output}}
+\index{enable\-Output@{enable\-Output}!GPIOpin@{G\-P\-I\-Opin}}
+\subsubsection[{enable\-Output}]{\setlength{\rightskip}{0pt plus 5cm}virtual void G\-P\-I\-Opin\-::enable\-Output (
+\begin{DoxyParamCaption}
+\item[{char $\ast$$\ast$}]{out\-Names, }
+\item[{int}]{num}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_g_p_i_opin_a3ce477ef4fcfced2764c489d5262ee81}
+Method enables output buffers on lines listed in the {\itshape oot\-Names} array. Output buffers on all pins from the block not listed in the array will be disabled. Array contains references to strings with names of the output lines, number of elements in the array is {\itshape num}. 
+\begin{DoxyParams}{Parameters}
+{\em out\-Names} & \\
+\hline
+{\em num} & \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_beagle_goo_p_a4127207e947efe8952540fd69b949b35}{Beagle\-Goo\-P}.
+
+\hypertarget{class_g_p_i_opin_a52fd993a558bc7dacd6b5c9060dd610f}{\index{G\-P\-I\-Opin@{G\-P\-I\-Opin}!find\-Pin\-Index@{find\-Pin\-Index}}
+\index{find\-Pin\-Index@{find\-Pin\-Index}!GPIOpin@{G\-P\-I\-Opin}}
+\subsubsection[{find\-Pin\-Index}]{\setlength{\rightskip}{0pt plus 5cm}virtual int G\-P\-I\-Opin\-::find\-Pin\-Index (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_g_p_i_opin_a52fd993a558bc7dacd6b5c9060dd610f}
+
+
+Implemented in \hyperlink{class_beagle_goo_p_a91d2290d2c289b310d24f959371d3414}{Beagle\-Goo\-P}.
+
+\hypertarget{class_g_p_i_opin_aa6bfbc72b6c3d58b0e01f3fec428b1b1}{\index{G\-P\-I\-Opin@{G\-P\-I\-Opin}!is\-Valid@{is\-Valid}}
+\index{is\-Valid@{is\-Valid}!GPIOpin@{G\-P\-I\-Opin}}
+\subsubsection[{is\-Valid}]{\setlength{\rightskip}{0pt plus 5cm}bool G\-P\-I\-Opin\-::is\-Valid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_g_p_i_opin_aa6bfbc72b6c3d58b0e01f3fec428b1b1}
+Method returns true of the block describes a valid set of G\-P\-I\-O lines. If method returns false, the block is useless and should not be expected to perform any operations. \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_g_p_i_opin_a3feb6f38bd934e63d0704c9e178b443e}{\index{G\-P\-I\-Opin@{G\-P\-I\-Opin}!name\-Pin@{name\-Pin}}
+\index{name\-Pin@{name\-Pin}!GPIOpin@{G\-P\-I\-Opin}}
+\subsubsection[{name\-Pin}]{\setlength{\rightskip}{0pt plus 5cm}virtual void G\-P\-I\-Opin\-::name\-Pin (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_g_p_i_opin_a3feb6f38bd934e63d0704c9e178b443e}
+
+
+Implemented in \hyperlink{class_beagle_goo_p_a7c5b14071a87506c912b6d14f139136f}{Beagle\-Goo\-P}.
+
+\hypertarget{class_g_p_i_opin_a6d11afb8376b7ea7c5f7996fc364f64a}{\index{G\-P\-I\-Opin@{G\-P\-I\-Opin}!name\-Pins@{name\-Pins}}
+\index{name\-Pins@{name\-Pins}!GPIOpin@{G\-P\-I\-Opin}}
+\subsubsection[{name\-Pins}]{\setlength{\rightskip}{0pt plus 5cm}virtual void G\-P\-I\-Opin\-::name\-Pins (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{names\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_g_p_i_opin_a6d11afb8376b7ea7c5f7996fc364f64a}
+
+
+Implemented in \hyperlink{class_beagle_goo_p_a716e0b3664ed88ad427b329524311e03}{Beagle\-Goo\-P}.
+
+\hypertarget{class_g_p_i_opin_ac1a7a08dfd7828fc6f4384f390b75c0e}{\index{G\-P\-I\-Opin@{G\-P\-I\-Opin}!read@{read}}
+\index{read@{read}!GPIOpin@{G\-P\-I\-Opin}}
+\subsubsection[{read}]{\setlength{\rightskip}{0pt plus 5cm}virtual uint32\-\_\-t G\-P\-I\-Opin\-::read (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_g_p_i_opin_ac1a7a08dfd7828fc6f4384f390b75c0e}
+Function returns value read from the G\-P\-I\-O block. \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_beagle_goo_p_a4a6ed00aa61f7d81de93cb880ba93d63}{Beagle\-Goo\-P}.
+
+\hypertarget{class_g_p_i_opin_a75314dc1bf78be651b660a1b8df5537a}{\index{G\-P\-I\-Opin@{G\-P\-I\-Opin}!set@{set}}
+\index{set@{set}!GPIOpin@{G\-P\-I\-Opin}}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}virtual void G\-P\-I\-Opin\-::set (
+\begin{DoxyParamCaption}
+\item[{uint32\-\_\-t}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_g_p_i_opin_a75314dc1bf78be651b660a1b8df5537a}
+Method sets G\-P\-I\-O lines for which corresponding bit in the parameter {\itshape v} is set to 1. Lines whose bits are set to 0 remain unchanged. 
+\begin{DoxyParams}{Parameters}
+{\em v} & \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_beagle_goo_p_afa97c0b593fa9032c873654ee40140f5}{Beagle\-Goo\-P}.
+
+\hypertarget{class_g_p_i_opin_a7baef314398bbff5261b41e3373e68c8}{\index{G\-P\-I\-Opin@{G\-P\-I\-Opin}!set\-Bit@{set\-Bit}}
+\index{set\-Bit@{set\-Bit}!GPIOpin@{G\-P\-I\-Opin}}
+\subsubsection[{set\-Bit}]{\setlength{\rightskip}{0pt plus 5cm}virtual void G\-P\-I\-Opin\-::set\-Bit (
+\begin{DoxyParamCaption}
+\item[{int}]{bit}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_g_p_i_opin_a7baef314398bbff5261b41e3373e68c8}
+Method sets i-\/th bit. 
+\begin{DoxyParams}{Parameters}
+{\em bit} & \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_beagle_goo_p_a8997d7bc2665b7cbd100abe613657e94}{Beagle\-Goo\-P}.
+
+\hypertarget{class_g_p_i_opin_a5dd506e32835b1e35edf62649f3beaa6}{\index{G\-P\-I\-Opin@{G\-P\-I\-Opin}!write@{write}}
+\index{write@{write}!GPIOpin@{G\-P\-I\-Opin}}
+\subsubsection[{write}]{\setlength{\rightskip}{0pt plus 5cm}virtual void G\-P\-I\-Opin\-::write (
+\begin{DoxyParamCaption}
+\item[{uint32\-\_\-t}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_g_p_i_opin_a5dd506e32835b1e35edf62649f3beaa6}
+Function writes the value to the pin. Write semantics is determined by the semantics parameter when G\-P\-I\-Os are claimed. 
+\begin{DoxyParams}{Parameters}
+{\em v} & \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_beagle_goo_p_a5da234ad09723ae929135e96e32cf497}{Beagle\-Goo\-P}.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_g_p_i_opin_a44d5d3921b935cbde07cb645da31fdae}{\index{G\-P\-I\-Opin@{G\-P\-I\-Opin}!G\-P\-I\-O@{G\-P\-I\-O}}
+\index{G\-P\-I\-O@{G\-P\-I\-O}!GPIOpin@{G\-P\-I\-Opin}}
+\subsubsection[{G\-P\-I\-O}]{\setlength{\rightskip}{0pt plus 5cm}friend class G\-P\-I\-O\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_g_p_i_opin_a44d5d3921b935cbde07cb645da31fdae}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_g_p_i_opin_ab51fd28869cad5b9fdb38a983cb2d1c5}{\index{G\-P\-I\-Opin@{G\-P\-I\-Opin}!active@{active}}
+\index{active@{active}!GPIOpin@{G\-P\-I\-Opin}}
+\subsubsection[{active}]{\setlength{\rightskip}{0pt plus 5cm}bool G\-P\-I\-Opin\-::active\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_g_p_i_opin_ab51fd28869cad5b9fdb38a983cb2d1c5}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{_g_p_i_opin_8h}{G\-P\-I\-Opin.\-h}\end{DoxyCompactItemize}
