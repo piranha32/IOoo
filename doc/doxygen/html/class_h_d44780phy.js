@@ -1,5 +1,9 @@
 var class_h_d44780phy =
 [
+    [ "RScommand", "class_h_d44780phy.html#a76851a61a3a88766704db9f31098d21fac3d8b04a4b6fa7db3d0bfc61170e1d72", null ],
+    [ "RSdata", "class_h_d44780phy.html#a76851a61a3a88766704db9f31098d21fa2108dbcf0cc7b6cdcbc6235a4e765654", null ],
+    [ "RWwrite", "class_h_d44780phy.html#a5bf3a330184d4cfdc6297c1265ce6746ac7b87f6864ebbc4bef3d14967ec3bc97", null ],
+    [ "RWread", "class_h_d44780phy.html#a5bf3a330184d4cfdc6297c1265ce6746a2777116400417dda3d881ec137a361fc", null ],
     [ "HD44780phy", "class_h_d44780phy.html#a1e285c5a059e498acbd65d411ca7cb4d", null ],
     [ "~HD44780phy", "class_h_d44780phy.html#a7ec413f9bde27b85f43554b1cdc4860a", null ],
     [ "busy", "class_h_d44780phy.html#ab3f91533a8063062dec767d524d704b1", null ],

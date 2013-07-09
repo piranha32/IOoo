@@ -3,7 +3,7 @@ var searchData=
   ['set',['set',['../class_beagle_goo_p.html#afa97c0b593fa9032c873654ee40140f5',1,'BeagleGooP::set()'],['../class_g_p_i_opin.html#a75314dc1bf78be651b660a1b8df5537a',1,'GPIOpin::set()']]],
   ['setbit',['setBit',['../class_beagle_goo_p.html#a8997d7bc2665b7cbd100abe613657e94',1,'BeagleGooP::setBit()'],['../class_g_p_i_opin.html#a7baef314398bbff5261b41e3373e68c8',1,'GPIOpin::setBit()']]],
   ['setbitsperword',['setBitsPerWord',['../class_t_l_c5946phy.html#a0604df91a14451f72504f39cd379eed1',1,'TLC5946phy::setBitsPerWord()'],['../class_s_p_i.html#a4e6b7a9b89809663c91712ceff00920b',1,'SPI::setBitsPerWord()']]],
-  ['setblank',['setBlank',['../class_t_l_c5946phy.html#a917d05cee794f633a6775b8c509efba0',1,'TLC5946phy']]],
+  ['setblank',['setBlank',['../class_t_l_c5946phy.html#a917d05cee794f633a6775b8c509efba0',1,'TLC5946phy::setBlank()'],['../class_t_l_c5946_p_r_u_s_sphy.html#a28d5f0a3fb62b085dd7795373b9b4b85',1,'TLC5946PRUSSphy::setBlank()']]],
   ['setbrightness',['setBrightness',['../class_t_l_c5946chain.html#af53b7ea5210b5a3862b824de82fb0167',1,'TLC5946chain']]],
   ['setclockphase',['setClockPhase',['../class_s_p_i.html#acc43a43a985c6e73723852d621324ef8',1,'SPI']]],
   ['setclockpolarity',['setClockPolarity',['../class_s_p_i.html#afad281dadda690a5bb1ad456c2ddb924',1,'SPI']]],

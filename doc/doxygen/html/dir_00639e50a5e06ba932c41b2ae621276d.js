@@ -14,5 +14,8 @@ var dir_00639e50a5e06ba932c41b2ae621276d =
     ] ],
     [ "TLC5946phy.h", "_t_l_c5946phy_8h.html", [
       [ "TLC5946phy", "class_t_l_c5946phy.html", "class_t_l_c5946phy" ]
+    ] ],
+    [ "TLC5946PRUSSphy.h", "_t_l_c5946_p_r_u_s_sphy_8h.html", [
+      [ "TLC5946PRUSSphy", "class_t_l_c5946_p_r_u_s_sphy.html", "class_t_l_c5946_p_r_u_s_sphy" ]
     ] ]
 ];

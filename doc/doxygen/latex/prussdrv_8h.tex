@@ -1,0 +1,360 @@
+\hypertarget{prussdrv_8h}{\section{include/pruss/prussdrv.h File Reference}
+\label{prussdrv_8h}\index{include/pruss/prussdrv.\-h@{include/pruss/prussdrv.\-h}}
+}
+{\ttfamily \#include $<$sys/types.\-h$>$}\\*
+{\ttfamily \#include $<$pthread.\-h$>$}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct____sysevt__to__channel__map}{\-\_\-\-\_\-sysevt\-\_\-to\-\_\-channel\-\_\-map}
+\item 
+struct \hyperlink{struct____channel__to__host__map}{\-\_\-\-\_\-channel\-\_\-to\-\_\-host\-\_\-map}
+\item 
+struct \hyperlink{struct____pruss__intc__initdata}{\-\_\-\-\_\-pruss\-\_\-intc\-\_\-initdata}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{prussdrv_8h_a4c7e64d7f491e8e88febed14aee6cfe0}{N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-H\-O\-S\-T\-I\-R\-Q\-S}~8
+\item 
+\#define \hyperlink{prussdrv_8h_a8fcba73c3a4c1e10f3b8d082439291cb}{N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-H\-O\-S\-T\-S}~10
+\item 
+\#define \hyperlink{prussdrv_8h_acae0799208c38d548a07e381da701129}{N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-C\-H\-A\-N\-N\-E\-L\-S}~10
+\item 
+\#define \hyperlink{prussdrv_8h_a5e00b7de7e11a59dbc6bf36ecd4c67fb}{N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-S\-Y\-S\-\_\-\-E\-V\-T\-S}~64
+\item 
+\#define \hyperlink{prussdrv_8h_ae6cb4c43d402040224da114194527753}{P\-R\-U\-S\-S0\-\_\-\-P\-R\-U0\-\_\-\-D\-A\-T\-A\-R\-A\-M}~0
+\item 
+\#define \hyperlink{prussdrv_8h_ad4083cf765ee07e38279325a6f204a6b}{P\-R\-U\-S\-S0\-\_\-\-P\-R\-U1\-\_\-\-D\-A\-T\-A\-R\-A\-M}~1
+\item 
+\#define \hyperlink{prussdrv_8h_a0e15f05974ed184f26aef79f35104021}{P\-R\-U\-S\-S0\-\_\-\-P\-R\-U0\-\_\-\-I\-R\-A\-M}~2
+\item 
+\#define \hyperlink{prussdrv_8h_a926cf7c7b9601c9cd7502e48cc16c3a8}{P\-R\-U\-S\-S0\-\_\-\-P\-R\-U1\-\_\-\-I\-R\-A\-M}~3
+\item 
+\#define \hyperlink{prussdrv_8h_a1023fd663aac54f694c42c385aa16950}{P\-R\-U\-S\-S0\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-D\-A\-T\-A\-R\-A\-M}~4
+\item 
+\#define \hyperlink{prussdrv_8h_af71395023746c1ff3db0e3f96d33516e}{P\-R\-U\-S\-S0\-\_\-\-C\-F\-G}~5
+\item 
+\#define \hyperlink{prussdrv_8h_aaf1530fbd209a928a6328ea7bb79b30b}{P\-R\-U\-S\-S0\-\_\-\-U\-A\-R\-T}~6
+\item 
+\#define \hyperlink{prussdrv_8h_af5139adef8fb70dbea718e0fce191989}{P\-R\-U\-S\-S0\-\_\-\-I\-E\-P}~7
+\item 
+\#define \hyperlink{prussdrv_8h_a1bbc7fc2cd6f75f0b6f522c0d4dbf800}{P\-R\-U\-S\-S0\-\_\-\-E\-C\-A\-P}~8
+\item 
+\#define \hyperlink{prussdrv_8h_a85e7ae810d1bf7da0080f0ea98c80d26}{P\-R\-U\-S\-S0\-\_\-\-M\-I\-I\-\_\-\-R\-T}~9
+\item 
+\#define \hyperlink{prussdrv_8h_abfd48a155eadca900b8cf12ab52c3c2e}{P\-R\-U\-S\-S0\-\_\-\-M\-D\-I\-O}~10
+\item 
+\#define \hyperlink{prussdrv_8h_a5903c97d20262c0ad1a4d5a0ee3f11f5}{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-0}~0
+\item 
+\#define \hyperlink{prussdrv_8h_a8ffc37b48c47cd4af2f64a2df3b6fdc8}{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-1}~1
+\item 
+\#define \hyperlink{prussdrv_8h_aa555a080ffeb18a963bf976b0751c8c0}{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-2}~2
+\item 
+\#define \hyperlink{prussdrv_8h_a6f81f089af83e4d35be2a387b636b6b9}{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-3}~3
+\item 
+\#define \hyperlink{prussdrv_8h_aae26dd7e2793795c231abf198db43b92}{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-4}~4
+\item 
+\#define \hyperlink{prussdrv_8h_a00ddab459325e5276be1b37c8747acd4}{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-5}~5
+\item 
+\#define \hyperlink{prussdrv_8h_ab0e22fb81c6f373a101da4eabb0ce89b}{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-6}~6
+\item 
+\#define \hyperlink{prussdrv_8h_a9686a3c3ddd3140a6b4b886dc1715d33}{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-7}~7
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void $\ast$($\ast$ \hyperlink{prussdrv_8h_af849aac7292ce863d32fa8558e734dbf}{prussdrv\-\_\-function\-\_\-handler} )(void $\ast$)
+\item 
+typedef struct \\*
+\hyperlink{struct____sysevt__to__channel__map}{\-\_\-\-\_\-sysevt\-\_\-to\-\_\-channel\-\_\-map} \hyperlink{prussdrv_8h_af5611a9f693ff52c6da02352010f013a}{tsysevt\-\_\-to\-\_\-channel\-\_\-map}
+\item 
+typedef struct \\*
+\hyperlink{struct____channel__to__host__map}{\-\_\-\-\_\-channel\-\_\-to\-\_\-host\-\_\-map} \hyperlink{prussdrv_8h_ae6ce5bff432f557878843c17ad0ce140}{tchannel\-\_\-to\-\_\-host\-\_\-map}
+\item 
+typedef struct \\*
+\hyperlink{struct____pruss__intc__initdata}{\-\_\-\-\_\-pruss\-\_\-intc\-\_\-initdata} \hyperlink{prussdrv_8h_a8e3a0e7d2cb107195d5c3ba82f329b8a}{tpruss\-\_\-intc\-\_\-initdata}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{prussdrv_8h_a32b075df130657a0f0515da65431a673}{prussdrv\-\_\-init} (void)
+\item 
+int \hyperlink{prussdrv_8h_a02e4042eb9e92f7662ec900d8d2d15d5}{prussdrv\-\_\-open} (unsigned int pru\-\_\-evtout\-\_\-num)
+\item 
+int \hyperlink{prussdrv_8h_a3179fffef76a458d22c06a459b07d2de}{prussdrv\-\_\-pru\-\_\-reset} (unsigned int prunum)
+\item 
+int \hyperlink{prussdrv_8h_aa0e55c3ca06be9bb68700748885b2f67}{prussdrv\-\_\-pru\-\_\-disable} (unsigned int prunum)
+\item 
+int \hyperlink{prussdrv_8h_acde2933ceaa2c97822e256d6e35d01fc}{prussdrv\-\_\-pru\-\_\-enable} (unsigned int prunum)
+\item 
+int \hyperlink{prussdrv_8h_acba059d9a7bbbbb99f5e02b2426dd222}{prussdrv\-\_\-pru\-\_\-write\-\_\-memory} (unsigned int pru\-\_\-ram\-\_\-id, unsigned int wordoffset, unsigned int $\ast$memarea, unsigned int bytelength)
+\item 
+int \hyperlink{prussdrv_8h_a512f83f8e11798f445eed9cb6a076c7b}{prussdrv\-\_\-pruintc\-\_\-init} (\hyperlink{prussdrv_8h_a8e3a0e7d2cb107195d5c3ba82f329b8a}{tpruss\-\_\-intc\-\_\-initdata} $\ast$prussintc\-\_\-init\-\_\-data)
+\item 
+int \hyperlink{prussdrv_8h_a855af57f1926596b324bd655a8e77b94}{prussdrv\-\_\-map\-\_\-l3mem} (void $\ast$$\ast$address)
+\item 
+int \hyperlink{prussdrv_8h_a0824ea6a24e5f4ec97da004490136fd4}{prussdrv\-\_\-map\-\_\-extmem} (void $\ast$$\ast$address)
+\item 
+int \hyperlink{prussdrv_8h_a083289b9d6ded037054ff410f91956c6}{prussdrv\-\_\-map\-\_\-prumem} (unsigned int pru\-\_\-ram\-\_\-id, void $\ast$$\ast$address)
+\item 
+int \hyperlink{prussdrv_8h_ac7633fd8ace2baf62797b0b0d3b0c560}{prussdrv\-\_\-map\-\_\-peripheral\-\_\-io} (unsigned int per\-\_\-id, void $\ast$$\ast$address)
+\item 
+unsigned int \hyperlink{prussdrv_8h_a1398c4e3e96d855140f9244f539a7eae}{prussdrv\-\_\-get\-\_\-phys\-\_\-addr} (void $\ast$address)
+\item 
+void $\ast$ \hyperlink{prussdrv_8h_a89fd8492ed30e56c10b54782a2de5a46}{prussdrv\-\_\-get\-\_\-virt\-\_\-addr} (unsigned int phyaddr)
+\item 
+int \hyperlink{prussdrv_8h_a28205308880725d6a97bef3a0ce5893e}{prussdrv\-\_\-pru\-\_\-wait\-\_\-event} (unsigned int pru\-\_\-evtout\-\_\-num)
+\item 
+int \hyperlink{prussdrv_8h_a0242de262bfd0eb33b414448281e6925}{prussdrv\-\_\-pru\-\_\-send\-\_\-event} (unsigned int eventnum)
+\item 
+int \hyperlink{prussdrv_8h_ae3d41c489c60f543c3332aca84318fa4}{prussdrv\-\_\-pru\-\_\-clear\-\_\-event} (unsigned int eventnum)
+\item 
+int \hyperlink{prussdrv_8h_ab32f99594181bb7d33905bb83c44bdbc}{prussdrv\-\_\-pru\-\_\-send\-\_\-wait\-\_\-clear\-\_\-event} (unsigned int send\-\_\-eventnum, unsigned int pru\-\_\-evtout\-\_\-num, unsigned int ack\-\_\-eventnum)
+\item 
+int \hyperlink{prussdrv_8h_af62f0a5b5f957903d10c0aa6d796914e}{prussdrv\-\_\-exit} (void)
+\item 
+int \hyperlink{prussdrv_8h_afb11470f8a334bee6f0868b21353ab9e}{prussdrv\-\_\-exec\-\_\-program} (int prunum, char $\ast$filename)
+\item 
+int \hyperlink{prussdrv_8h_a9cf86fe464c45ba5cf4a5faafe0a1ea2}{prussdrv\-\_\-start\-\_\-irqthread} (unsigned int pru\-\_\-evtout\-\_\-num, int priority, \hyperlink{prussdrv_8h_af849aac7292ce863d32fa8558e734dbf}{prussdrv\-\_\-function\-\_\-handler} irqhandler)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{prussdrv_8h_acae0799208c38d548a07e381da701129}{\index{prussdrv.\-h@{prussdrv.\-h}!N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-C\-H\-A\-N\-N\-E\-L\-S@{N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-C\-H\-A\-N\-N\-E\-L\-S}}
+\index{N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-C\-H\-A\-N\-N\-E\-L\-S@{N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-C\-H\-A\-N\-N\-E\-L\-S}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-C\-H\-A\-N\-N\-E\-L\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-C\-H\-A\-N\-N\-E\-L\-S~10}}\label{prussdrv_8h_acae0799208c38d548a07e381da701129}
+\hypertarget{prussdrv_8h_a4c7e64d7f491e8e88febed14aee6cfe0}{\index{prussdrv.\-h@{prussdrv.\-h}!N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-H\-O\-S\-T\-I\-R\-Q\-S@{N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-H\-O\-S\-T\-I\-R\-Q\-S}}
+\index{N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-H\-O\-S\-T\-I\-R\-Q\-S@{N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-H\-O\-S\-T\-I\-R\-Q\-S}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-H\-O\-S\-T\-I\-R\-Q\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-H\-O\-S\-T\-I\-R\-Q\-S~8}}\label{prussdrv_8h_a4c7e64d7f491e8e88febed14aee6cfe0}
+\hypertarget{prussdrv_8h_a8fcba73c3a4c1e10f3b8d082439291cb}{\index{prussdrv.\-h@{prussdrv.\-h}!N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-H\-O\-S\-T\-S@{N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-H\-O\-S\-T\-S}}
+\index{N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-H\-O\-S\-T\-S@{N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-H\-O\-S\-T\-S}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-H\-O\-S\-T\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-H\-O\-S\-T\-S~10}}\label{prussdrv_8h_a8fcba73c3a4c1e10f3b8d082439291cb}
+\hypertarget{prussdrv_8h_a5e00b7de7e11a59dbc6bf36ecd4c67fb}{\index{prussdrv.\-h@{prussdrv.\-h}!N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-S\-Y\-S\-\_\-\-E\-V\-T\-S@{N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-S\-Y\-S\-\_\-\-E\-V\-T\-S}}
+\index{N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-S\-Y\-S\-\_\-\-E\-V\-T\-S@{N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-S\-Y\-S\-\_\-\-E\-V\-T\-S}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-S\-Y\-S\-\_\-\-E\-V\-T\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\-U\-M\-\_\-\-P\-R\-U\-\_\-\-S\-Y\-S\-\_\-\-E\-V\-T\-S~64}}\label{prussdrv_8h_a5e00b7de7e11a59dbc6bf36ecd4c67fb}
+\hypertarget{prussdrv_8h_a5903c97d20262c0ad1a4d5a0ee3f11f5}{\index{prussdrv.\-h@{prussdrv.\-h}!P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-0@{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-0}}
+\index{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-0@{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-0}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-0~0}}\label{prussdrv_8h_a5903c97d20262c0ad1a4d5a0ee3f11f5}
+\hypertarget{prussdrv_8h_a8ffc37b48c47cd4af2f64a2df3b6fdc8}{\index{prussdrv.\-h@{prussdrv.\-h}!P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-1@{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-1}}
+\index{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-1@{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-1}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-1~1}}\label{prussdrv_8h_a8ffc37b48c47cd4af2f64a2df3b6fdc8}
+\hypertarget{prussdrv_8h_aa555a080ffeb18a963bf976b0751c8c0}{\index{prussdrv.\-h@{prussdrv.\-h}!P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-2@{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-2}}
+\index{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-2@{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-2}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-2~2}}\label{prussdrv_8h_aa555a080ffeb18a963bf976b0751c8c0}
+\hypertarget{prussdrv_8h_a6f81f089af83e4d35be2a387b636b6b9}{\index{prussdrv.\-h@{prussdrv.\-h}!P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-3@{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-3}}
+\index{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-3@{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-3}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-3~3}}\label{prussdrv_8h_a6f81f089af83e4d35be2a387b636b6b9}
+\hypertarget{prussdrv_8h_aae26dd7e2793795c231abf198db43b92}{\index{prussdrv.\-h@{prussdrv.\-h}!P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-4@{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-4}}
+\index{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-4@{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-4}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-4}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-4~4}}\label{prussdrv_8h_aae26dd7e2793795c231abf198db43b92}
+\hypertarget{prussdrv_8h_a00ddab459325e5276be1b37c8747acd4}{\index{prussdrv.\-h@{prussdrv.\-h}!P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-5@{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-5}}
+\index{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-5@{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-5}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-5}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-5~5}}\label{prussdrv_8h_a00ddab459325e5276be1b37c8747acd4}
+\hypertarget{prussdrv_8h_ab0e22fb81c6f373a101da4eabb0ce89b}{\index{prussdrv.\-h@{prussdrv.\-h}!P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-6@{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-6}}
+\index{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-6@{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-6}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-6}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-6~6}}\label{prussdrv_8h_ab0e22fb81c6f373a101da4eabb0ce89b}
+\hypertarget{prussdrv_8h_a9686a3c3ddd3140a6b4b886dc1715d33}{\index{prussdrv.\-h@{prussdrv.\-h}!P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-7@{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-7}}
+\index{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-7@{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-7}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-7}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-R\-U\-\_\-\-E\-V\-T\-O\-U\-T\-\_\-7~7}}\label{prussdrv_8h_a9686a3c3ddd3140a6b4b886dc1715d33}
+\hypertarget{prussdrv_8h_af71395023746c1ff3db0e3f96d33516e}{\index{prussdrv.\-h@{prussdrv.\-h}!P\-R\-U\-S\-S0\-\_\-\-C\-F\-G@{P\-R\-U\-S\-S0\-\_\-\-C\-F\-G}}
+\index{P\-R\-U\-S\-S0\-\_\-\-C\-F\-G@{P\-R\-U\-S\-S0\-\_\-\-C\-F\-G}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{P\-R\-U\-S\-S0\-\_\-\-C\-F\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-R\-U\-S\-S0\-\_\-\-C\-F\-G~5}}\label{prussdrv_8h_af71395023746c1ff3db0e3f96d33516e}
+\hypertarget{prussdrv_8h_a1bbc7fc2cd6f75f0b6f522c0d4dbf800}{\index{prussdrv.\-h@{prussdrv.\-h}!P\-R\-U\-S\-S0\-\_\-\-E\-C\-A\-P@{P\-R\-U\-S\-S0\-\_\-\-E\-C\-A\-P}}
+\index{P\-R\-U\-S\-S0\-\_\-\-E\-C\-A\-P@{P\-R\-U\-S\-S0\-\_\-\-E\-C\-A\-P}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{P\-R\-U\-S\-S0\-\_\-\-E\-C\-A\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-R\-U\-S\-S0\-\_\-\-E\-C\-A\-P~8}}\label{prussdrv_8h_a1bbc7fc2cd6f75f0b6f522c0d4dbf800}
+\hypertarget{prussdrv_8h_af5139adef8fb70dbea718e0fce191989}{\index{prussdrv.\-h@{prussdrv.\-h}!P\-R\-U\-S\-S0\-\_\-\-I\-E\-P@{P\-R\-U\-S\-S0\-\_\-\-I\-E\-P}}
+\index{P\-R\-U\-S\-S0\-\_\-\-I\-E\-P@{P\-R\-U\-S\-S0\-\_\-\-I\-E\-P}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{P\-R\-U\-S\-S0\-\_\-\-I\-E\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-R\-U\-S\-S0\-\_\-\-I\-E\-P~7}}\label{prussdrv_8h_af5139adef8fb70dbea718e0fce191989}
+\hypertarget{prussdrv_8h_abfd48a155eadca900b8cf12ab52c3c2e}{\index{prussdrv.\-h@{prussdrv.\-h}!P\-R\-U\-S\-S0\-\_\-\-M\-D\-I\-O@{P\-R\-U\-S\-S0\-\_\-\-M\-D\-I\-O}}
+\index{P\-R\-U\-S\-S0\-\_\-\-M\-D\-I\-O@{P\-R\-U\-S\-S0\-\_\-\-M\-D\-I\-O}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{P\-R\-U\-S\-S0\-\_\-\-M\-D\-I\-O}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-R\-U\-S\-S0\-\_\-\-M\-D\-I\-O~10}}\label{prussdrv_8h_abfd48a155eadca900b8cf12ab52c3c2e}
+\hypertarget{prussdrv_8h_a85e7ae810d1bf7da0080f0ea98c80d26}{\index{prussdrv.\-h@{prussdrv.\-h}!P\-R\-U\-S\-S0\-\_\-\-M\-I\-I\-\_\-\-R\-T@{P\-R\-U\-S\-S0\-\_\-\-M\-I\-I\-\_\-\-R\-T}}
+\index{P\-R\-U\-S\-S0\-\_\-\-M\-I\-I\-\_\-\-R\-T@{P\-R\-U\-S\-S0\-\_\-\-M\-I\-I\-\_\-\-R\-T}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{P\-R\-U\-S\-S0\-\_\-\-M\-I\-I\-\_\-\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-R\-U\-S\-S0\-\_\-\-M\-I\-I\-\_\-\-R\-T~9}}\label{prussdrv_8h_a85e7ae810d1bf7da0080f0ea98c80d26}
+\hypertarget{prussdrv_8h_ae6cb4c43d402040224da114194527753}{\index{prussdrv.\-h@{prussdrv.\-h}!P\-R\-U\-S\-S0\-\_\-\-P\-R\-U0\-\_\-\-D\-A\-T\-A\-R\-A\-M@{P\-R\-U\-S\-S0\-\_\-\-P\-R\-U0\-\_\-\-D\-A\-T\-A\-R\-A\-M}}
+\index{P\-R\-U\-S\-S0\-\_\-\-P\-R\-U0\-\_\-\-D\-A\-T\-A\-R\-A\-M@{P\-R\-U\-S\-S0\-\_\-\-P\-R\-U0\-\_\-\-D\-A\-T\-A\-R\-A\-M}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{P\-R\-U\-S\-S0\-\_\-\-P\-R\-U0\-\_\-\-D\-A\-T\-A\-R\-A\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-R\-U\-S\-S0\-\_\-\-P\-R\-U0\-\_\-\-D\-A\-T\-A\-R\-A\-M~0}}\label{prussdrv_8h_ae6cb4c43d402040224da114194527753}
+\hypertarget{prussdrv_8h_a0e15f05974ed184f26aef79f35104021}{\index{prussdrv.\-h@{prussdrv.\-h}!P\-R\-U\-S\-S0\-\_\-\-P\-R\-U0\-\_\-\-I\-R\-A\-M@{P\-R\-U\-S\-S0\-\_\-\-P\-R\-U0\-\_\-\-I\-R\-A\-M}}
+\index{P\-R\-U\-S\-S0\-\_\-\-P\-R\-U0\-\_\-\-I\-R\-A\-M@{P\-R\-U\-S\-S0\-\_\-\-P\-R\-U0\-\_\-\-I\-R\-A\-M}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{P\-R\-U\-S\-S0\-\_\-\-P\-R\-U0\-\_\-\-I\-R\-A\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-R\-U\-S\-S0\-\_\-\-P\-R\-U0\-\_\-\-I\-R\-A\-M~2}}\label{prussdrv_8h_a0e15f05974ed184f26aef79f35104021}
+\hypertarget{prussdrv_8h_ad4083cf765ee07e38279325a6f204a6b}{\index{prussdrv.\-h@{prussdrv.\-h}!P\-R\-U\-S\-S0\-\_\-\-P\-R\-U1\-\_\-\-D\-A\-T\-A\-R\-A\-M@{P\-R\-U\-S\-S0\-\_\-\-P\-R\-U1\-\_\-\-D\-A\-T\-A\-R\-A\-M}}
+\index{P\-R\-U\-S\-S0\-\_\-\-P\-R\-U1\-\_\-\-D\-A\-T\-A\-R\-A\-M@{P\-R\-U\-S\-S0\-\_\-\-P\-R\-U1\-\_\-\-D\-A\-T\-A\-R\-A\-M}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{P\-R\-U\-S\-S0\-\_\-\-P\-R\-U1\-\_\-\-D\-A\-T\-A\-R\-A\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-R\-U\-S\-S0\-\_\-\-P\-R\-U1\-\_\-\-D\-A\-T\-A\-R\-A\-M~1}}\label{prussdrv_8h_ad4083cf765ee07e38279325a6f204a6b}
+\hypertarget{prussdrv_8h_a926cf7c7b9601c9cd7502e48cc16c3a8}{\index{prussdrv.\-h@{prussdrv.\-h}!P\-R\-U\-S\-S0\-\_\-\-P\-R\-U1\-\_\-\-I\-R\-A\-M@{P\-R\-U\-S\-S0\-\_\-\-P\-R\-U1\-\_\-\-I\-R\-A\-M}}
+\index{P\-R\-U\-S\-S0\-\_\-\-P\-R\-U1\-\_\-\-I\-R\-A\-M@{P\-R\-U\-S\-S0\-\_\-\-P\-R\-U1\-\_\-\-I\-R\-A\-M}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{P\-R\-U\-S\-S0\-\_\-\-P\-R\-U1\-\_\-\-I\-R\-A\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-R\-U\-S\-S0\-\_\-\-P\-R\-U1\-\_\-\-I\-R\-A\-M~3}}\label{prussdrv_8h_a926cf7c7b9601c9cd7502e48cc16c3a8}
+\hypertarget{prussdrv_8h_a1023fd663aac54f694c42c385aa16950}{\index{prussdrv.\-h@{prussdrv.\-h}!P\-R\-U\-S\-S0\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-D\-A\-T\-A\-R\-A\-M@{P\-R\-U\-S\-S0\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-D\-A\-T\-A\-R\-A\-M}}
+\index{P\-R\-U\-S\-S0\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-D\-A\-T\-A\-R\-A\-M@{P\-R\-U\-S\-S0\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-D\-A\-T\-A\-R\-A\-M}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{P\-R\-U\-S\-S0\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-D\-A\-T\-A\-R\-A\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-R\-U\-S\-S0\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-D\-A\-T\-A\-R\-A\-M~4}}\label{prussdrv_8h_a1023fd663aac54f694c42c385aa16950}
+\hypertarget{prussdrv_8h_aaf1530fbd209a928a6328ea7bb79b30b}{\index{prussdrv.\-h@{prussdrv.\-h}!P\-R\-U\-S\-S0\-\_\-\-U\-A\-R\-T@{P\-R\-U\-S\-S0\-\_\-\-U\-A\-R\-T}}
+\index{P\-R\-U\-S\-S0\-\_\-\-U\-A\-R\-T@{P\-R\-U\-S\-S0\-\_\-\-U\-A\-R\-T}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{P\-R\-U\-S\-S0\-\_\-\-U\-A\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-R\-U\-S\-S0\-\_\-\-U\-A\-R\-T~6}}\label{prussdrv_8h_aaf1530fbd209a928a6328ea7bb79b30b}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{prussdrv_8h_af849aac7292ce863d32fa8558e734dbf}{\index{prussdrv.\-h@{prussdrv.\-h}!prussdrv\-\_\-function\-\_\-handler@{prussdrv\-\_\-function\-\_\-handler}}
+\index{prussdrv\-\_\-function\-\_\-handler@{prussdrv\-\_\-function\-\_\-handler}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{prussdrv\-\_\-function\-\_\-handler}]{\setlength{\rightskip}{0pt plus 5cm}typedef void$\ast$($\ast$ prussdrv\-\_\-function\-\_\-handler)(void $\ast$)}}\label{prussdrv_8h_af849aac7292ce863d32fa8558e734dbf}
+\hypertarget{prussdrv_8h_ae6ce5bff432f557878843c17ad0ce140}{\index{prussdrv.\-h@{prussdrv.\-h}!tchannel\-\_\-to\-\_\-host\-\_\-map@{tchannel\-\_\-to\-\_\-host\-\_\-map}}
+\index{tchannel\-\_\-to\-\_\-host\-\_\-map@{tchannel\-\_\-to\-\_\-host\-\_\-map}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{tchannel\-\_\-to\-\_\-host\-\_\-map}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-\_\-\-\_\-channel\-\_\-to\-\_\-host\-\_\-map}  {\bf tchannel\-\_\-to\-\_\-host\-\_\-map}}}\label{prussdrv_8h_ae6ce5bff432f557878843c17ad0ce140}
+\hypertarget{prussdrv_8h_a8e3a0e7d2cb107195d5c3ba82f329b8a}{\index{prussdrv.\-h@{prussdrv.\-h}!tpruss\-\_\-intc\-\_\-initdata@{tpruss\-\_\-intc\-\_\-initdata}}
+\index{tpruss\-\_\-intc\-\_\-initdata@{tpruss\-\_\-intc\-\_\-initdata}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{tpruss\-\_\-intc\-\_\-initdata}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-\_\-\-\_\-pruss\-\_\-intc\-\_\-initdata}  {\bf tpruss\-\_\-intc\-\_\-initdata}}}\label{prussdrv_8h_a8e3a0e7d2cb107195d5c3ba82f329b8a}
+\hypertarget{prussdrv_8h_af5611a9f693ff52c6da02352010f013a}{\index{prussdrv.\-h@{prussdrv.\-h}!tsysevt\-\_\-to\-\_\-channel\-\_\-map@{tsysevt\-\_\-to\-\_\-channel\-\_\-map}}
+\index{tsysevt\-\_\-to\-\_\-channel\-\_\-map@{tsysevt\-\_\-to\-\_\-channel\-\_\-map}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{tsysevt\-\_\-to\-\_\-channel\-\_\-map}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-\_\-\-\_\-sysevt\-\_\-to\-\_\-channel\-\_\-map}  {\bf tsysevt\-\_\-to\-\_\-channel\-\_\-map}}}\label{prussdrv_8h_af5611a9f693ff52c6da02352010f013a}
+
+
+\subsection{Function Documentation}
+\hypertarget{prussdrv_8h_afb11470f8a334bee6f0868b21353ab9e}{\index{prussdrv.\-h@{prussdrv.\-h}!prussdrv\-\_\-exec\-\_\-program@{prussdrv\-\_\-exec\-\_\-program}}
+\index{prussdrv\-\_\-exec\-\_\-program@{prussdrv\-\_\-exec\-\_\-program}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{prussdrv\-\_\-exec\-\_\-program}]{\setlength{\rightskip}{0pt plus 5cm}int prussdrv\-\_\-exec\-\_\-program (
+\begin{DoxyParamCaption}
+\item[{int}]{prunum, }
+\item[{char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}}\label{prussdrv_8h_afb11470f8a334bee6f0868b21353ab9e}
+\hypertarget{prussdrv_8h_af62f0a5b5f957903d10c0aa6d796914e}{\index{prussdrv.\-h@{prussdrv.\-h}!prussdrv\-\_\-exit@{prussdrv\-\_\-exit}}
+\index{prussdrv\-\_\-exit@{prussdrv\-\_\-exit}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{prussdrv\-\_\-exit}]{\setlength{\rightskip}{0pt plus 5cm}int prussdrv\-\_\-exit (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{prussdrv_8h_af62f0a5b5f957903d10c0aa6d796914e}
+\hypertarget{prussdrv_8h_a1398c4e3e96d855140f9244f539a7eae}{\index{prussdrv.\-h@{prussdrv.\-h}!prussdrv\-\_\-get\-\_\-phys\-\_\-addr@{prussdrv\-\_\-get\-\_\-phys\-\_\-addr}}
+\index{prussdrv\-\_\-get\-\_\-phys\-\_\-addr@{prussdrv\-\_\-get\-\_\-phys\-\_\-addr}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{prussdrv\-\_\-get\-\_\-phys\-\_\-addr}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int prussdrv\-\_\-get\-\_\-phys\-\_\-addr (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{address}
+\end{DoxyParamCaption}
+)}}\label{prussdrv_8h_a1398c4e3e96d855140f9244f539a7eae}
+\hypertarget{prussdrv_8h_a89fd8492ed30e56c10b54782a2de5a46}{\index{prussdrv.\-h@{prussdrv.\-h}!prussdrv\-\_\-get\-\_\-virt\-\_\-addr@{prussdrv\-\_\-get\-\_\-virt\-\_\-addr}}
+\index{prussdrv\-\_\-get\-\_\-virt\-\_\-addr@{prussdrv\-\_\-get\-\_\-virt\-\_\-addr}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{prussdrv\-\_\-get\-\_\-virt\-\_\-addr}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ prussdrv\-\_\-get\-\_\-virt\-\_\-addr (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{phyaddr}
+\end{DoxyParamCaption}
+)}}\label{prussdrv_8h_a89fd8492ed30e56c10b54782a2de5a46}
+\hypertarget{prussdrv_8h_a32b075df130657a0f0515da65431a673}{\index{prussdrv.\-h@{prussdrv.\-h}!prussdrv\-\_\-init@{prussdrv\-\_\-init}}
+\index{prussdrv\-\_\-init@{prussdrv\-\_\-init}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{prussdrv\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int prussdrv\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{prussdrv_8h_a32b075df130657a0f0515da65431a673}
+\hypertarget{prussdrv_8h_a0824ea6a24e5f4ec97da004490136fd4}{\index{prussdrv.\-h@{prussdrv.\-h}!prussdrv\-\_\-map\-\_\-extmem@{prussdrv\-\_\-map\-\_\-extmem}}
+\index{prussdrv\-\_\-map\-\_\-extmem@{prussdrv\-\_\-map\-\_\-extmem}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{prussdrv\-\_\-map\-\_\-extmem}]{\setlength{\rightskip}{0pt plus 5cm}int prussdrv\-\_\-map\-\_\-extmem (
+\begin{DoxyParamCaption}
+\item[{void $\ast$$\ast$}]{address}
+\end{DoxyParamCaption}
+)}}\label{prussdrv_8h_a0824ea6a24e5f4ec97da004490136fd4}
+\hypertarget{prussdrv_8h_a855af57f1926596b324bd655a8e77b94}{\index{prussdrv.\-h@{prussdrv.\-h}!prussdrv\-\_\-map\-\_\-l3mem@{prussdrv\-\_\-map\-\_\-l3mem}}
+\index{prussdrv\-\_\-map\-\_\-l3mem@{prussdrv\-\_\-map\-\_\-l3mem}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{prussdrv\-\_\-map\-\_\-l3mem}]{\setlength{\rightskip}{0pt plus 5cm}int prussdrv\-\_\-map\-\_\-l3mem (
+\begin{DoxyParamCaption}
+\item[{void $\ast$$\ast$}]{address}
+\end{DoxyParamCaption}
+)}}\label{prussdrv_8h_a855af57f1926596b324bd655a8e77b94}
+\hypertarget{prussdrv_8h_ac7633fd8ace2baf62797b0b0d3b0c560}{\index{prussdrv.\-h@{prussdrv.\-h}!prussdrv\-\_\-map\-\_\-peripheral\-\_\-io@{prussdrv\-\_\-map\-\_\-peripheral\-\_\-io}}
+\index{prussdrv\-\_\-map\-\_\-peripheral\-\_\-io@{prussdrv\-\_\-map\-\_\-peripheral\-\_\-io}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{prussdrv\-\_\-map\-\_\-peripheral\-\_\-io}]{\setlength{\rightskip}{0pt plus 5cm}int prussdrv\-\_\-map\-\_\-peripheral\-\_\-io (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{per\-\_\-id, }
+\item[{void $\ast$$\ast$}]{address}
+\end{DoxyParamCaption}
+)}}\label{prussdrv_8h_ac7633fd8ace2baf62797b0b0d3b0c560}
+\hypertarget{prussdrv_8h_a083289b9d6ded037054ff410f91956c6}{\index{prussdrv.\-h@{prussdrv.\-h}!prussdrv\-\_\-map\-\_\-prumem@{prussdrv\-\_\-map\-\_\-prumem}}
+\index{prussdrv\-\_\-map\-\_\-prumem@{prussdrv\-\_\-map\-\_\-prumem}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{prussdrv\-\_\-map\-\_\-prumem}]{\setlength{\rightskip}{0pt plus 5cm}int prussdrv\-\_\-map\-\_\-prumem (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{pru\-\_\-ram\-\_\-id, }
+\item[{void $\ast$$\ast$}]{address}
+\end{DoxyParamCaption}
+)}}\label{prussdrv_8h_a083289b9d6ded037054ff410f91956c6}
+\hypertarget{prussdrv_8h_a02e4042eb9e92f7662ec900d8d2d15d5}{\index{prussdrv.\-h@{prussdrv.\-h}!prussdrv\-\_\-open@{prussdrv\-\_\-open}}
+\index{prussdrv\-\_\-open@{prussdrv\-\_\-open}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{prussdrv\-\_\-open}]{\setlength{\rightskip}{0pt plus 5cm}int prussdrv\-\_\-open (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{pru\-\_\-evtout\-\_\-num}
+\end{DoxyParamCaption}
+)}}\label{prussdrv_8h_a02e4042eb9e92f7662ec900d8d2d15d5}
+\hypertarget{prussdrv_8h_ae3d41c489c60f543c3332aca84318fa4}{\index{prussdrv.\-h@{prussdrv.\-h}!prussdrv\-\_\-pru\-\_\-clear\-\_\-event@{prussdrv\-\_\-pru\-\_\-clear\-\_\-event}}
+\index{prussdrv\-\_\-pru\-\_\-clear\-\_\-event@{prussdrv\-\_\-pru\-\_\-clear\-\_\-event}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{prussdrv\-\_\-pru\-\_\-clear\-\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}int prussdrv\-\_\-pru\-\_\-clear\-\_\-event (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{eventnum}
+\end{DoxyParamCaption}
+)}}\label{prussdrv_8h_ae3d41c489c60f543c3332aca84318fa4}
+\hypertarget{prussdrv_8h_aa0e55c3ca06be9bb68700748885b2f67}{\index{prussdrv.\-h@{prussdrv.\-h}!prussdrv\-\_\-pru\-\_\-disable@{prussdrv\-\_\-pru\-\_\-disable}}
+\index{prussdrv\-\_\-pru\-\_\-disable@{prussdrv\-\_\-pru\-\_\-disable}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{prussdrv\-\_\-pru\-\_\-disable}]{\setlength{\rightskip}{0pt plus 5cm}int prussdrv\-\_\-pru\-\_\-disable (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{prunum}
+\end{DoxyParamCaption}
+)}}\label{prussdrv_8h_aa0e55c3ca06be9bb68700748885b2f67}
+\hypertarget{prussdrv_8h_acde2933ceaa2c97822e256d6e35d01fc}{\index{prussdrv.\-h@{prussdrv.\-h}!prussdrv\-\_\-pru\-\_\-enable@{prussdrv\-\_\-pru\-\_\-enable}}
+\index{prussdrv\-\_\-pru\-\_\-enable@{prussdrv\-\_\-pru\-\_\-enable}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{prussdrv\-\_\-pru\-\_\-enable}]{\setlength{\rightskip}{0pt plus 5cm}int prussdrv\-\_\-pru\-\_\-enable (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{prunum}
+\end{DoxyParamCaption}
+)}}\label{prussdrv_8h_acde2933ceaa2c97822e256d6e35d01fc}
+\hypertarget{prussdrv_8h_a3179fffef76a458d22c06a459b07d2de}{\index{prussdrv.\-h@{prussdrv.\-h}!prussdrv\-\_\-pru\-\_\-reset@{prussdrv\-\_\-pru\-\_\-reset}}
+\index{prussdrv\-\_\-pru\-\_\-reset@{prussdrv\-\_\-pru\-\_\-reset}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{prussdrv\-\_\-pru\-\_\-reset}]{\setlength{\rightskip}{0pt plus 5cm}int prussdrv\-\_\-pru\-\_\-reset (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{prunum}
+\end{DoxyParamCaption}
+)}}\label{prussdrv_8h_a3179fffef76a458d22c06a459b07d2de}
+\hypertarget{prussdrv_8h_a0242de262bfd0eb33b414448281e6925}{\index{prussdrv.\-h@{prussdrv.\-h}!prussdrv\-\_\-pru\-\_\-send\-\_\-event@{prussdrv\-\_\-pru\-\_\-send\-\_\-event}}
+\index{prussdrv\-\_\-pru\-\_\-send\-\_\-event@{prussdrv\-\_\-pru\-\_\-send\-\_\-event}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{prussdrv\-\_\-pru\-\_\-send\-\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}int prussdrv\-\_\-pru\-\_\-send\-\_\-event (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{eventnum}
+\end{DoxyParamCaption}
+)}}\label{prussdrv_8h_a0242de262bfd0eb33b414448281e6925}
+\hypertarget{prussdrv_8h_ab32f99594181bb7d33905bb83c44bdbc}{\index{prussdrv.\-h@{prussdrv.\-h}!prussdrv\-\_\-pru\-\_\-send\-\_\-wait\-\_\-clear\-\_\-event@{prussdrv\-\_\-pru\-\_\-send\-\_\-wait\-\_\-clear\-\_\-event}}
+\index{prussdrv\-\_\-pru\-\_\-send\-\_\-wait\-\_\-clear\-\_\-event@{prussdrv\-\_\-pru\-\_\-send\-\_\-wait\-\_\-clear\-\_\-event}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{prussdrv\-\_\-pru\-\_\-send\-\_\-wait\-\_\-clear\-\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}int prussdrv\-\_\-pru\-\_\-send\-\_\-wait\-\_\-clear\-\_\-event (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{send\-\_\-eventnum, }
+\item[{unsigned int}]{pru\-\_\-evtout\-\_\-num, }
+\item[{unsigned int}]{ack\-\_\-eventnum}
+\end{DoxyParamCaption}
+)}}\label{prussdrv_8h_ab32f99594181bb7d33905bb83c44bdbc}
+\hypertarget{prussdrv_8h_a28205308880725d6a97bef3a0ce5893e}{\index{prussdrv.\-h@{prussdrv.\-h}!prussdrv\-\_\-pru\-\_\-wait\-\_\-event@{prussdrv\-\_\-pru\-\_\-wait\-\_\-event}}
+\index{prussdrv\-\_\-pru\-\_\-wait\-\_\-event@{prussdrv\-\_\-pru\-\_\-wait\-\_\-event}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{prussdrv\-\_\-pru\-\_\-wait\-\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}int prussdrv\-\_\-pru\-\_\-wait\-\_\-event (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{pru\-\_\-evtout\-\_\-num}
+\end{DoxyParamCaption}
+)}}\label{prussdrv_8h_a28205308880725d6a97bef3a0ce5893e}
+\hypertarget{prussdrv_8h_acba059d9a7bbbbb99f5e02b2426dd222}{\index{prussdrv.\-h@{prussdrv.\-h}!prussdrv\-\_\-pru\-\_\-write\-\_\-memory@{prussdrv\-\_\-pru\-\_\-write\-\_\-memory}}
+\index{prussdrv\-\_\-pru\-\_\-write\-\_\-memory@{prussdrv\-\_\-pru\-\_\-write\-\_\-memory}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{prussdrv\-\_\-pru\-\_\-write\-\_\-memory}]{\setlength{\rightskip}{0pt plus 5cm}int prussdrv\-\_\-pru\-\_\-write\-\_\-memory (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{pru\-\_\-ram\-\_\-id, }
+\item[{unsigned int}]{wordoffset, }
+\item[{unsigned int $\ast$}]{memarea, }
+\item[{unsigned int}]{bytelength}
+\end{DoxyParamCaption}
+)}}\label{prussdrv_8h_acba059d9a7bbbbb99f5e02b2426dd222}
+\hypertarget{prussdrv_8h_a512f83f8e11798f445eed9cb6a076c7b}{\index{prussdrv.\-h@{prussdrv.\-h}!prussdrv\-\_\-pruintc\-\_\-init@{prussdrv\-\_\-pruintc\-\_\-init}}
+\index{prussdrv\-\_\-pruintc\-\_\-init@{prussdrv\-\_\-pruintc\-\_\-init}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{prussdrv\-\_\-pruintc\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int prussdrv\-\_\-pruintc\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{{\bf tpruss\-\_\-intc\-\_\-initdata} $\ast$}]{prussintc\-\_\-init\-\_\-data}
+\end{DoxyParamCaption}
+)}}\label{prussdrv_8h_a512f83f8e11798f445eed9cb6a076c7b}
+\hypertarget{prussdrv_8h_a9cf86fe464c45ba5cf4a5faafe0a1ea2}{\index{prussdrv.\-h@{prussdrv.\-h}!prussdrv\-\_\-start\-\_\-irqthread@{prussdrv\-\_\-start\-\_\-irqthread}}
+\index{prussdrv\-\_\-start\-\_\-irqthread@{prussdrv\-\_\-start\-\_\-irqthread}!prussdrv.h@{prussdrv.\-h}}
+\subsubsection[{prussdrv\-\_\-start\-\_\-irqthread}]{\setlength{\rightskip}{0pt plus 5cm}int prussdrv\-\_\-start\-\_\-irqthread (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{pru\-\_\-evtout\-\_\-num, }
+\item[{int}]{priority, }
+\item[{{\bf prussdrv\-\_\-function\-\_\-handler}}]{irqhandler}
+\end{DoxyParamCaption}
+)}}\label{prussdrv_8h_a9cf86fe464c45ba5cf4a5faafe0a1ea2}

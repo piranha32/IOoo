@@ -50,9 +50,9 @@ static uint16\-\_\-t \hyperlink{struct_beagle_goo_a13b31f0a40c07bd0ca8c9d9fa51ae
 \item 
 static const uint32\-\_\-t \hyperlink{struct_beagle_goo_a709c4761b20d2db44096036573d3285f}{gpio\-Addrs} \mbox{[}$\,$\mbox{]}
 \item 
-static const int \hyperlink{struct_beagle_goo_ae4b9d09b2bfaf386c5d6fb9fdee0d4fa}{Max\-Gpio\-Name\-Len} = 32
+static const int \hyperlink{struct_beagle_goo_ae4b9d09b2bfaf386c5d6fb9fdee0d4fa}{Max\-Gpio\-Name\-Len} =32
 \item 
-static const int \hyperlink{struct_beagle_goo_a0d7150aa275f183b3c552ab89584f272}{Gpio\-Mem\-Block\-Length} = 0xfff
+static const int \hyperlink{struct_beagle_goo_a0d7150aa275f183b3c552ab89584f272}{Gpio\-Mem\-Block\-Length} =0xfff
 \end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
@@ -164,7 +164,7 @@ Implements \hyperlink{class_g_p_i_ooo_ab8a52d0d5ef2fbb9ca92baa51174e3ee}{G\-P\-I
 \subsubsection[{addrs}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t Beagle\-Goo\-::addrs\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{struct_beagle_goo_a13b31f0a40c07bd0ca8c9d9fa51ae60a}
 {\bfseries Initial value\-:}
 \begin{DoxyCode}
-
+=
         \{ 0x0818, 0x081C, 0x0808,                       
                         0x080C, 0x0890, 0x0894, 0x089C, 0x0898, 
                         0x0834, 0x0830, 0x0824, 0x0828, 0x083C, 
@@ -182,7 +182,7 @@ Implements \hyperlink{class_g_p_i_ooo_ab8a52d0d5ef2fbb9ca92baa51174e3ee}{G\-P\-I
 \subsubsection[{gpio\-Addrs}]{\setlength{\rightskip}{0pt plus 5cm}const uint32\-\_\-t Beagle\-Goo\-::gpio\-Addrs\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{struct_beagle_goo_a709c4761b20d2db44096036573d3285f}
 {\bfseries Initial value\-:}
 \begin{DoxyCode}
-
+=
         \{ 0x44E07000, 0x4804C000, 0x481AC000, 0x481AE000 \}
 \end{DoxyCode}
 Base addresses for G\-P\-I\-O blocks in memory \hypertarget{struct_beagle_goo_a1d4a232a0dbb10d38249e239c7e04788}{\index{Beagle\-Goo@{Beagle\-Goo}!gpio\-Fd@{gpio\-Fd}}
@@ -193,13 +193,13 @@ Base addresses for G\-P\-I\-O blocks in memory \hypertarget{struct_beagle_goo_a1
 \subsubsection[{gpio\-Infos}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf G\-P\-I\-O\-Info} Beagle\-Goo\-::gpio\-Infos\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{struct_beagle_goo_a2856c2fe9e24825ffd5691ab9a53d1f8}
 \hypertarget{struct_beagle_goo_a0d7150aa275f183b3c552ab89584f272}{\index{Beagle\-Goo@{Beagle\-Goo}!Gpio\-Mem\-Block\-Length@{Gpio\-Mem\-Block\-Length}}
 \index{Gpio\-Mem\-Block\-Length@{Gpio\-Mem\-Block\-Length}!BeagleGoo@{Beagle\-Goo}}
-\subsubsection[{Gpio\-Mem\-Block\-Length}]{\setlength{\rightskip}{0pt plus 5cm}const int Beagle\-Goo\-::\-Gpio\-Mem\-Block\-Length = 0xfff\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{struct_beagle_goo_a0d7150aa275f183b3c552ab89584f272}
+\subsubsection[{Gpio\-Mem\-Block\-Length}]{\setlength{\rightskip}{0pt plus 5cm}const int Beagle\-Goo\-::\-Gpio\-Mem\-Block\-Length =0xfff\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{struct_beagle_goo_a0d7150aa275f183b3c552ab89584f272}
 \hypertarget{struct_beagle_goo_aaa05aec2adfcadae3912e861ae35d50b}{\index{Beagle\-Goo@{Beagle\-Goo}!gpios@{gpios}}
 \index{gpios@{gpios}!BeagleGoo@{Beagle\-Goo}}
 \subsubsection[{gpios}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t$\ast$ Beagle\-Goo\-::gpios\mbox{[}4\mbox{]}\hspace{0.3cm}{\ttfamily [protected]}}}\label{struct_beagle_goo_aaa05aec2adfcadae3912e861ae35d50b}
 \hypertarget{struct_beagle_goo_ae4b9d09b2bfaf386c5d6fb9fdee0d4fa}{\index{Beagle\-Goo@{Beagle\-Goo}!Max\-Gpio\-Name\-Len@{Max\-Gpio\-Name\-Len}}
 \index{Max\-Gpio\-Name\-Len@{Max\-Gpio\-Name\-Len}!BeagleGoo@{Beagle\-Goo}}
-\subsubsection[{Max\-Gpio\-Name\-Len}]{\setlength{\rightskip}{0pt plus 5cm}const int Beagle\-Goo\-::\-Max\-Gpio\-Name\-Len = 32\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{struct_beagle_goo_ae4b9d09b2bfaf386c5d6fb9fdee0d4fa}
+\subsubsection[{Max\-Gpio\-Name\-Len}]{\setlength{\rightskip}{0pt plus 5cm}const int Beagle\-Goo\-::\-Max\-Gpio\-Name\-Len =32\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{struct_beagle_goo_ae4b9d09b2bfaf386c5d6fb9fdee0d4fa}
 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}

@@ -1,0 +1,85 @@
+\hypertarget{class_t_l_c5946_p_r_u_s_sphy}{\section{T\-L\-C5946\-P\-R\-U\-S\-Sphy Class Reference}
+\label{class_t_l_c5946_p_r_u_s_sphy}\index{T\-L\-C5946\-P\-R\-U\-S\-Sphy@{T\-L\-C5946\-P\-R\-U\-S\-Sphy}}
+}
+
+
+{\ttfamily \#include $<$T\-L\-C5946\-P\-R\-U\-S\-Sphy.\-h$>$}
+
+Inheritance diagram for T\-L\-C5946\-P\-R\-U\-S\-Sphy\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_t_l_c5946_p_r_u_s_sphy}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_t_l_c5946_p_r_u_s_sphy_a654892071d1aee78428b4c142151574d}{T\-L\-C5946\-P\-R\-U\-S\-Sphy} (\hyperlink{class_s_p_i}{S\-P\-I} $\ast$\-\_\-spi, \hyperlink{class_g_p_i_opin}{G\-P\-I\-Opin} $\ast$\hyperlink{class_t_l_c5946phy_ad593ca4b96986ce8e40c833ed5ed3769}{ctrl}, char $\ast$pru\-Bin\-File)
+\item 
+virtual \hyperlink{class_t_l_c5946_p_r_u_s_sphy_afe139acf9d6f593597a900e4311dab51}{$\sim$\-T\-L\-C5946\-P\-R\-U\-S\-Sphy} ()
+\item 
+virtual void \hyperlink{class_t_l_c5946_p_r_u_s_sphy_a28d5f0a3fb62b085dd7795373b9b4b85}{set\-Blank} (uint8\-\_\-t blank)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+The class acts as a layer abstracting physical interface to T\-L\-C5946. Higher level class controlling behavior of the chain of the chips can call functions of the interface without needing to know how they interface with the actual hardware. This allows to implement high-\/level functionality without knowing how the hardware interface works. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_t_l_c5946_p_r_u_s_sphy_a654892071d1aee78428b4c142151574d}{\index{T\-L\-C5946\-P\-R\-U\-S\-Sphy@{T\-L\-C5946\-P\-R\-U\-S\-Sphy}!T\-L\-C5946\-P\-R\-U\-S\-Sphy@{T\-L\-C5946\-P\-R\-U\-S\-Sphy}}
+\index{T\-L\-C5946\-P\-R\-U\-S\-Sphy@{T\-L\-C5946\-P\-R\-U\-S\-Sphy}!TLC5946PRUSSphy@{T\-L\-C5946\-P\-R\-U\-S\-Sphy}}
+\subsubsection[{T\-L\-C5946\-P\-R\-U\-S\-Sphy}]{\setlength{\rightskip}{0pt plus 5cm}T\-L\-C5946\-P\-R\-U\-S\-Sphy\-::\-T\-L\-C5946\-P\-R\-U\-S\-Sphy (
+\begin{DoxyParamCaption}
+\item[{{\bf S\-P\-I} $\ast$}]{\-\_\-spi, }
+\item[{{\bf G\-P\-I\-Opin} $\ast$}]{ctrl, }
+\item[{char $\ast$}]{pru\-Bin\-File}
+\end{DoxyParamCaption}
+)}}\label{class_t_l_c5946_p_r_u_s_sphy_a654892071d1aee78428b4c142151574d}
+Constructor initializes T\-L\-C5946 physical interface using provided \hyperlink{class_s_p_i}{S\-P\-I} bus for data communication and G\-P\-I\-O lines as control signals. Constructor initializes P\-R\-U0 unit with microcode read from the file whose name is provided as the last parameter. The microcode should generate clocking and blanking sequences required by T\-L\-C5946 chip. If the microcode can not be read from the file or P\-R\-U\-S\-S can not be initialized, the module will not be activated.
+
+Control signals should be assigned the following names\-:
+\begin{DoxyItemize}
+\item mode
+\item xhalf
+\item xerr
+\item blank
+\item gsclk
+\end{DoxyItemize}
+
+This function is Beaglebone-\/specific. 
+\begin{DoxyParams}{Parameters}
+{\em \-\_\-spi} & \\
+\hline
+{\em ctrl} & \\
+\hline
+{\em pru\-Bin\-File} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_t_l_c5946_p_r_u_s_sphy_afe139acf9d6f593597a900e4311dab51}{\index{T\-L\-C5946\-P\-R\-U\-S\-Sphy@{T\-L\-C5946\-P\-R\-U\-S\-Sphy}!$\sim$\-T\-L\-C5946\-P\-R\-U\-S\-Sphy@{$\sim$\-T\-L\-C5946\-P\-R\-U\-S\-Sphy}}
+\index{$\sim$\-T\-L\-C5946\-P\-R\-U\-S\-Sphy@{$\sim$\-T\-L\-C5946\-P\-R\-U\-S\-Sphy}!TLC5946PRUSSphy@{T\-L\-C5946\-P\-R\-U\-S\-Sphy}}
+\subsubsection[{$\sim$\-T\-L\-C5946\-P\-R\-U\-S\-Sphy}]{\setlength{\rightskip}{0pt plus 5cm}T\-L\-C5946\-P\-R\-U\-S\-Sphy\-::$\sim$\-T\-L\-C5946\-P\-R\-U\-S\-Sphy (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_t_l_c5946_p_r_u_s_sphy_afe139acf9d6f593597a900e4311dab51}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_t_l_c5946_p_r_u_s_sphy_a28d5f0a3fb62b085dd7795373b9b4b85}{\index{T\-L\-C5946\-P\-R\-U\-S\-Sphy@{T\-L\-C5946\-P\-R\-U\-S\-Sphy}!set\-Blank@{set\-Blank}}
+\index{set\-Blank@{set\-Blank}!TLC5946PRUSSphy@{T\-L\-C5946\-P\-R\-U\-S\-Sphy}}
+\subsubsection[{set\-Blank}]{\setlength{\rightskip}{0pt plus 5cm}void T\-L\-C5946\-P\-R\-U\-S\-Sphy\-::set\-Blank (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{blank}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_t_l_c5946_p_r_u_s_sphy_a28d5f0a3fb62b085dd7795373b9b4b85}
+
+
+Reimplemented from \hyperlink{class_t_l_c5946phy_a917d05cee794f633a6775b8c509efba0}{T\-L\-C5946phy}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/device/\hyperlink{_t_l_c5946_p_r_u_s_sphy_8h}{T\-L\-C5946\-P\-R\-U\-S\-Sphy.\-h}\item 
+src/\hyperlink{_t_l_c5946_p_r_u_s_sphy_8cpp}{T\-L\-C5946\-P\-R\-U\-S\-Sphy.\-cpp}\end{DoxyCompactItemize}

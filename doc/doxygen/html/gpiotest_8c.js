@@ -7,6 +7,5 @@ var gpiotest_8c =
     [ "GPIO_OE_REG", "gpiotest_8c.html#a192aee11f30b27525c51ff6004a6b116", null ],
     [ "_main", "gpiotest_8c.html#a6f2c0f4bbc65166d01847c6dd91f5380", null ],
     [ "print_gpio_conf_info", "gpiotest_8c.html#a64ac2928127cbdaaec10e34c53e82572", null ],
-    [ "print_gpio_infos", "gpiotest_8c.html#a50abafa4958dc4cec49d105a18f32dbc", null ],
-    [ "test_gpio", "gpiotest_8c.html#af22dbae36efa81ea9a74840533d0da90", null ]
+    [ "print_gpio_infos", "gpiotest_8c.html#a50abafa4958dc4cec49d105a18f32dbc", null ]
 ];

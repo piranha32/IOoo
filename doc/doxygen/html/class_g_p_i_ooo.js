@@ -13,8 +13,6 @@ var class_g_p_i_ooo =
     [ "~GPIOoo", "class_g_p_i_ooo.html#a99319510b178ed4e1dfc448e53a6c4b3", null ],
     [ "claim", "class_g_p_i_ooo.html#a07164321fda879306394d7550454dbb2", null ],
     [ "claim", "class_g_p_i_ooo.html#a8d7ac44872a6d12ad439afe4e914f07e", null ],
-    [ "getInstance", "class_g_p_i_ooo.html#a6bbf91045352182749934096c3f4c42d", null ],
-    [ "inst", "class_g_p_i_ooo.html#a8b49cf33628e0cb0e77c534ad971eef9", null ],
     [ "release", "class_g_p_i_ooo.html#ab8a52d0d5ef2fbb9ca92baa51174e3ee", null ],
     [ "GPIOpin", "class_g_p_i_ooo.html#a266ea875ace024757dd1209ea5c0a327", null ]
 ];

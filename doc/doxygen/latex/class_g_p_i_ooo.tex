@@ -19,11 +19,11 @@ Inheritance diagram for G\-P\-I\-Ooo\-:\begin{figure}[H]
 \subsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-enum \hyperlink{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10}{gpio\-Flags} \{ \hyperlink{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10aa64ecca268265aa77389ee957e01fd63}{gpio\-Flags\-None} =  0, 
-\hyperlink{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10a42607c5a4f579963b6426f81d2266c62}{gpio\-Exclusive} =  1
+enum \hyperlink{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10}{gpio\-Flags} \{ \hyperlink{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10aa64ecca268265aa77389ee957e01fd63}{gpio\-Flags\-None} = 0, 
+\hyperlink{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10a42607c5a4f579963b6426f81d2266c62}{gpio\-Exclusive} = 1
  \}
 \item 
-enum \hyperlink{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03}{gpio\-Write\-Semantics} \{ \hyperlink{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03a21aadd48a3896150795cd7fde8c93969}{gpio\-Write} =  1, 
+enum \hyperlink{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03}{gpio\-Write\-Semantics} \{ \hyperlink{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03a21aadd48a3896150795cd7fde8c93969}{gpio\-Write} = 1, 
 \hyperlink{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03a359f92e59dfc786c8eb730a95179fd1b}{gpio\-Write\-Atomic}, 
 \hyperlink{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03a551b9df4fca015828bfdfbce0e4e9c31}{gpio\-Write\-Set\-Before\-Clear}, 
 \hyperlink{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03a4b8a43356457a0d5e5994ab8f1341a7f}{gpio\-Write\-Clear\-Before\-Set}
@@ -65,7 +65,7 @@ Object-\/oriented implementation of G\-P\-I\-O Class defines interface for objec
 \index{gpio\-Flags@{gpio\-Flags}!GPIOoo@{G\-P\-I\-Ooo}}
 \subsubsection[{gpio\-Flags}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf G\-P\-I\-Ooo\-::gpio\-Flags}}}\label{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10}
 Options flags for G\-P\-I\-O pin allocation. \begin{Desc}
-\item[Enumerator\-: ]\par
+\item[Enumerator]\par
 \begin{description}
 \index{gpio\-Flags\-None@{gpio\-Flags\-None}!G\-P\-I\-Ooo@{G\-P\-I\-Ooo}}\index{G\-P\-I\-Ooo@{G\-P\-I\-Ooo}!gpio\-Flags\-None@{gpio\-Flags\-None}}\item[{\em 
 \hypertarget{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10aa64ecca268265aa77389ee957e01fd63}{gpio\-Flags\-None}\label{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10aa64ecca268265aa77389ee957e01fd63}
@@ -73,12 +73,11 @@ Options flags for G\-P\-I\-O pin allocation. \begin{Desc}
 \hypertarget{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10a42607c5a4f579963b6426f81d2266c62}{gpio\-Exclusive}\label{class_g_p_i_ooo_a63b72558d40ed7f3ccc0c6f11d1e3b10a42607c5a4f579963b6426f81d2266c62}
 }]gpio\-Exclusive -\/ G\-P\-I\-Os allocated exclusively. Allocating with this flag disables sharing with other blocks. \end{description}
 \end{Desc}
-
 \hypertarget{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03}{\index{G\-P\-I\-Ooo@{G\-P\-I\-Ooo}!gpio\-Write\-Semantics@{gpio\-Write\-Semantics}}
 \index{gpio\-Write\-Semantics@{gpio\-Write\-Semantics}!GPIOoo@{G\-P\-I\-Ooo}}
 \subsubsection[{gpio\-Write\-Semantics}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf G\-P\-I\-Ooo\-::gpio\-Write\-Semantics}}}\label{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03}
 Enum defines semantics of write operation to G\-P\-I\-Os. \begin{Desc}
-\item[Enumerator\-: ]\par
+\item[Enumerator]\par
 \begin{description}
 \index{gpio\-Write@{gpio\-Write}!G\-P\-I\-Ooo@{G\-P\-I\-Ooo}}\index{G\-P\-I\-Ooo@{G\-P\-I\-Ooo}!gpio\-Write@{gpio\-Write}}\item[{\em 
 \hypertarget{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03a21aadd48a3896150795cd7fde8c93969}{gpio\-Write}\label{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03a21aadd48a3896150795cd7fde8c93969}
@@ -90,7 +89,6 @@ Enum defines semantics of write operation to G\-P\-I\-Os. \begin{Desc}
 \hypertarget{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03a4b8a43356457a0d5e5994ab8f1341a7f}{gpio\-Write\-Clear\-Before\-Set}\label{class_g_p_i_ooo_ad4b133662b68989435bcd422feb0fc03a4b8a43356457a0d5e5994ab8f1341a7f}
 }]gpio\-Write\-Clear\-Before\-Set -\/ In two-\/step implementation of writing to the pins, pins with value '0' are cleared before pins with value '1' are set. For a short period of time the state of the pins in the G\-P\-I\-O block will be equal to bitwise A\-N\-D of the previous and next states. \end{description}
 \end{Desc}
-
 
 
 \subsection{Constructor \& Destructor Documentation}

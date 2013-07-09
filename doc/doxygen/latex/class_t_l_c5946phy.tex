@@ -5,38 +5,83 @@
 
 {\ttfamily \#include $<$T\-L\-C5946phy.\-h$>$}
 
+Inheritance diagram for T\-L\-C5946phy\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_t_l_c5946phy}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_t_l_c5946phy_a2c3d69df1f7a9fa396c9378a201706a2}{T\-L\-C5946phy} (\hyperlink{class_s_p_i}{S\-P\-I} \&\-\_\-spi, \hyperlink{class_g_p_i_opin}{G\-P\-I\-Opin} $\ast$ctrl)
+\hyperlink{class_t_l_c5946phy_acd5f2ca20ca8916c23625aca73306415}{T\-L\-C5946phy} (\hyperlink{class_s_p_i}{S\-P\-I} $\ast$\-\_\-spi, \hyperlink{class_g_p_i_opin}{G\-P\-I\-Opin} $\ast$\hyperlink{class_t_l_c5946phy_ad593ca4b96986ce8e40c833ed5ed3769}{ctrl})
 \item 
 virtual \hyperlink{class_t_l_c5946phy_a7ed74634384c99c3b305e0c33d9ec47b}{$\sim$\-T\-L\-C5946phy} ()
 \item 
-void \hyperlink{class_t_l_c5946phy_a917d05cee794f633a6775b8c509efba0}{set\-Blank} (uint8\-\_\-t blank)
+virtual void \hyperlink{class_t_l_c5946phy_a917d05cee794f633a6775b8c509efba0}{set\-Blank} (uint8\-\_\-t blank)
 \item 
-void \hyperlink{class_t_l_c5946phy_a43974eb64479ebd593ea122e5f446ffa}{set\-Mode} (uint8\-\_\-t mode)
+virtual void \hyperlink{class_t_l_c5946phy_a43974eb64479ebd593ea122e5f446ffa}{set\-Mode} (uint8\-\_\-t mode)
 \item 
-void \hyperlink{class_t_l_c5946phy_a11b29859983d81add34d6fb0721613a2}{set\-Xhalf} (uint8\-\_\-t xhalf)
+virtual void \hyperlink{class_t_l_c5946phy_a11b29859983d81add34d6fb0721613a2}{set\-Xhalf} (uint8\-\_\-t xhalf)
 \item 
-uint8\-\_\-t \hyperlink{class_t_l_c5946phy_ac57ced207378247e87f025e3cb94d754}{get\-Xerr} ()
+virtual uint8\-\_\-t \hyperlink{class_t_l_c5946phy_ac57ced207378247e87f025e3cb94d754}{get\-Xerr} ()
 \item 
-int \hyperlink{class_t_l_c5946phy_a0604df91a14451f72504f39cd379eed1}{set\-Bits\-Per\-Word} (int bits)
+virtual int \hyperlink{class_t_l_c5946phy_a0604df91a14451f72504f39cd379eed1}{set\-Bits\-Per\-Word} (int bits)
 \item 
-int \hyperlink{class_t_l_c5946phy_a7f12198f25476c730e6838cfcd94c388}{set\-L\-S\-B\-First} (bool lsb\-\_\-first)
+virtual int \hyperlink{class_t_l_c5946phy_a7f12198f25476c730e6838cfcd94c388}{set\-L\-S\-B\-First} (bool lsb\-\_\-first)
 \item 
-int \hyperlink{class_t_l_c5946phy_a142002ef92f3bb22579e63b9110e6a30}{xfer} (uint8\-\_\-t buf\-\_\-out\mbox{[}$\,$\mbox{]}, uint8\-\_\-t buf\-\_\-in\mbox{[}$\,$\mbox{]}, int len)
+virtual int \hyperlink{class_t_l_c5946phy_a142002ef92f3bb22579e63b9110e6a30}{xfer} (uint8\-\_\-t buf\-\_\-out\mbox{[}$\,$\mbox{]}, uint8\-\_\-t buf\-\_\-in\mbox{[}$\,$\mbox{]}, int len)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_s_p_i}{S\-P\-I} $\ast$ \hyperlink{class_t_l_c5946phy_aa1cd89ab21c1ce96acc6d2cc8af4136e}{spi}
+\item 
+\hyperlink{class_g_p_i_opin}{G\-P\-I\-Opin} $\ast$ \hyperlink{class_t_l_c5946phy_ad593ca4b96986ce8e40c833ed5ed3769}{ctrl}
+\item 
+bool \hyperlink{class_t_l_c5946phy_a6f0eea08d31a0209e5bc561b93a43067}{active}
+\item 
+int \hyperlink{class_t_l_c5946phy_a99fc1c99ddad63c7a7b15034ac9cffda}{blank\-\_\-pin\-\_\-pin}
+\item 
+int \hyperlink{class_t_l_c5946phy_a21c925ef7ce83c48daaebb56f994a720}{mode\-\_\-pin\-\_\-pin}
+\item 
+int \hyperlink{class_t_l_c5946phy_a072b879adb9d018b4a9905b53cb497f0}{xhalf\-\_\-pin\-\_\-pin}
+\item 
+int \hyperlink{class_t_l_c5946phy_a4c79de11b56731d25e7f0f0455b960f0}{xerr\-\_\-pin\-\_\-pin}
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+The class acts as a layer abstracting physical interface to T\-L\-C5946. Higher level class controlling behavior of the chain of the chips can call functions of the interface without needing to know how they interface with the actual hardware. This allows to implement high-\/level functionality without knowing how the hardware interface works. 
+
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{class_t_l_c5946phy_a2c3d69df1f7a9fa396c9378a201706a2}{\index{T\-L\-C5946phy@{T\-L\-C5946phy}!T\-L\-C5946phy@{T\-L\-C5946phy}}
+\hypertarget{class_t_l_c5946phy_acd5f2ca20ca8916c23625aca73306415}{\index{T\-L\-C5946phy@{T\-L\-C5946phy}!T\-L\-C5946phy@{T\-L\-C5946phy}}
 \index{T\-L\-C5946phy@{T\-L\-C5946phy}!TLC5946phy@{T\-L\-C5946phy}}
 \subsubsection[{T\-L\-C5946phy}]{\setlength{\rightskip}{0pt plus 5cm}T\-L\-C5946phy\-::\-T\-L\-C5946phy (
 \begin{DoxyParamCaption}
-\item[{{\bf S\-P\-I} \&}]{\-\_\-spi, }
+\item[{{\bf S\-P\-I} $\ast$}]{\-\_\-spi, }
 \item[{{\bf G\-P\-I\-Opin} $\ast$}]{ctrl}
 \end{DoxyParamCaption}
-)}}\label{class_t_l_c5946phy_a2c3d69df1f7a9fa396c9378a201706a2}
+)}}\label{class_t_l_c5946phy_acd5f2ca20ca8916c23625aca73306415}
+Constructor initializes T\-L\-C5946 physical interface using provided \hyperlink{class_s_p_i}{S\-P\-I} bus for data communication and G\-P\-I\-O lines as control signals. Constructor assumes that the clocking and blanking signals for the chip are generated externally and will not attempt to set them up. The \char`\"{}blank\char`\"{} line acts as \char`\"{}true\char`\"{} blank\-: setting the line active will blank all the outputs.
+
+Control signals should be assigned the following names\-:
+\begin{DoxyItemize}
+\item mode
+\item xhalf
+\item xerr
+\item blank
+\end{DoxyItemize}
+
+G\-S\-C\-L\-K line will not be used and does not need to be allocated.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \-\_\-spi} & \\
+\hline
+{\em ctrl} & \\
+\hline
+\end{DoxyParams}
 \hypertarget{class_t_l_c5946phy_a7ed74634384c99c3b305e0c33d9ec47b}{\index{T\-L\-C5946phy@{T\-L\-C5946phy}!$\sim$\-T\-L\-C5946phy@{$\sim$\-T\-L\-C5946phy}}
 \index{$\sim$\-T\-L\-C5946phy@{$\sim$\-T\-L\-C5946phy}!TLC5946phy@{T\-L\-C5946phy}}
 \subsubsection[{$\sim$\-T\-L\-C5946phy}]{\setlength{\rightskip}{0pt plus 5cm}T\-L\-C5946phy\-::$\sim$\-T\-L\-C5946phy (
@@ -53,42 +98,46 @@ int \hyperlink{class_t_l_c5946phy_a142002ef92f3bb22579e63b9110e6a30}{xfer} (uint
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{class_t_l_c5946phy_ac57ced207378247e87f025e3cb94d754}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_t_l_c5946phy_ac57ced207378247e87f025e3cb94d754}
 \hypertarget{class_t_l_c5946phy_a0604df91a14451f72504f39cd379eed1}{\index{T\-L\-C5946phy@{T\-L\-C5946phy}!set\-Bits\-Per\-Word@{set\-Bits\-Per\-Word}}
 \index{set\-Bits\-Per\-Word@{set\-Bits\-Per\-Word}!TLC5946phy@{T\-L\-C5946phy}}
 \subsubsection[{set\-Bits\-Per\-Word}]{\setlength{\rightskip}{0pt plus 5cm}int T\-L\-C5946phy\-::set\-Bits\-Per\-Word (
 \begin{DoxyParamCaption}
 \item[{int}]{bits}
 \end{DoxyParamCaption}
-)}}\label{class_t_l_c5946phy_a0604df91a14451f72504f39cd379eed1}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_t_l_c5946phy_a0604df91a14451f72504f39cd379eed1}
 \hypertarget{class_t_l_c5946phy_a917d05cee794f633a6775b8c509efba0}{\index{T\-L\-C5946phy@{T\-L\-C5946phy}!set\-Blank@{set\-Blank}}
 \index{set\-Blank@{set\-Blank}!TLC5946phy@{T\-L\-C5946phy}}
 \subsubsection[{set\-Blank}]{\setlength{\rightskip}{0pt plus 5cm}void T\-L\-C5946phy\-::set\-Blank (
 \begin{DoxyParamCaption}
 \item[{uint8\-\_\-t}]{blank}
 \end{DoxyParamCaption}
-)}}\label{class_t_l_c5946phy_a917d05cee794f633a6775b8c509efba0}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_t_l_c5946phy_a917d05cee794f633a6775b8c509efba0}
+
+
+Reimplemented in \hyperlink{class_t_l_c5946_p_r_u_s_sphy_a28d5f0a3fb62b085dd7795373b9b4b85}{T\-L\-C5946\-P\-R\-U\-S\-Sphy}.
+
 \hypertarget{class_t_l_c5946phy_a7f12198f25476c730e6838cfcd94c388}{\index{T\-L\-C5946phy@{T\-L\-C5946phy}!set\-L\-S\-B\-First@{set\-L\-S\-B\-First}}
 \index{set\-L\-S\-B\-First@{set\-L\-S\-B\-First}!TLC5946phy@{T\-L\-C5946phy}}
 \subsubsection[{set\-L\-S\-B\-First}]{\setlength{\rightskip}{0pt plus 5cm}int T\-L\-C5946phy\-::set\-L\-S\-B\-First (
 \begin{DoxyParamCaption}
 \item[{bool}]{lsb\-\_\-first}
 \end{DoxyParamCaption}
-)}}\label{class_t_l_c5946phy_a7f12198f25476c730e6838cfcd94c388}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_t_l_c5946phy_a7f12198f25476c730e6838cfcd94c388}
 \hypertarget{class_t_l_c5946phy_a43974eb64479ebd593ea122e5f446ffa}{\index{T\-L\-C5946phy@{T\-L\-C5946phy}!set\-Mode@{set\-Mode}}
 \index{set\-Mode@{set\-Mode}!TLC5946phy@{T\-L\-C5946phy}}
 \subsubsection[{set\-Mode}]{\setlength{\rightskip}{0pt plus 5cm}void T\-L\-C5946phy\-::set\-Mode (
 \begin{DoxyParamCaption}
 \item[{uint8\-\_\-t}]{mode}
 \end{DoxyParamCaption}
-)}}\label{class_t_l_c5946phy_a43974eb64479ebd593ea122e5f446ffa}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_t_l_c5946phy_a43974eb64479ebd593ea122e5f446ffa}
 \hypertarget{class_t_l_c5946phy_a11b29859983d81add34d6fb0721613a2}{\index{T\-L\-C5946phy@{T\-L\-C5946phy}!set\-Xhalf@{set\-Xhalf}}
 \index{set\-Xhalf@{set\-Xhalf}!TLC5946phy@{T\-L\-C5946phy}}
 \subsubsection[{set\-Xhalf}]{\setlength{\rightskip}{0pt plus 5cm}void T\-L\-C5946phy\-::set\-Xhalf (
 \begin{DoxyParamCaption}
 \item[{uint8\-\_\-t}]{xhalf}
 \end{DoxyParamCaption}
-)}}\label{class_t_l_c5946phy_a11b29859983d81add34d6fb0721613a2}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_t_l_c5946phy_a11b29859983d81add34d6fb0721613a2}
 \hypertarget{class_t_l_c5946phy_a142002ef92f3bb22579e63b9110e6a30}{\index{T\-L\-C5946phy@{T\-L\-C5946phy}!xfer@{xfer}}
 \index{xfer@{xfer}!TLC5946phy@{T\-L\-C5946phy}}
 \subsubsection[{xfer}]{\setlength{\rightskip}{0pt plus 5cm}int T\-L\-C5946phy\-::xfer (
@@ -97,7 +146,31 @@ int \hyperlink{class_t_l_c5946phy_a142002ef92f3bb22579e63b9110e6a30}{xfer} (uint
 \item[{uint8\-\_\-t}]{buf\-\_\-in\mbox{[}$\,$\mbox{]}, }
 \item[{int}]{len}
 \end{DoxyParamCaption}
-)}}\label{class_t_l_c5946phy_a142002ef92f3bb22579e63b9110e6a30}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_t_l_c5946phy_a142002ef92f3bb22579e63b9110e6a30}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_t_l_c5946phy_a6f0eea08d31a0209e5bc561b93a43067}{\index{T\-L\-C5946phy@{T\-L\-C5946phy}!active@{active}}
+\index{active@{active}!TLC5946phy@{T\-L\-C5946phy}}
+\subsubsection[{active}]{\setlength{\rightskip}{0pt plus 5cm}bool T\-L\-C5946phy\-::active\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_t_l_c5946phy_a6f0eea08d31a0209e5bc561b93a43067}
+\hypertarget{class_t_l_c5946phy_a99fc1c99ddad63c7a7b15034ac9cffda}{\index{T\-L\-C5946phy@{T\-L\-C5946phy}!blank\-\_\-pin\-\_\-pin@{blank\-\_\-pin\-\_\-pin}}
+\index{blank\-\_\-pin\-\_\-pin@{blank\-\_\-pin\-\_\-pin}!TLC5946phy@{T\-L\-C5946phy}}
+\subsubsection[{blank\-\_\-pin\-\_\-pin}]{\setlength{\rightskip}{0pt plus 5cm}int T\-L\-C5946phy\-::blank\-\_\-pin\-\_\-pin\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_t_l_c5946phy_a99fc1c99ddad63c7a7b15034ac9cffda}
+\hypertarget{class_t_l_c5946phy_ad593ca4b96986ce8e40c833ed5ed3769}{\index{T\-L\-C5946phy@{T\-L\-C5946phy}!ctrl@{ctrl}}
+\index{ctrl@{ctrl}!TLC5946phy@{T\-L\-C5946phy}}
+\subsubsection[{ctrl}]{\setlength{\rightskip}{0pt plus 5cm}{\bf G\-P\-I\-Opin}$\ast$ T\-L\-C5946phy\-::ctrl\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_t_l_c5946phy_ad593ca4b96986ce8e40c833ed5ed3769}
+\hypertarget{class_t_l_c5946phy_a21c925ef7ce83c48daaebb56f994a720}{\index{T\-L\-C5946phy@{T\-L\-C5946phy}!mode\-\_\-pin\-\_\-pin@{mode\-\_\-pin\-\_\-pin}}
+\index{mode\-\_\-pin\-\_\-pin@{mode\-\_\-pin\-\_\-pin}!TLC5946phy@{T\-L\-C5946phy}}
+\subsubsection[{mode\-\_\-pin\-\_\-pin}]{\setlength{\rightskip}{0pt plus 5cm}int T\-L\-C5946phy\-::mode\-\_\-pin\-\_\-pin\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_t_l_c5946phy_a21c925ef7ce83c48daaebb56f994a720}
+\hypertarget{class_t_l_c5946phy_aa1cd89ab21c1ce96acc6d2cc8af4136e}{\index{T\-L\-C5946phy@{T\-L\-C5946phy}!spi@{spi}}
+\index{spi@{spi}!TLC5946phy@{T\-L\-C5946phy}}
+\subsubsection[{spi}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\-P\-I}$\ast$ T\-L\-C5946phy\-::spi\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_t_l_c5946phy_aa1cd89ab21c1ce96acc6d2cc8af4136e}
+\hypertarget{class_t_l_c5946phy_a4c79de11b56731d25e7f0f0455b960f0}{\index{T\-L\-C5946phy@{T\-L\-C5946phy}!xerr\-\_\-pin\-\_\-pin@{xerr\-\_\-pin\-\_\-pin}}
+\index{xerr\-\_\-pin\-\_\-pin@{xerr\-\_\-pin\-\_\-pin}!TLC5946phy@{T\-L\-C5946phy}}
+\subsubsection[{xerr\-\_\-pin\-\_\-pin}]{\setlength{\rightskip}{0pt plus 5cm}int T\-L\-C5946phy\-::xerr\-\_\-pin\-\_\-pin\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_t_l_c5946phy_a4c79de11b56731d25e7f0f0455b960f0}
+\hypertarget{class_t_l_c5946phy_a072b879adb9d018b4a9905b53cb497f0}{\index{T\-L\-C5946phy@{T\-L\-C5946phy}!xhalf\-\_\-pin\-\_\-pin@{xhalf\-\_\-pin\-\_\-pin}}
+\index{xhalf\-\_\-pin\-\_\-pin@{xhalf\-\_\-pin\-\_\-pin}!TLC5946phy@{T\-L\-C5946phy}}
+\subsubsection[{xhalf\-\_\-pin\-\_\-pin}]{\setlength{\rightskip}{0pt plus 5cm}int T\-L\-C5946phy\-::xhalf\-\_\-pin\-\_\-pin\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_t_l_c5946phy_a072b879adb9d018b4a9905b53cb497f0}
 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
