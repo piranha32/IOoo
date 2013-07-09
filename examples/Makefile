@@ -1,6 +1,3 @@
-CROSS=/usr/local/oecore-x86_64/sysroots/x86_64-angstromsdk-linux/usr/bin/armv7a-vfp-neon-angstrom-linux-gnueabi/arm-angstrom-linux-gnueabi-
-
-
 CPPFLAGS=-I../include/  -D_HW_PLATFORM_BEAGLEBONE 
 CXXFLAGS=-O0 -g -pedantic -Wall -std=gnu++11
 CFLAGS=-pedantic -Wall 

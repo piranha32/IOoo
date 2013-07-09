@@ -17,7 +17,7 @@ TestTLC5946::TestTLC5946(SPI* spi,char *pruBinFile)
 	//setup control signals
 	gp = GPIOoo::getInstance();
 
-	char *tlc5946Pins[]={"P9_15","P9_13","P9_16","P9_14"};
+	char *tlc5946Pins[]={"P9_15","P9_13","P9_22","P9_14"};
 	char *tlc5946Names[]={"mode","xerr","blank","gsclk"};
 
 	blockTLC = gp->claim((char **) tlc5946Pins, 4);

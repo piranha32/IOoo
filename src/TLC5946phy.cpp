@@ -68,7 +68,7 @@ void TLC5946phy::setMode(uint8_t mode)
 {
 	if (!active || (mode_pin_pin < 0))
 		return;
-	//printf("set mode to %d\n", mode);
+	debug(2,"set mode to %d\n", mode);
 	if (mode)
 		ctrl->setBit(mode_pin_pin);
 	else

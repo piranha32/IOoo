@@ -47,7 +47,7 @@ TestLCD::TestLCD(int bits)
 	}
 
 
-	printf("Creating blockLCD with %i data bus\n", lcdBits);
+	printf("Creating blockLCD with %i data bus\n", bits);
 	blockLCD = gp->claim((char **) lcdPins, bits + 2);
 
 	printf("Naming pins\n");

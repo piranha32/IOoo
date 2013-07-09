@@ -21,26 +21,30 @@ TLC5946PRUSSphy::TLC5946PRUSSphy(SPI *spi, GPIOpin *ctrl,char *pruBinFile):TLC59
 {
 
 	//printf("TLC5946phy::TLC5946phy\n");
-	use_pruss=false;
+	use_pruss=true;
 
 
 	//active has been set to true by superclass constructor
 	active=false;
 
 	gsclk_pin_pin = ctrl->findPinIndex((char *) "gsclk");
-
+debug(1,"dupa");
 	printf("prussdrv_open()\n");
 	if (prussdrv_open(PRU_EVTOUT_0))
 	{
 		debug(0, "Cannot setup PRU_EVTOUT_0.\n");
+		use_pruss=false;
 		return;
 	}
+	debug(2,"PRUSS driver initialized");
 
 	if (use_pruss && prussdrv_exec_program(0, pruBinFile))
 	{
 		debug(0,"Non-zero result from prussdrv_pruintc_init\n");
+		use_pruss=false;
 		return;
 	}
+	debug(2,"PRU binary loaded");
 	prussdrv_exit();
 
 	//setup clocking lines as outputs

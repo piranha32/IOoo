@@ -8,8 +8,9 @@
 #include "device/TLC5946chain.h"
 #include <string.h>
 #include <stdio.h>
+#include "debug.h"
 
-TLC5946chain::TLC5946chain(TLC5946phy *_phy, int num)
+TLC5946chain::TLC5946chain(TLC5946phy *phy, int num)
 {
 	this->phy=phy;
 	int tmp=num>>4;
@@ -61,10 +62,10 @@ void TLC5946chain::commit()
 		printf("Committing DOT\n");
 		phy->setMode(1);
 
-		 printf("DOT:\n");
-		 for(int i=0;i<chain_length;i++)
-		 printf("%02x ",dot[i]);
-		 printf("\n");
+		printf("DOT:\n");
+		for(int i=0;i<chain_length;i++)
+		  printf("%02x ",dot[i]);
+		printf("\n");
 
 		phy->setBitsPerWord(6);
 		phy->xfer(dot, 0, chain_length);
@@ -73,7 +74,7 @@ void TLC5946chain::commit()
 
 	if (brightness_changed)
 	{
-		//printf("Committing brightness\n");
+		debug(2,"Committing brightness\n");
 		phy->setMode(0);
 		/*
 		 printf("Brightness:\n");

@@ -16,18 +16,18 @@
 
 
 
-//#define GSCLK_PORT GPIO1
-//#define GSCLK_BIT 18
-
-//#define BLANK_PORT GPIO0
-//#define BLANK_BIT 2
-
-
 #define GSCLK_PORT GPIO1
-#define GSCLK_BIT 19
+#define GSCLK_BIT 18
 
 #define BLANK_PORT GPIO0
-#define BLANK_BIT 5
+#define BLANK_BIT 2
+
+
+//#define GSCLK_PORT GPIO1
+//#define GSCLK_BIT 19
+
+//#define BLANK_PORT GPIO0
+//#define BLANK_BIT 5
 
 .macro NOP
         mov r1, r1
@@ -80,12 +80,12 @@ START:
         mov r2,1<<BLANK_BIT
 //enable outputs
 //gsclk
-        mov r3, GSCLK_PORT|GPIO_OE_REG
+        mov r3, GSCLK_PORT+GPIO_OE_REG
         lbbo r4,r3,0,4
         clr r4,GSCLK_BIT
         sbbo r4,r3,0,4
 //blank
-        mov r3, BLANK_PORT|GPIO_OE_REG
+        mov r3, BLANK_PORT+GPIO_OE_REG
         lbbo r4,r3,0,4
         clr r4,BLANK_BIT
         sbbo r4,r3,0,4
@@ -95,13 +95,13 @@ main_loop:
 
 gsclk_loop:
         //set GSCLK bit
-        mov r3, GSCLK_PORT|DATA_SET_REG
+        mov r3, GSCLK_PORT+DATA_SET_REG
         sbbo r1,r3,0,4
         //wait for high pulse time
         //GSCLK_DELAY1
 
         //clear GSCLK bit
-        mov r3, GSCLK_PORT|DATA_CLEAR_REG
+        mov r3, GSCLK_PORT+DATA_CLEAR_REG
         sbbo r1,r3,0,4
         //wait for low pulse time
         //GSCLK_DELAY0
@@ -110,13 +110,13 @@ gsclk_loop:
 
 //blank pulse
         //set BLANK bit
-        mov r3, BLANK_PORT|DATA_SET_REG
+        mov r3, BLANK_PORT+DATA_SET_REG
         sbbo r2,r3,0,4
         //wait for high pulse time
         BLANK_DELAY
 
         //clear BLANK bit
-        mov r3, BLANK_PORT|DATA_CLEAR_REG
+        mov r3, BLANK_PORT+DATA_CLEAR_REG
         sbbo r2,r3,0,4
 
         jmp main_loop
