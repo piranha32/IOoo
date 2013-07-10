@@ -2,7 +2,6 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
 [
     [ "beaglebone", "dir_8dd7e1572832d3009fccb9d6fef624ee.html", "dir_8dd7e1572832d3009fccb9d6fef624ee" ],
     [ "device", "dir_00639e50a5e06ba932c41b2ae621276d.html", "dir_00639e50a5e06ba932c41b2ae621276d" ],
-    [ "pruss", "dir_48cc34c67c7aa1f60bfd797873f7de9c.html", "dir_48cc34c67c7aa1f60bfd797873f7de9c" ],
     [ "debug.h", "debug_8h.html", "debug_8h" ],
     [ "GPIOoo.h", "_g_p_i_ooo_8h.html", [
       [ "GPIOoo", "class_g_p_i_ooo.html", "class_g_p_i_ooo" ]

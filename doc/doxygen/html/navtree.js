@@ -19,7 +19,6 @@ var NAVTREE =
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
-        [ "Typedefs", "globals_type.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -29,7 +28,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_beagle_goo_8cpp.html",
-"prussdrv_8h.html#a1023fd663aac54f694c42c385aa16950"
+"struct_beagle_goo.html#a2870e374462486c977ed462d169bbc07"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

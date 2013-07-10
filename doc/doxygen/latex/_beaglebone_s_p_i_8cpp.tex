@@ -1,48 +1,41 @@
-\hypertarget{_beaglebone_s_p_i_8cpp}{\section{src/\-Beaglebone\-S\-P\-I.cpp File Reference}
-\label{_beaglebone_s_p_i_8cpp}\index{src/\-Beaglebone\-S\-P\-I.\-cpp@{src/\-Beaglebone\-S\-P\-I.\-cpp}}
+\hypertarget{_beaglebone_s_p_i_8cpp}{\section{examples/\-Beaglebone\-S\-P\-I.cpp File Reference}
+\label{_beaglebone_s_p_i_8cpp}\index{examples/\-Beaglebone\-S\-P\-I.\-cpp@{examples/\-Beaglebone\-S\-P\-I.\-cpp}}
 }
 {\ttfamily \#include $<$iostream$>$}\\*
 {\ttfamily \#include $<$stdio.\-h$>$}\\*
-{\ttfamily \#include \char`\"{}S\-P\-I.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}device/\-T\-L\-C5946phy.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}device/\-T\-L\-C5946chain.\-h\char`\"{}}\\*
-{\ttfamily \#include $<$sys/mman.\-h$>$}\\*
-{\ttfamily \#include $<$unistd.\-h$>$}\\*
 {\ttfamily \#include $<$stdlib.\-h$>$}\\*
-{\ttfamily \#include $<$sys/stat.\-h$>$}\\*
-{\ttfamily \#include $<$fcntl.\-h$>$}\\*
 {\ttfamily \#include $<$math.\-h$>$}\\*
-{\ttfamily \#include $<$mcheck.\-h$>$}\\*
+{\ttfamily \#include $<$pruss/prussdrv.\-h$>$}\\*
+{\ttfamily \#include $<$pruss/pruss\-\_\-intc\-\_\-mapping.\-h$>$}\\*
+{\ttfamily \#include $<$errno.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}S\-P\-I.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}G\-P\-I\-Ooo.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}G\-P\-I\-Opin.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}device/\-H\-D44780gpio\-Phy.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}device/\-H\-D44780.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}device/\-T\-L\-C5946phy.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}device/\-T\-L\-C5946chain.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Test\-T\-L\-C5946.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Test\-L\-C\-D.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Test\-G\-P\-I\-O\-Leds.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}debug.\-h\char`\"{}}\\*
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
 \#define \hyperlink{_beaglebone_s_p_i_8cpp_a9bb61942a4e9c9cab56634ba82d06be9}{S\-E\-Q\-\_\-\-L\-E\-N}~10
-\item 
-\#define \hyperlink{_beaglebone_s_p_i_8cpp_a9d2a7c69bd3fabc41e1ee87df2f283b3}{B\-I\-T\-S}~8
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 int \hyperlink{_beaglebone_s_p_i_8cpp_a5f2aa15f0f163d1b32ecb4729c0ec8e7}{test\-S\-P\-I} (\hyperlink{class_s_p_i}{S\-P\-I} \&spi)
 \item 
-void \hyperlink{_beaglebone_s_p_i_8cpp_abc843740c75b1714c0d6c9a68d3593fe}{test\-G\-P\-I\-O\-Leds} ()
-\item 
-void \hyperlink{_beaglebone_s_p_i_8cpp_a2db45701d92b58f0faa70d92ed87eb8d}{test\-L\-C\-D} ()
-\item 
-void \hyperlink{_beaglebone_s_p_i_8cpp_a0b97742012acc5aca1e4aa53a8384d83}{test\-G\-P\-I\-O} ()
+\hyperlink{class_s_p_i}{S\-P\-I} $\ast$ \hyperlink{_beaglebone_s_p_i_8cpp_ae764ad6d6eb2aecacdf8c31f41c2a276}{setup\-S\-P\-I} ()
 \item 
 int \hyperlink{_beaglebone_s_p_i_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
 \end{DoxyCompactItemize}
 
 
 \subsection{Macro Definition Documentation}
-\hypertarget{_beaglebone_s_p_i_8cpp_a9d2a7c69bd3fabc41e1ee87df2f283b3}{\index{Beaglebone\-S\-P\-I.\-cpp@{Beaglebone\-S\-P\-I.\-cpp}!B\-I\-T\-S@{B\-I\-T\-S}}
-\index{B\-I\-T\-S@{B\-I\-T\-S}!BeagleboneSPI.cpp@{Beaglebone\-S\-P\-I.\-cpp}}
-\subsubsection[{B\-I\-T\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-I\-T\-S~8}}\label{_beaglebone_s_p_i_8cpp_a9d2a7c69bd3fabc41e1ee87df2f283b3}
 \hypertarget{_beaglebone_s_p_i_8cpp_a9bb61942a4e9c9cab56634ba82d06be9}{\index{Beaglebone\-S\-P\-I.\-cpp@{Beaglebone\-S\-P\-I.\-cpp}!S\-E\-Q\-\_\-\-L\-E\-N@{S\-E\-Q\-\_\-\-L\-E\-N}}
 \index{S\-E\-Q\-\_\-\-L\-E\-N@{S\-E\-Q\-\_\-\-L\-E\-N}!BeagleboneSPI.cpp@{Beaglebone\-S\-P\-I.\-cpp}}
 \subsubsection[{S\-E\-Q\-\_\-\-L\-E\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-E\-Q\-\_\-\-L\-E\-N~10}}\label{_beaglebone_s_p_i_8cpp_a9bb61942a4e9c9cab56634ba82d06be9}
@@ -56,27 +49,13 @@ int \hyperlink{_beaglebone_s_p_i_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} (
 {}
 \end{DoxyParamCaption}
 )}}\label{_beaglebone_s_p_i_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}
-\hypertarget{_beaglebone_s_p_i_8cpp_a0b97742012acc5aca1e4aa53a8384d83}{\index{Beaglebone\-S\-P\-I.\-cpp@{Beaglebone\-S\-P\-I.\-cpp}!test\-G\-P\-I\-O@{test\-G\-P\-I\-O}}
-\index{test\-G\-P\-I\-O@{test\-G\-P\-I\-O}!BeagleboneSPI.cpp@{Beaglebone\-S\-P\-I.\-cpp}}
-\subsubsection[{test\-G\-P\-I\-O}]{\setlength{\rightskip}{0pt plus 5cm}void test\-G\-P\-I\-O (
+\hypertarget{_beaglebone_s_p_i_8cpp_ae764ad6d6eb2aecacdf8c31f41c2a276}{\index{Beaglebone\-S\-P\-I.\-cpp@{Beaglebone\-S\-P\-I.\-cpp}!setup\-S\-P\-I@{setup\-S\-P\-I}}
+\index{setup\-S\-P\-I@{setup\-S\-P\-I}!BeagleboneSPI.cpp@{Beaglebone\-S\-P\-I.\-cpp}}
+\subsubsection[{setup\-S\-P\-I}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\-P\-I}$\ast$ setup\-S\-P\-I (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{_beaglebone_s_p_i_8cpp_a0b97742012acc5aca1e4aa53a8384d83}
-\hypertarget{_beaglebone_s_p_i_8cpp_abc843740c75b1714c0d6c9a68d3593fe}{\index{Beaglebone\-S\-P\-I.\-cpp@{Beaglebone\-S\-P\-I.\-cpp}!test\-G\-P\-I\-O\-Leds@{test\-G\-P\-I\-O\-Leds}}
-\index{test\-G\-P\-I\-O\-Leds@{test\-G\-P\-I\-O\-Leds}!BeagleboneSPI.cpp@{Beaglebone\-S\-P\-I.\-cpp}}
-\subsubsection[{test\-G\-P\-I\-O\-Leds}]{\setlength{\rightskip}{0pt plus 5cm}void test\-G\-P\-I\-O\-Leds (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{_beaglebone_s_p_i_8cpp_abc843740c75b1714c0d6c9a68d3593fe}
-\hypertarget{_beaglebone_s_p_i_8cpp_a2db45701d92b58f0faa70d92ed87eb8d}{\index{Beaglebone\-S\-P\-I.\-cpp@{Beaglebone\-S\-P\-I.\-cpp}!test\-L\-C\-D@{test\-L\-C\-D}}
-\index{test\-L\-C\-D@{test\-L\-C\-D}!BeagleboneSPI.cpp@{Beaglebone\-S\-P\-I.\-cpp}}
-\subsubsection[{test\-L\-C\-D}]{\setlength{\rightskip}{0pt plus 5cm}void test\-L\-C\-D (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{_beaglebone_s_p_i_8cpp_a2db45701d92b58f0faa70d92ed87eb8d}
+)}}\label{_beaglebone_s_p_i_8cpp_ae764ad6d6eb2aecacdf8c31f41c2a276}
 \hypertarget{_beaglebone_s_p_i_8cpp_a5f2aa15f0f163d1b32ecb4729c0ec8e7}{\index{Beaglebone\-S\-P\-I.\-cpp@{Beaglebone\-S\-P\-I.\-cpp}!test\-S\-P\-I@{test\-S\-P\-I}}
 \index{test\-S\-P\-I@{test\-S\-P\-I}!BeagleboneSPI.cpp@{Beaglebone\-S\-P\-I.\-cpp}}
 \subsubsection[{test\-S\-P\-I}]{\setlength{\rightskip}{0pt plus 5cm}int test\-S\-P\-I (

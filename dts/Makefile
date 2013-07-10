@@ -1,9 +1,9 @@
 
 
-DTS=gpio_hd44780-00A0.dts gpio_leds-00A0.dts tlc5946-00A0.dts
-DTBs=$(patsubst %.dts,../bin/%.dtb,$(DTS))
+DTS=gpio_hd44780-00A0.dts gpio_leds-00A0.dts tlc5946-00A0.dts gpio_buttons-00A0.dts
+DTBs=$(patsubst %.dts,../bin/%.dtbo,$(DTS))
 
-../bin/%.dtb: %.dts
+../bin/%.dtbo: %.dts
 	dtc -O dtb -o $@ -b 0 -@ $<
 
 all: $(DTBs)

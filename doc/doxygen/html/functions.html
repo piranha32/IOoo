@@ -94,6 +94,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="#index_g"><span>g</span></a></li>
       <li><a href="#index_h"><span>h</span></a></li>
       <li><a href="#index_i"><span>i</span></a></li>
+      <li><a href="#index_l"><span>l</span></a></li>
       <li><a href="#index_m"><span>m</span></a></li>
       <li><a href="#index_n"><span>n</span></a></li>
       <li><a href="#index_o"><span>o</span></a></li>
@@ -126,7 +127,7 @@ $(document).ready(function(){initNavTree('functions.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -177,6 +178,9 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>blank_pin_pin
 : <a class="el" href="class_t_l_c5946phy.html#a99fc1c99ddad63c7a7b15034ac9cffda">TLC5946phy</a>
 </li>
+<li>blockButton
+: <a class="el" href="class_test_g_p_i_o_buttons.html#a209a3f0cba53b014bedcd4b7033f550c">TestGPIOButtons</a>
+</li>
 <li>busy()
 : <a class="el" href="class_h_d44780gpio_phy.html#aca1ef4ea05900362e4feb63f062d0b3e">HD44780gpioPhy</a>
 , <a class="el" href="class_h_d44780phy.html#ab3f91533a8063062dec767d524d704b1">HD44780phy</a>
@@ -185,21 +189,14 @@ $(document).ready(function(){initNavTree('functions.html','');});
 
 
 <h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
-<li>channel
-: <a class="el" href="struct____sysevt__to__channel__map.html#a1f3378ae547bef32f0117071e64d8312">__sysevt_to_channel_map</a>
-, <a class="el" href="struct____channel__to__host__map.html#aba81cea787f132fd67e37d429e869c9f">__channel_to_host_map</a>
-</li>
-<li>channel_to_host_map
-: <a class="el" href="struct____pruss__intc__initdata.html#a2d70c1e765537925835df6218575accc">__pruss_intc_initdata</a>
-</li>
 <li>claim()
 : <a class="el" href="struct_beagle_goo.html#aa5aa13bba2ba0bc364202c7856410463">BeagleGoo</a>
 , <a class="el" href="class_g_p_i_ooo.html#a07164321fda879306394d7550454dbb2">GPIOoo</a>
 </li>
 <li>clear()
-: <a class="el" href="class_h_d44780.html#ae2a068c9f02651e55e75bfc4665186f9">HD44780</a>
+: <a class="el" href="class_beagle_goo_p.html#a39772670c58f71b5d7e4ca9e39eb8d86">BeagleGooP</a>
+, <a class="el" href="class_h_d44780.html#ae2a068c9f02651e55e75bfc4665186f9">HD44780</a>
 , <a class="el" href="class_g_p_i_opin.html#abc101fb598fa749ae58743e8b2decbbc">GPIOpin</a>
-, <a class="el" href="class_beagle_goo_p.html#a39772670c58f71b5d7e4ca9e39eb8d86">BeagleGooP</a>
 </li>
 <li>clearBit()
 : <a class="el" href="class_g_p_i_opin.html#a7b79f39cb611f1b1e0a95c3a35dbc94b">GPIOpin</a>
@@ -215,8 +212,8 @@ $(document).ready(function(){initNavTree('functions.html','');});
 : <a class="el" href="class_t_l_c5946phy.html#ad593ca4b96986ce8e40c833ed5ed3769">TLC5946phy</a>
 </li>
 <li>currentDataAddress()
-: <a class="el" href="class_h_d44780gpio_phy.html#a933e313ac7a5362b6a55a3db9af337a3">HD44780gpioPhy</a>
-, <a class="el" href="class_h_d44780phy.html#a0e848e19d8a5c2c9605b7bf6bcc5394c">HD44780phy</a>
+: <a class="el" href="class_h_d44780phy.html#a0e848e19d8a5c2c9605b7bf6bcc5394c">HD44780phy</a>
+, <a class="el" href="class_h_d44780gpio_phy.html#a933e313ac7a5362b6a55a3db9af337a3">HD44780gpioPhy</a>
 </li>
 </ul>
 
@@ -260,6 +257,9 @@ $(document).ready(function(){initNavTree('functions.html','');});
 </li>
 <li>gotoXY()
 : <a class="el" href="class_h_d44780.html#aa3f807a4e495ebd2dfb6c225fb4a6d56">HD44780</a>
+</li>
+<li>gp
+: <a class="el" href="class_test_g_p_i_o_buttons.html#a6510eba2c7aa5b2e6451a91230328075">TestGPIOButtons</a>
 </li>
 <li>GPIO
 : <a class="el" href="class_g_p_i_opin.html#a44d5d3921b935cbde07cb645da31fdae">GPIOpin</a>
@@ -329,12 +329,6 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>home()
 : <a class="el" href="class_h_d44780.html#a8b7743cd54c5407a4e58f6f1ef597806">HD44780</a>
 </li>
-<li>host
-: <a class="el" href="struct____channel__to__host__map.html#a6e47ff59629590078c2c6c6ae715bbcf">__channel_to_host_map</a>
-</li>
-<li>host_enable_bitmask
-: <a class="el" href="struct____pruss__intc__initdata.html#a65a942ffc8d6850954442f7e5252374d">__pruss_intc_initdata</a>
-</li>
 </ul>
 
 
@@ -347,6 +341,16 @@ $(document).ready(function(){initNavTree('functions.html','');});
 </li>
 <li>isValid()
 : <a class="el" href="class_g_p_i_opin.html#aa6bfbc72b6c3d58b0e01f3fec428b1b1">GPIOpin</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_l"></a>- l -</h3><ul>
+<li>loop()
+: <a class="el" href="class_test_g_p_i_o_buttons.html#aa876366d88e7994abf3efda15ac558e1">TestGPIOButtons</a>
+, <a class="el" href="class_test_t_l_c5946.html#a086524bb84a099860add0e8079b38422">TestTLC5946</a>
+, <a class="el" href="class_test_l_c_d.html#a6f81579352e43d5bdf82cd7a139d1acf">TestLCD</a>
+, <a class="el" href="class_test_g_p_i_o_leds.html#a3e976337c58584811ab58fc81fc03263">TestGPIOLeds</a>
 </li>
 </ul>
 
@@ -386,6 +390,9 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <h3><a class="anchor" id="index_p"></a>- p -</h3><ul>
 <li>print()
 : <a class="el" href="class_h_d44780.html#a3cf62b60d4b8549c41d4978d662b9873">HD44780</a>
+</li>
+<li>prumem
+: <a class="el" href="structpru__data.html#a29e00509c51ee8e22747b609333dfe1c">pru_data</a>
 </li>
 <li>putcc()
 : <a class="el" href="class_h_d44780.html#a18706af55597a38e864a43bce4b3a8e4">HD44780</a>
@@ -468,8 +475,8 @@ $(document).ready(function(){initNavTree('functions.html','');});
 , <a class="el" href="class_s_p_i.html#a81ff077c6af077ef9d1ee2d56a8a310b">SPI</a>
 </li>
 <li>setRS()
-: <a class="el" href="class_h_d44780phy.html#a982aed1944e85dcabd0702af526ab2fe">HD44780phy</a>
-, <a class="el" href="class_h_d44780gpio_phy.html#ae396a22b3a46bd163a4b65b1eeb007af">HD44780gpioPhy</a>
+: <a class="el" href="class_h_d44780gpio_phy.html#ae396a22b3a46bd163a4b65b1eeb007af">HD44780gpioPhy</a>
+, <a class="el" href="class_h_d44780phy.html#a982aed1944e85dcabd0702af526ab2fe">HD44780phy</a>
 </li>
 <li>setRW()
 : <a class="el" href="class_h_d44780gpio_phy.html#a5465139b8680c044b1ef1a040027f2d3">HD44780gpioPhy</a>
@@ -481,29 +488,32 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>setXhalf()
 : <a class="el" href="class_t_l_c5946phy.html#a11b29859983d81add34d6fb0721613a2">TLC5946phy</a>
 </li>
-<li>spi
-: <a class="el" href="class_t_l_c5946phy.html#aa1cd89ab21c1ce96acc6d2cc8af4136e">TLC5946phy</a>
-</li>
 <li>SPI()
 : <a class="el" href="class_s_p_i.html#a2ba081c29fbdecc704c6bf00b24d5205">SPI</a>
+</li>
+<li>spi
+: <a class="el" href="class_t_l_c5946phy.html#aa1cd89ab21c1ce96acc6d2cc8af4136e">TLC5946phy</a>
 </li>
 <li>supportsRead()
 : <a class="el" href="class_h_d44780phy.html#ad3caa3cc36f03230ed9c209bb576a050">HD44780phy</a>
 , <a class="el" href="class_h_d44780gpio_phy.html#a9c2ca3dca1582a529ef154e492ed214a">HD44780gpioPhy</a>
 </li>
-<li>sysevt
-: <a class="el" href="struct____sysevt__to__channel__map.html#a5e77be482e90c245ccceee02e636fcfa">__sysevt_to_channel_map</a>
-</li>
-<li>sysevt_to_channel_map
-: <a class="el" href="struct____pruss__intc__initdata.html#a6f5f3e8c82094df65ca5d4a0b6ad93d9">__pruss_intc_initdata</a>
-</li>
-<li>sysevts_enabled
-: <a class="el" href="struct____pruss__intc__initdata.html#aa2c01e019376c32180ce166302f69ee6">__pruss_intc_initdata</a>
-</li>
 </ul>
 
 
 <h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
+<li>TestGPIOButtons()
+: <a class="el" href="class_test_g_p_i_o_buttons.html#a0a73a9e5abef2757fbeb1b98993a5ff7">TestGPIOButtons</a>
+</li>
+<li>TestGPIOLeds()
+: <a class="el" href="class_test_g_p_i_o_leds.html#a1d6c79651fc76e12e23fe6af6d414148">TestGPIOLeds</a>
+</li>
+<li>TestLCD()
+: <a class="el" href="class_test_l_c_d.html#aeaacf9bc266de796ec224dca411d0e97">TestLCD</a>
+</li>
+<li>TestTLC5946()
+: <a class="el" href="class_test_t_l_c5946.html#ad317c0e0be8301bc4af3a307a203119d">TestTLC5946</a>
+</li>
 <li>TLC5946chain()
 : <a class="el" href="class_t_l_c5946chain.html#aecaa6fa30d0db782a8b382c6618c34a7">TLC5946chain</a>
 </li>
@@ -565,6 +575,18 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>~SPI()
 : <a class="el" href="class_s_p_i.html#a6babebf1ea3e8ff0330f43a3e2312ac4">SPI</a>
 </li>
+<li>~TestGPIOButtons()
+: <a class="el" href="class_test_g_p_i_o_buttons.html#ae50451f7b20b3e446bb18bceaa627bab">TestGPIOButtons</a>
+</li>
+<li>~TestGPIOLeds()
+: <a class="el" href="class_test_g_p_i_o_leds.html#af33e6d3e544b2e9448a62c3ee6e7f15e">TestGPIOLeds</a>
+</li>
+<li>~TestLCD()
+: <a class="el" href="class_test_l_c_d.html#ac4b5225fcb23f244314851635a9b1eb6">TestLCD</a>
+</li>
+<li>~TestTLC5946()
+: <a class="el" href="class_test_t_l_c5946.html#a2954dce9bdae66f3ea11d9d131e37a7c">TestTLC5946</a>
+</li>
 <li>~TLC5946chain()
 : <a class="el" href="class_t_l_c5946chain.html#a0035f5d1ccd467eaf1ac37262cbf4c60">TLC5946chain</a>
 </li>
@@ -580,7 +602,7 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Jul 8 2013 19:37:16 for IOOO [ay-oo] Input/Output object oriented by
+    <li class="footer">Generated on Wed Jul 10 2013 01:25:43 for IOOO [ay-oo] Input/Output object oriented by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

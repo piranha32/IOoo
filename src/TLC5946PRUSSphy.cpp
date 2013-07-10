@@ -28,7 +28,6 @@ TLC5946PRUSSphy::TLC5946PRUSSphy(SPI *spi, GPIOpin *ctrl,char *pruBinFile):TLC59
 	active=false;
 
 	gsclk_pin_pin = ctrl->findPinIndex((char *) "gsclk");
-debug(1,"dupa");
 	printf("prussdrv_open()\n");
 	if (prussdrv_open(PRU_EVTOUT_0))
 	{

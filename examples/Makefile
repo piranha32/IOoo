@@ -11,7 +11,7 @@ LDLIBS=-lgpiooo
 
 vpath %.h include 
 
-default: ../bin/gpio_lcd ../bin/gpio_leds ../bin/tlc5946 ../bin/tlc5946_clock.bin
+default: ../bin/gpio_lcd ../bin/gpio_buttons ../bin/gpio_leds ../bin/tlc5946 ../bin/tlc5946_clock.bin
 
 %.o : %.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
@@ -25,18 +25,15 @@ default: ../bin/gpio_lcd ../bin/gpio_leds ../bin/tlc5946 ../bin/tlc5946_clock.bi
 ../bin/gpio_leds: gpio_leds.o TestGPIOLeds.o
 	${LD} $(LDFLAGS) $^ -o $@ $(LDLIBS)
 
+../bin/gpio_buttons: gpio_buttons.o TestGPIOButtons.o
+	${LD} $(LDFLAGS) $^ -o $@ $(LDLIBS)
+
 ../bin/tlc5946: tlc5946.o TestTLC5946.o
 	${LD} $(LDFLAGS) $^ -o $@ $(LDLIBS) $(PRULIBS)
 
 ../bin/tlc5946_clock.bin: pru/clock.p
-	 pasm -lbz $^ $(patsubst %.bin,%,$@)
+	 pasm -lb $^ $(patsubst %.bin,%,$@)
 
-doc:
-	doxygen doc/ooperipherial.doxyfile 
-pdf: doc
-	make -C doc/doxygen/latex/
-	make -C doc/doxygen/latex/
-	cp doc/doxygen/latex/refman.pdf doc/iooo.pdf
 clean:
-	rm -f ../bin/tlc5946_clock.bin ../bin/gpio_lcd *.o
+	rm -f ../bin/tlc5946_clock.* ../bin/gpio_lcd ../bin/tlc5946 ../bin/gpio_leds *.o
 

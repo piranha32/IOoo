@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['seq_5flen',['SEQ_LEN',['../_beaglebone_s_p_i_8cpp.html#a9bb61942a4e9c9cab56634ba82d06be9',1,'BeagleboneSPI.cpp']]],
   ['set',['set',['../class_beagle_goo_p.html#afa97c0b593fa9032c873654ee40140f5',1,'BeagleGooP::set()'],['../class_g_p_i_opin.html#a75314dc1bf78be651b660a1b8df5537a',1,'GPIOpin::set()']]],
   ['setbit',['setBit',['../class_beagle_goo_p.html#a8997d7bc2665b7cbd100abe613657e94',1,'BeagleGooP::setBit()'],['../class_g_p_i_opin.html#a7baef314398bbff5261b41e3373e68c8',1,'GPIOpin::setBit()']]],
   ['setbitsperword',['setBitsPerWord',['../class_t_l_c5946phy.html#a0604df91a14451f72504f39cd379eed1',1,'TLC5946phy::setBitsPerWord()'],['../class_s_p_i.html#a4e6b7a9b89809663c91712ceff00920b',1,'SPI::setBitsPerWord()']]],
@@ -14,13 +15,11 @@ var searchData=
   ['setrs',['setRS',['../class_h_d44780gpio_phy.html#ae396a22b3a46bd163a4b65b1eeb007af',1,'HD44780gpioPhy::setRS()'],['../class_h_d44780phy.html#a982aed1944e85dcabd0702af526ab2fe',1,'HD44780phy::setRS()']]],
   ['setrw',['setRW',['../class_h_d44780gpio_phy.html#a5465139b8680c044b1ef1a040027f2d3',1,'HD44780gpioPhy::setRW()'],['../class_h_d44780phy.html#a2885ef9168fc5a6c73233f8c7e9ed404',1,'HD44780phy::setRW()']]],
   ['setspeed',['setSpeed',['../class_s_p_i.html#a3de287340d081fc813fd21269b014183',1,'SPI']]],
+  ['setupspi',['setupSPI',['../_beaglebone_s_p_i_8cpp.html#ae764ad6d6eb2aecacdf8c31f41c2a276',1,'setupSPI():&#160;BeagleboneSPI.cpp'],['../tlc5946_8cpp.html#ae764ad6d6eb2aecacdf8c31f41c2a276',1,'setupSPI():&#160;tlc5946.cpp']]],
   ['setxhalf',['setXhalf',['../class_t_l_c5946phy.html#a11b29859983d81add34d6fb0721613a2',1,'TLC5946phy']]],
-  ['spi',['SPI',['../class_s_p_i.html',1,'SPI'],['../class_s_p_i.html#a2ba081c29fbdecc704c6bf00b24d5205',1,'SPI::SPI()'],['../class_t_l_c5946phy.html#aa1cd89ab21c1ce96acc6d2cc8af4136e',1,'TLC5946phy::spi()']]],
+  ['spi',['SPI',['../class_s_p_i.html',1,'SPI'],['../class_t_l_c5946phy.html#aa1cd89ab21c1ce96acc6d2cc8af4136e',1,'TLC5946phy::spi()'],['../class_s_p_i.html#a2ba081c29fbdecc704c6bf00b24d5205',1,'SPI::SPI()']]],
   ['spi_2ecpp',['SPI.cpp',['../_s_p_i_8cpp.html',1,'']]],
   ['spi_2eh',['SPI.h',['../_s_p_i_8h.html',1,'']]],
   ['spi_5fdevice_5fpath_5fbase',['SPI_DEVICE_PATH_BASE',['../_s_p_i_8cpp.html#af4b0d9b3a7d1d818d468d10bb208a11a',1,'SPI.cpp']]],
-  ['supportsread',['supportsRead',['../class_h_d44780gpio_phy.html#a9c2ca3dca1582a529ef154e492ed214a',1,'HD44780gpioPhy::supportsRead()'],['../class_h_d44780phy.html#ad3caa3cc36f03230ed9c209bb576a050',1,'HD44780phy::supportsRead()']]],
-  ['sysevt',['sysevt',['../struct____sysevt__to__channel__map.html#a5e77be482e90c245ccceee02e636fcfa',1,'__sysevt_to_channel_map']]],
-  ['sysevt_5fto_5fchannel_5fmap',['sysevt_to_channel_map',['../struct____pruss__intc__initdata.html#a6f5f3e8c82094df65ca5d4a0b6ad93d9',1,'__pruss_intc_initdata']]],
-  ['sysevts_5fenabled',['sysevts_enabled',['../struct____pruss__intc__initdata.html#aa2c01e019376c32180ce166302f69ee6',1,'__pruss_intc_initdata']]]
+  ['supportsread',['supportsRead',['../class_h_d44780gpio_phy.html#a9c2ca3dca1582a529ef154e492ed214a',1,'HD44780gpioPhy::supportsRead()'],['../class_h_d44780phy.html#ad3caa3cc36f03230ed9c209bb576a050',1,'HD44780phy::supportsRead()']]]
 ];

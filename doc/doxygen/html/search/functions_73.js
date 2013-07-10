@@ -14,6 +14,7 @@ var searchData=
   ['setrs',['setRS',['../class_h_d44780gpio_phy.html#ae396a22b3a46bd163a4b65b1eeb007af',1,'HD44780gpioPhy::setRS()'],['../class_h_d44780phy.html#a982aed1944e85dcabd0702af526ab2fe',1,'HD44780phy::setRS()']]],
   ['setrw',['setRW',['../class_h_d44780gpio_phy.html#a5465139b8680c044b1ef1a040027f2d3',1,'HD44780gpioPhy::setRW()'],['../class_h_d44780phy.html#a2885ef9168fc5a6c73233f8c7e9ed404',1,'HD44780phy::setRW()']]],
   ['setspeed',['setSpeed',['../class_s_p_i.html#a3de287340d081fc813fd21269b014183',1,'SPI']]],
+  ['setupspi',['setupSPI',['../_beaglebone_s_p_i_8cpp.html#ae764ad6d6eb2aecacdf8c31f41c2a276',1,'setupSPI():&#160;BeagleboneSPI.cpp'],['../tlc5946_8cpp.html#ae764ad6d6eb2aecacdf8c31f41c2a276',1,'setupSPI():&#160;tlc5946.cpp']]],
   ['setxhalf',['setXhalf',['../class_t_l_c5946phy.html#a11b29859983d81add34d6fb0721613a2',1,'TLC5946phy']]],
   ['spi',['SPI',['../class_s_p_i.html#a2ba081c29fbdecc704c6bf00b24d5205',1,'SPI']]],
   ['supportsread',['supportsRead',['../class_h_d44780gpio_phy.html#a9c2ca3dca1582a529ef154e492ed214a',1,'HD44780gpioPhy::supportsRead()'],['../class_h_d44780phy.html#ad3caa3cc36f03230ed9c209bb576a050',1,'HD44780phy::supportsRead()']]]

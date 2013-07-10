@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['pruss_5fintc_5fmapping_2eh',['pruss_intc_mapping.h',['../pruss__intc__mapping_8h.html',1,'']]],
-  ['prussdrv_2eh',['prussdrv.h',['../prussdrv_8h.html',1,'']]]
+  ['pru_5floader_2ec',['pru_loader.c',['../pru__loader_8c.html',1,'']]]
 ];

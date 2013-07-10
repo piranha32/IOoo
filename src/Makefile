@@ -27,7 +27,6 @@ LIB_OBJS=$(patsubst %.cpp,%.o,$(LIB_SRC))
 %.o : %.c
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
-
 clean:
 	rm -f *.o ../bin/libgpiooo.a
 
