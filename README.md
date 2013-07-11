@@ -1,3 +1,6 @@
+* auto-gen TOC:
+{:toc}
+
 What it is
 ==========
 
