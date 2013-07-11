@@ -16,9 +16,6 @@
 #include "TestLCD.h"
 #include "debug.h"
 
-using namespace std;
-
-
 int main()
 {
 	TestLCD lcdTest(8);

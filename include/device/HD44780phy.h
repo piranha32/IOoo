@@ -33,8 +33,8 @@ class HD44780phy
 		 */
 		enum
 		{
-			RScommand=0,//!< RScommand - sets command mode
-			RSdata=1    //!< RSdata - sets data mode
+			RScommand = 0, //!< RScommand - sets command mode
+			RSdata = 1    //!< RSdata - sets data mode
 		};
 
 		/**
@@ -42,16 +42,17 @@ class HD44780phy
 		 */
 		enum
 		{
-			RWwrite=0,//!< RWwrite - sets write mode
-			RWread=1  //!< RWread - sets read mode
+			RWwrite = 0,    //!< RWwrite - sets write mode
+			RWread = 1  //!< RWread - sets read mode
 		};
 
 		HD44780phy()
 		{
-			bits=0;
-		}
-		;
-		virtual ~HD44780phy(){};
+			bits = 0;
+		};
+		virtual ~HD44780phy()
+		{
+		};
 
 		/**
 		 * @brief Method writes byte v to the display.

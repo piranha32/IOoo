@@ -26,7 +26,8 @@ class BeagleGooP: public GPIOpin
 		int current;
 		GPIOoo::gpioWriteSemantics writeSemantics;
 		int addPin(BeagleGoo::GPIOInfo *pin);
-		BeagleGooP(int num, BeagleGoo::gpioWriteSemantics semantics,BeagleGoo *parent);
+		BeagleGooP(int num, BeagleGoo::gpioWriteSemantics semantics,
+				BeagleGoo *parent);
 		virtual ~BeagleGooP();
 	public:
 
@@ -35,9 +36,9 @@ class BeagleGooP: public GPIOpin
 		virtual int findPinIndex(char *name);
 
 		virtual void enableOutput(bool enable);
-		virtual void enableOutput(int i,bool enable);
-		virtual void enableOutput(int *outs,int num);
-		virtual void enableOutput(char **outNames,int num);
+		virtual void enableOutput(int i, bool enable);
+		virtual void enableOutput(int *outs, int num);
+		virtual void enableOutput(char **outNames, int num);
 		virtual void write(uint32_t v);
 		virtual void set(uint32_t v);
 		virtual void setBit(int bit);

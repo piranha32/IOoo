@@ -37,16 +37,13 @@ class BeagleGoo: public GPIOoo
 
 		struct GPIOInfo *_findGpio(char *name);
 
-		static const int MaxGpioNameLen=32;
-		static const int GpioMemBlockLength=0xfff;
-
-
+		static const int MaxGpioNameLen = 32;
+		static const int GpioMemBlockLength = 0xfff;
 
 		BeagleGoo();
 	public:
 
 		virtual ~BeagleGoo();
-
 
 		virtual GPIOpin *claim(char *names[], int num,
 				gpioWriteSemantics semantics, gpioFlags flags = gpioFlagsNone);

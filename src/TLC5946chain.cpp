@@ -12,11 +12,11 @@
 
 TLC5946chain::TLC5946chain(TLC5946phy *phy, int num)
 {
-	this->phy=phy;
-	int tmp=num>>4;
-	if(num & 0xf )
+	this->phy = phy;
+	int tmp = num >> 4;
+	if (num & 0xf)
 		tmp++;
-	chain_length = tmp*16;
+	chain_length = tmp * 16;
 	brightness = new uint16_t[chain_length];
 	memset(brightness, 0, chain_length * sizeof(brightness[0]));
 	brightness_changed = true;
@@ -31,7 +31,6 @@ TLC5946chain::TLC5946chain(TLC5946phy *phy, int num)
 
 TLC5946chain::~TLC5946chain()
 {
-	// TODO Auto-generated destructor stub
 }
 
 void TLC5946chain::setBrightness(int i, uint16_t b)
@@ -39,7 +38,6 @@ void TLC5946chain::setBrightness(int i, uint16_t b)
 	b &= 0x0fff; //only lower 12 bits are valid
 
 	brightness[i] = b & 0xfff;
-	//printf("post: b[%i]=%02x, b[%i]=%02x\n",byte_no,brightness[byte_no],byte_no+1,brightness[byte_no+1]);
 	brightness_changed = true;
 
 }
@@ -62,10 +60,12 @@ void TLC5946chain::commit()
 		printf("Committing DOT\n");
 		phy->setMode(1);
 
-		printf("DOT:\n");
-		for(int i=0;i<chain_length;i++)
-		  printf("%02x ",dot[i]);
-		printf("\n");
+		/*
+		 printf("DOT:\n");
+		 for(int i=0;i<chain_length;i++)
+		 printf("%02x ",dot[i]);
+		 printf("\n");
+		 */
 
 		phy->setBitsPerWord(6);
 		phy->xfer(dot, 0, chain_length);
@@ -74,16 +74,18 @@ void TLC5946chain::commit()
 
 	if (brightness_changed)
 	{
-		debug(2,"Committing brightness\n");
+		debug(2, "Committing brightness\n");
 		phy->setMode(0);
+
 		/*
 		 printf("Brightness:\n");
 		 for(int i=0;i<br_num;i++)
 		 printf("%02x ",brightness[i]);
 		 printf("\n");
 		 */
+
 		phy->setBitsPerWord(12);
-		phy->xfer((uint8_t*)brightness, 0, chain_length*2);
+		phy->xfer((uint8_t*) brightness, 0, chain_length * 2);
 		brightness_changed = false;
 	}
 

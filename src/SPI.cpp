@@ -25,7 +25,7 @@ SPI::SPI()
 	bpw = 0;
 	speed = 0;
 	fd = -1;
-	lsb_first=false;
+	lsb_first = false;
 }
 
 int SPI::open(int bus, int channel)
@@ -41,10 +41,9 @@ int SPI::open(int bus, int channel)
 			channel) >= MAX_PATH_LEN)
 		return -EINVAL;
 
-	//printf("%s\n", path);
 	if ((fd = ::open(path, O_RDWR, 0)) < 0)
 	{
-		printf("open(%s) failed\n",path);
+		printf("open(%s) failed\n", path);
 		return fd;
 	}
 
@@ -79,7 +78,6 @@ int SPI::open(int bus, int channel)
 	}
 	speed = tmp32;
 
-	//printf("mode=%02x, bpw=%d, speed=%d\n", mode, bpw, speed);
 	active = true;
 	return 1;
 }
@@ -135,7 +133,6 @@ int SPI::setLSBFirst(bool lsb_first)
 	if (!active)
 		return -ENODEV;
 	int r;
-	//int v = (lsb_first) ? 1 : 0;
 	if ((r = ioctl(fd, SPI_IOC_WR_LSB_FIRST, &lsb_first)) < 0)
 		return r;
 	this->lsb_first = lsb_first;
@@ -173,7 +170,6 @@ int SPI::setSpeed(uint32_t speed)
 		return r;
 	}
 	this->speed = tmp;
-	//printf("setSpeed: requested: %dHz, set: %dHz\n",speed,this->speed);
 	return 1;
 
 }
@@ -200,7 +196,6 @@ int SPI::xfer1(uint8_t wbuf[], uint8_t rbuf[], int len)
 	txinfo.bits_per_word = bpw;
 	txinfo.cs_change = 1;
 
-	//printf("fd=%d\n",fd);
 	int r = ioctl(fd, SPI_IOC_MESSAGE(1), &txinfo);
 	if (r < 0)
 	{

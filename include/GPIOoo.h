@@ -38,17 +38,17 @@ class GPIOoo
 		enum gpioWriteSemantics
 		{
 			//pin write semantics
-			gpioWrite = 1,              //!< gpioWrite - Simple write to the port. Prone to race conditions, offers no multi-process safety.
-									    //!< State of the port can be affected by writes to the pins on the same GPIO port.
-			gpioWriteAtomic,        	//!< gpioWriteAtomic - Atomic write to the port. Write to the port must be guaranteed to be successful and effective.
-			gpioWriteSetBeforeClear,    //!< gpioWriteSetBeforeClear - In two-step implementation of writing to the pins,
-			                            //!< pins with value '1' are set before pins with value '0' are cleared.
-			                            //!< For a short period of time the state of the pins in the GPIO block will
-			                            //!< be equal to bitwise OR of the previous and next states.
-			gpioWriteClearBeforeSet 	//!< gpioWriteClearBeforeSet - In two-step implementation of writing to the pins,
-			                            //!< pins with value '0' are cleared before pins with value '1' are set.
-			                            //!< For a short period of time the state of the pins in the GPIO block will
-			                            //!< be equal to bitwise AND of the previous and next states.
+			gpioWrite = 1, //!< gpioWrite - Simple write to the port. Prone to race conditions, offers no multi-process safety.
+						   //!< State of the port can be affected by writes to the pins on the same GPIO port.
+			gpioWriteAtomic, //!< gpioWriteAtomic - Atomic write to the port. Write to the port must be guaranteed to be successful and effective.
+			gpioWriteSetBeforeClear, //!< gpioWriteSetBeforeClear - In two-step implementation of writing to the pins,
+									 //!< pins with value '1' are set before pins with value '0' are cleared.
+									 //!< For a short period of time the state of the pins in the GPIO block will
+									 //!< be equal to bitwise OR of the previous and next states.
+			gpioWriteClearBeforeSet //!< gpioWriteClearBeforeSet - In two-step implementation of writing to the pins,
+									//!< pins with value '0' are cleared before pins with value '1' are set.
+									//!< For a short period of time the state of the pins in the GPIO block will
+									//!< be equal to bitwise AND of the previous and next states.
 		};
 
 		virtual ~GPIOoo();
@@ -66,7 +66,8 @@ class GPIOoo
 		virtual GPIOpin *claim(char *names[], int num)
 		{
 			return claim(names, num, gpioWrite, gpioFlagsNone);
-		};
+		}
+		;
 		/**
 		 * @brief Method allocates GPIO pins and returns a GPIOPin object.
 		 * Method allocates a block of pins specified by names passed in \a names argument.

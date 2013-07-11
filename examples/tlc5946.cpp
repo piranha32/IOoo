@@ -5,8 +5,6 @@
  *      Author: jacek
  */
 
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -19,7 +17,7 @@
 
 SPI *setupSPI()
 {
-	SPI *spi=new SPI();
+	SPI *spi = new SPI();
 	printf("open: %d\n", spi->open(1, 0));
 	//printf("setMode: %d\n", spi.setMode(SPI_CPHA));
 	printf("setMode: %d\n", spi->setMode(0));
@@ -28,11 +26,10 @@ SPI *setupSPI()
 	return spi;
 }
 
-
 int main()
 {
-	SPI *spi=setupSPI();
-	TestTLC5946 tlc(spi,"tlc5946_clock.bin");
+	SPI *spi = setupSPI();
+	TestTLC5946 tlc(spi, "tlc5946_clock.bin");
 	tlc.loop();
 	return 0;
 }

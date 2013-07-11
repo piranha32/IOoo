@@ -19,7 +19,10 @@ class TestGPIOLeds
 	public:
 		TestGPIOLeds();
 		virtual ~TestGPIOLeds();
-		virtual void loop() {loop(-1);};
+		virtual void loop()
+		{
+			loop(-1);
+		};
 		virtual void loop(int iterations);
 };
 

@@ -21,7 +21,7 @@ class TestTLC5946
 		TLC5946phy *phy;
 		TLC5946chain *chain;
 	public:
-		TestTLC5946(SPI* spi,char *pruBinFile);
+		TestTLC5946(SPI* spi, char *pruBinFile);
 		virtual ~TestTLC5946();
 		void loop();
 };

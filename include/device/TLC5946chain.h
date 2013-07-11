@@ -22,11 +22,11 @@ class TLC5946chain
 
 		int chain_length;
 	public:
-		TLC5946chain(TLC5946phy *_phy,int num);
+		TLC5946chain(TLC5946phy *_phy, int num);
 		virtual ~TLC5946chain();
 
-		void setBrightness(int i,uint16_t b);
-		void setDOT(int i,uint16_t dot);
+		void setBrightness(int i, uint16_t b);
+		void setDOT(int i, uint16_t dot);
 		void blank(int b);
 		void commit();
 };

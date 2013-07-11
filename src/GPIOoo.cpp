@@ -9,7 +9,6 @@
 #include "GPIOpin.h"
 #include <stdio.h>
 
-
 #if defined(_HW_PLATFORM_BEAGLEBONE) 
 #include "beaglebone/BeagleGoo.h"
 #else

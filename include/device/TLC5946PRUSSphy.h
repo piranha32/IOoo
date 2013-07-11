@@ -20,7 +20,7 @@
  * This allows to implement high-level functionality without knowing how
  * the hardware interface works.
  */
-class TLC5946PRUSSphy:public TLC5946phy
+class TLC5946PRUSSphy: public TLC5946phy
 {
 	private:
 		bool use_pruss;
@@ -49,7 +49,7 @@ class TLC5946PRUSSphy:public TLC5946phy
 		 * @param ctrl
 		 * @param pruBinFile
 		 */
-		TLC5946PRUSSphy(SPI *_spi, GPIOpin *ctrl,char *pruBinFile);
+		TLC5946PRUSSphy(SPI *_spi, GPIOpin *ctrl, char *pruBinFile);
 
 		virtual ~TLC5946PRUSSphy();
 

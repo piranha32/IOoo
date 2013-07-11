@@ -66,14 +66,16 @@ class HD44780gpioPhy: public HD44780phy
 		HD44780gpioPhy(GPIOpin *wires);
 		virtual ~HD44780gpioPhy();
 
-
 		virtual void write(uint8_t n, uint8_t x);
 
 		virtual uint8_t read(uint8_t n);
 
 		virtual bool busy(uint8_t n);
 
-		virtual bool supportsRead() {return rw>=0;};
+		virtual bool supportsRead()
+		{
+			return rw >= 0;
+		};
 
 		virtual uint8_t currentDataAddress(uint8_t n);
 

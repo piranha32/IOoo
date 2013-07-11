@@ -53,8 +53,6 @@ class TLC5946phy
 		 */
 		TLC5946phy(SPI *_spi, GPIOpin *ctrl);
 
-
-
 		virtual ~TLC5946phy();
 
 		virtual void setBlank(uint8_t blank);

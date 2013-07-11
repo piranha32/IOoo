@@ -30,9 +30,9 @@ HD44780gpioPhy::HD44780gpioPhy(GPIOpin *wires) :
 	n = 0;
 	writeReady = false;
 
-	rs = wires->findPinIndex((char *)"RS");
-	rw = wires->findPinIndex((char *)"RW");
-	e[0] = wires->findPinIndex((char *)"E");
+	rs = wires->findPinIndex((char *) "RS");
+	rw = wires->findPinIndex((char *) "RW");
+	e[0] = wires->findPinIndex((char *) "E");
 	n = 1;
 
 	char buf[10];
@@ -50,10 +50,14 @@ HD44780gpioPhy::HD44780gpioPhy(GPIOpin *wires) :
 	{
 		sprintf(buf, "D[%i]", i);
 		d[i] = wires->findPinIndex(buf);
-		debug(2,"HD44780gpioPhy::HD44780gpioPhy(): Index for pin d[%i] is %i\n",i,d[i]);
+		debug(2,
+				"HD44780gpioPhy::HD44780gpioPhy(): Index for pin d[%i] is %i\n",
+				i, d[i]);
 		if (d[i] < 0)
 		{
-			debug(2,"HD44780gpioPhy::HD44780gpioPhy() Data line search interrupted at i=%i\n",i);
+			debug(2,
+					"HD44780gpioPhy::HD44780gpioPhy() Data line search interrupted at i=%i\n",
+					i);
 			break;
 		}
 		if (i == 7)
@@ -61,11 +65,11 @@ HD44780gpioPhy::HD44780gpioPhy(GPIOpin *wires) :
 		else if (i >= 3)
 			bits = 4;
 	}
-	debug(2,"HD44780gpioPhy::HD44780gpioPhy(): detected %i bit interface\n",bits);
+	debug(2, "HD44780gpioPhy::HD44780gpioPhy(): detected %i bit interface\n",
+			bits);
 	if (bits == 0)
 		return;
 	wires->enableOutput(true);
-	//wires->enableOutput(d, bits);
 	writeReady = true;
 }
 
@@ -83,7 +87,7 @@ void HD44780gpioPhy::setNibble(uint8_t nibble)
 			wires->setBit(d[i]);
 		else
 			wires->clearBit(d[i]);
-		m=m<<1;
+		m = m << 1;
 	}
 }
 
@@ -103,25 +107,23 @@ void HD44780gpioPhy::write(uint8_t n, uint8_t x)
 	setRW(0);
 	if (bits == 4)
 	{
-		debug(3,"Writing 0x%02x in 4 bit mode\n",x);
+		debug(3, "Writing 0x%02x in 4 bit mode\n", x);
 		//write higher nibble
 		setNibble((x >> 4) & 0x0f);
 		setE(n, 1);
 		usleep(100);
 		setE(n, 0);
 
-		//usleep(200);
-		usleep(10000);
+		usleep(200);
 		//write lower nibble
 		setNibble(x & 0x0f);
 		setE(n, 1);
 		usleep(100);
 		setE(n, 0);
-		usleep(10000);
 	}
 	else
 	{
-		debug(3,"Writing 0x%02x in 8 bit mode\n",x);
+		debug(3, "Writing 0x%02x in 8 bit mode\n", x);
 		uint8_t mask = 1;
 		for (int i = 0; i < 8; i++)
 		{
@@ -129,7 +131,7 @@ void HD44780gpioPhy::write(uint8_t n, uint8_t x)
 				wires->setBit(d[i]);
 			else
 				wires->clearBit(d[i]);
-			mask=mask<<1;
+			mask = mask << 1;
 		}
 		setE(n, 1);
 		usleep(5);
@@ -214,7 +216,8 @@ void HD44780gpioPhy::setE(uint8_t num, uint8_t v)
 {
 	if (num < 0 || num >= n)
 	{
-		debug(0,"HD44780gpioPhy::setE(%i,%i): fail: num=%i, n=%i\n",num,v,num,n);
+		debug(0, "HD44780gpioPhy::setE(%i,%i): fail: num=%i, n=%i\n", num, v,
+				num, n);
 		return;
 	}
 	if (v)

@@ -14,7 +14,6 @@
 
 int main()
 {
-
 	TestGPIOButtons buttons;
 	buttons.loop();
 	return 0;

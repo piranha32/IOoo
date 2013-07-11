@@ -16,7 +16,7 @@ HD44780::HD44780(HD44780phy* phy, int sizeX, int sizeY)
 	cursorY = 0;
 	rows = sizeY;
 	cols = sizeX;
-	screen = new uint8_t[rows * cols]; //(char*)malloc(rows*cols);
+	screen = new uint8_t[rows * cols];
 }
 
 HD44780::~HD44780()
@@ -58,14 +58,6 @@ void HD44780::_copyScreenToDisplay()
 void HD44780::_gotoXY(uint8_t x, uint8_t y)
 {
 	unsigned char pos;
-	/*
-	 //Compute memory mapping for JHD204A
-	 pos = x;
-	 if (y & 0x01)
-	 pos += 0x40;
-	 if (y & 0x02)
-	 pos += 0x14;
-	 */
 	pos = computeAddress(x, y);
 	writeCmd(0x80 | pos);
 
@@ -98,7 +90,7 @@ uint8_t HD44780::readStatus()
 void HD44780::init()
 {
 
-	if (phy->getBits()==8)
+	if (phy->getBits() == 8)
 	{
 		intSetupCmd |= 0x10; //8 bit interface
 	}

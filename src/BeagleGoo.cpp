@@ -21,20 +21,6 @@
 const uint32_t BeagleGoo::gpioAddrs[] =
 	{ 0x44E07000, 0x4804C000, 0x481AC000, 0x481AE000 };
 
-/**
- * pin info
- */
-/*
- struct GPIOInfo
- {
- char *name;
- int gpioNum;
- int bitNum;
- //uint32_t *addr;
- int refCounter;
- int flags;
- };
- */
 struct BeagleGoo::GPIOInfo BeagleGoo::gpioInfos[] =
 	{
 		{ (char*) "P8_3", 1, 6, 0, 0 },
@@ -175,7 +161,7 @@ GPIOpin *BeagleGoo::claim(char* names[], int num, gpioWriteSemantics semantics,
 		pininfos[i] = _findGpio(names[i]);
 		if (pininfos[i] == NULL)
 		{
-			debug(1,"Pin '%s' not found\n", names[i]);
+			debug(1, "Pin '%s' not found\n", names[i]);
 			delete[] pininfos;
 			return NULL;
 		}
@@ -184,7 +170,7 @@ GPIOpin *BeagleGoo::claim(char* names[], int num, gpioWriteSemantics semantics,
 				&& ((pininfos[i]->flags & gpioExclusive)
 						|| (flags & gpioExclusive)))
 		{
-			debug(0,"Pin '%s' already claimed and can not be shared\n",
+			debug(0, "Pin '%s' already claimed and can not be shared\n",
 					names[i]);
 			delete[] pininfos;
 			return NULL;
