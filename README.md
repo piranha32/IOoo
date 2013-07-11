@@ -36,9 +36,11 @@ Known problems and limitations
 ===============
 - 4-bit interface for HD44780 has not been tested.
 - Linux implementation is not MT-safe
+- Incomplete documentation
 
 Future work
 ========
+- Write more docs
 - Add I2C interface (shouldn't take long)
 - Add more device drivers
 - Split the memory-mapped GPIO interface into two parts: 
