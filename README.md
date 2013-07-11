@@ -1,4 +1,4 @@
-What is is
+What it is
 ==========
 
 IOoo is an object oriented, univercal framework that allows to write applications that can be easily ported between different platforms. The library's core are basic I/O operations, like GPIO, SPI, I2C, etc. The next layer is built by simple device drivers, implementing basic functions of connected devices. The interface is defined by an abstract class, which describes what functions can be called by the higher layers. Except for instantiation, the application should always refer to the methods defined by the generic interface. Implementations can contain platform-specific methods, however their use is limited to the parts of the application that are tied to the underlying hardware (i.e. setting pin muxing). Hardware-independent modules should always refer to the generic interfaces. 
