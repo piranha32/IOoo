@@ -54,9 +54,10 @@ void TestTLC5946::loop()
 
 	int led = 0;
 	int color = 0;
+	uint16_t br = (uint16_t)(0xfff * 0.008);
 	for (int i = 0; i < 16; i++)
 	{
-		chain->setBrightness(i, 0xfff);
+		chain->setBrightness(i, /*0xfff*/br);
 		chain->setDOT(i, 0x3f);
 	}
 	chain->commit();
@@ -76,7 +77,7 @@ void TestTLC5946::loop()
 		 phi[i]=0;
 		 }
 		 */
-		uint16_t br = 0xfff;
+
 		for (int i = 0; i <= 15; i++)
 		{
 			if (color < 3)
@@ -96,7 +97,7 @@ void TestTLC5946::loop()
 		}
 		chain->commit();
 		//printf("\n");
-		usleep(200000);
+		usleep(80000);
 	}
 	//phy.setMode(0);
 	//usleep(500000);

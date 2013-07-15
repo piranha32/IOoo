@@ -1,4 +1,4 @@
-CPPFLAGS=-I../include/  -D_HW_PLATFORM_BEAGLEBONE 
+CPPFLAGS=-I../include/  -D_HW_PLATFORM_BEAGLEBONE -DDEBUG=2
 CXXFLAGS=-O0 -g -pedantic -Wall -std=gnu++11
 CFLAGS=-pedantic -Wall 
 CXX=${CROSS}g++ 
@@ -11,7 +11,7 @@ LDLIBS=-lgpiooo
 
 vpath %.h include 
 
-default: ../bin/gpio_lcd ../bin/gpio_buttons ../bin/gpio_leds ../bin/tlc5946 ../bin/tlc5946_clock.bin
+default: ../bin/gpio_lcd ../bin/gpio_buttons ../bin/gpio_leds ../bin/tlc5946 ../bin/tlc5946_clock.bin ../bin/test_jd-t18003-t01 
 
 %.o : %.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
@@ -28,6 +28,9 @@ default: ../bin/gpio_lcd ../bin/gpio_buttons ../bin/gpio_leds ../bin/tlc5946 ../
 ../bin/gpio_buttons: gpio_buttons.o TestGPIOButtons.o
 	${LD} $(LDFLAGS) $^ -o $@ $(LDLIBS)
 
+../bin/test_jd-t18003-t01: test_jd-t18003-t01.o 
+	${LD} $(LDFLAGS) $^ -o $@ $(LDLIBS)
+
 ../bin/tlc5946: tlc5946.o TestTLC5946.o
 	${LD} $(LDFLAGS) $^ -o $@ $(LDLIBS) $(PRULIBS)
 
@@ -35,5 +38,5 @@ default: ../bin/gpio_lcd ../bin/gpio_buttons ../bin/gpio_leds ../bin/tlc5946 ../
 	 pasm -lb $^ $(patsubst %.bin,%,$@)
 
 clean:
-	rm -f ../bin/tlc5946_clock.* ../bin/gpio_lcd ../bin/tlc5946 ../bin/gpio_leds *.o
+	rm -f ../bin/tlc5946_clock.* ../bin/gpio_lcd ../bin/tlc5946 ../bin/gpio_leds ../bin/test_jd-t18003-t01 ../bin/gpio_buttons *.o
 
