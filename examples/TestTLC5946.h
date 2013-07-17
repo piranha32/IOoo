@@ -23,6 +23,7 @@ class TestTLC5946
 	public:
 		TestTLC5946(SPI* spi, char *pruBinFile);
 		virtual ~TestTLC5946();
+		virtual void setLED(int led,uint16_t red, uint16_t gren, uint16_t blue);
 		void loop();
 };
 

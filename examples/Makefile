@@ -1,4 +1,4 @@
-CPPFLAGS=-I../include/  -D_HW_PLATFORM_BEAGLEBONE -DDEBUG=2
+CPPFLAGS=-I../include/  -D_HW_PLATFORM_BEAGLEBONE #-DDEBUG=2
 CXXFLAGS=-O0 -g -pedantic -Wall -std=gnu++11
 CFLAGS=-pedantic -Wall 
 CXX=${CROSS}g++ 
