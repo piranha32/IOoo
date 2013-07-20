@@ -22,24 +22,7 @@ AC_LANG_PUSH([C++])
 AC_CHECK_HEADERS([fcntl.h stdint.h stdlib.h string.h sys/ioctl.h unistd.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
-# First check for C++11 support
 AX_CXX_COMPILE_STDCXX_11
-# AC_COMPILE_IFELSE([AC_LANG_SOURCE(
-#   [[template <typename T>
-#     struct check
-#     {
-#       static_assert(sizeof(int) <= sizeof(T), "not big enough");
-#     };
-# 
-#     typedef check<check<bool>> right_angle_brackets;
-# 
-#     int a;
-#     decltype(a) b;
-# 
-#     typedef check<int> check_type;
-#     check_type c;
-#     check_type&& cr = static_cast<check_type&&>(c);]])],,
-#   AC_MSG_FAILURE(['$CXX $CXXFLAGS' does not accept ISO C++11]))
 
 AC_CHECK_HEADER_STDBOOL
 AC_TYPE_UINT16_T
