@@ -2,7 +2,6 @@
 ## ./examples/Makefile.am
 
 AM_CPPFLAGS=-I${srcdir}/../include/  -D_HW_PLATFORM_BEAGLEBONE #-DDEBUG=2
-AM_CXXFLAGS=-O0 -g -pedantic -Wall -std=gnu++11
 AM_LDFLAGS=-L../lib -L../src
 LDADD = ../src/libgpiooo.a
 
