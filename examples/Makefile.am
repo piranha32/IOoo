@@ -1,7 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 ## ./examples/Makefile.am
 
-AM_CPPFLAGS=-I${srcdir}/../include/  -D_HW_PLATFORM_BEAGLEBONE #-DDEBUG=2
+AM_CPPFLAGS=-I${top_srcdir}/include/  -D_HW_PLATFORM_BEAGLEBONE #-DDEBUG=2
 AM_LDFLAGS=-L../lib -L../src
 LDADD = ../src/libgpiooo.a
 

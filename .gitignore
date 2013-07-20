@@ -6,3 +6,7 @@ aclocal.m4
 configure
 config.h.in
 build
+*.Po
+Makefile
+config.*
+stamp-h1
