@@ -2,7 +2,7 @@
 ## ./src/Makefile.am
 
 DEBUG_LEVEL=3
-AM_CPPFLAGS=-I../include/  -D_HW_PLATFORM_BEAGLEBONE -DDEBUG_LEVEL=$(DEBUG_LEVEL)
+AM_CPPFLAGS=-I${srcdir}/../include/  -D_HW_PLATFORM_BEAGLEBONE -DDEBUG_LEVEL=$(DEBUG_LEVEL)
 AM_CXXFLAGS=-O0 -g -pedantic -Wall -std=gnu++11
 AM_CFLAGS=-pedantic -Wall 
 AM_LDFLAGS=-Llib
