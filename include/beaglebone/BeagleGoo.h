@@ -30,6 +30,7 @@ class BeagleGoo: public GPIOoo
 
 		bool active;
 		static struct GPIOInfo gpioInfos[];
+		static size_t gpioCount;
 		static uint16_t addrs[];
 		int gpioFd;
 		uint32_t *gpios[4];
