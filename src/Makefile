@@ -1,4 +1,4 @@
-DEBUG_LEVEL=3
+DEBUG_LEVEL=0
 CPPFLAGS=-I../include/  -D_HW_PLATFORM_BEAGLEBONE -DDEBUG_LEVEL=$(DEBUG_LEVEL)
 CXXFLAGS=-O0 -g -pedantic -Wall -std=gnu++11
 CFLAGS=-pedantic -Wall 
