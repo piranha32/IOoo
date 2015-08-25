@@ -52,19 +52,19 @@ private:
 	 * @return true if bus is set, false otherwise.
 	 * 			errno is updated.
 	 */
-	bool bus_ready();
+	bool busReady();
 
 	/**
 	 * @return true if slave address is set, false otherwise.
 	 * 			errno is updated.
 	 */
-	bool slave_ready();
+	bool slaveReady();
 
 	/**
 	 * @return true if bus and address are set, false otherwise.
 	 * 			errno is updated.
 	 */
-	bool is_ready();
+	bool isReady();
 
 public:
 
@@ -98,7 +98,7 @@ public:
 	 * @return 0 on success or -1 on error.
 	 * 			errno is updated.
 	 */
-	int set_slave(int slave_addr, bool ignore_checks = false);
+	int setSlave(int slave_addr, bool ignore_checks = false);
 
 	/**
 	 * Opens an I2C device for reading and writing
@@ -141,7 +141,7 @@ public:
 	 * @return 0 on success or -1 for error.
 	 * 			errno is updated.
 	 */
-	int enable_pec();
+	int enablePEC();
 
 	/**
 	 * Disable error checking for this bus
@@ -149,7 +149,7 @@ public:
 	 * @return 0 on success or -1 for error.
 	 * 			errno is updated.
 	 */
-	int disable_pec();
+	int disablePEC();
 
 	/**
 	 * Reads n bytes from the I2C device
@@ -203,7 +203,7 @@ public:
 	 * @return Number of bytes successfully read, or -1 for error.
 	 * 			errno is updated.
 	 */
-	int write_read(const void *wbuf, size_t wlength, void *rbuf, size_t rlength,
+	int writeRead(const void *wbuf, size_t wlength, void *rbuf, size_t rlength,
 			bool no_ack = false, bool ignore_nack = false);
 
 	/**
@@ -230,7 +230,7 @@ public:
 	 * 			or -1 for error.
 	 * 			errno is updated.
 	 */
-	int write_write(const void *w1buf, size_t w1length, const void *w2buf,
+	int writeWrite(const void *w1buf, size_t w1length, const void *w2buf,
 			size_t w2length, bool ignore_nack = false);
 
 	/**
@@ -247,7 +247,7 @@ public:
 	 * @return Number of bytes successfully read, or -1 for error.
 	 * 			errno is updated.
 	 */
-	int read_register(unsigned char reg_addr, void *rbuf, size_t length);
+	int readRegister(unsigned char reg_addr, void *rbuf, size_t length);
 
 	/**
 	 * Writes a value to a given register address on the device.
@@ -263,7 +263,7 @@ public:
 	 * @return Number of bytes successfully written, or -1 for error.
 	 * 			errno is updated.
 	 */
-	int write_register(unsigned char reg_addr, void *rbuf, size_t length);
+	int writeRegister(unsigned char reg_addr, void *rbuf, size_t length);
 
 	/**
 	 * Begin a transaction for all following I2C commands
@@ -275,7 +275,7 @@ public:
 	 * @return 0 on success or -1 on error.
 	 * 			errno is updated.
 	 */
-	int begin_transaction();
+	int beginTransaction();
 
 	/**
 	 * Commits all reads and writes since #begin_transaction()
@@ -288,14 +288,14 @@ public:
 	 * 			Otherwise, the transaction will be cleared on error.
 	 * 			errno is updated.
 	 */
-	int end_transaction();
+	int endTransaction();
 
 	/**
 	 * Destroys all reads and writes since #begin_transaction()
 	 *
 	 * The I2C instance will then return to normal read/write mode
 	 */
-	void abort_transaction();
+	void abortTransaction();
 
 	/**
 	 * Destructor for I2C class
