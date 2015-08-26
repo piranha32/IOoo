@@ -2,23 +2,61 @@
  * debug.h
  *
  *  Created on: Jun 20, 2013
- *      Author: jacek
+ *      Author: jacek, chris
  */
 
-#ifndef DEBUG_H_
-#define DEBUG_H_
+#ifndef IOOO_DEBUG_H_
+#define IOOO_DEBUG_H_
 
-#ifndef DEBUG_LEVEL
-#define DEBUG_LEVEL -1
+#include <stdio.h>
+#include <errno.h>
+
+#ifndef IOOO_DEBUG_LEVEL
+#define IOOO_DEBUG_LEVEL 0
+#endif
+
+#ifndef IOOO_ERROR_LEVEL
+#define IOOO_ERROR_LEVEL 1
 #endif
 
 /**
  * Debug macro
  * Params:
- *   @param level - level of details of debug message.
- *   @param format - Formatting string for the debug message
- *   @param ... -
+ *   @param level Level of detail in debug message
+ *   @param format Formatting string for the debug message
+ *   @param ... Format arguments
  */
-#define debug(level,format,...) {if(level<=DEBUG_LEVEL){printf( "%s:%i:"#format"\n",__FILE__,__LINE__,##__VA_ARGS__);}}
+#if IOOO_DEBUG_LEVEL > 0
+	// This used to use ##__VA_ARGS__, but this is classed as too ambiguous in G++11
+	#define debugfva(level, format, ...) { \
+		if(level <= DEBUG_LEVEL){ \
+			printf("%s:%i:"#format"\n", __FILE__, __LINE__, __VA_ARGS__); \
+		} \
+	}
 
-#endif /* DEBUG_H_ */
+	#define debugf(level, format) debug(level, format, NULL)
+
+	// Manual sneaky macro overloading
+	#define GET_DEBUG(_1, _2, _3, NAME, ...) NAME
+	#define debug(...) GET_DEBUG(__VA_ARGS__, debugfva, debugf)(__VA_ARGS__)
+#else
+	#define debug(...) ((void) 0)
+#endif
+
+/**
+ * Error macro. Maintains errno.
+ * Params:
+ *   @param ... Formatting string for error message,
+ *   			followed by format arguments
+ */
+#if IOOO_ERROR_LEVEL > 0
+	#define error(...) { \
+		int errnobkp = errno; \
+		fprintf(stderr, __VA_ARGS__); \
+		errno = errnobkp; \
+	}
+#else
+	#define error(...) ((void) 0)
+#endif
+
+#endif /* IOOO_DEBUG_H_ */
