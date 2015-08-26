@@ -16,47 +16,21 @@
 
 I2C::I2C()
 {
-	active_bus = -1;
-	active_addr = -1;
+	activeBus = -1;
+	activeAddr = -1;
 	fd = -1;
 	tenbit = false;
-	supported_funcs = 0;
+	supportedFuncs = 0;
 
-	transaction_state = false;
+	transactionState = false;
 }
 
-/*
- * Private stuff
- */
-
-bool I2C::busReady()
+I2C::I2C(int bus, int slaveAddr) :
+		I2C()
 {
-	if (active_bus < 0)
-	{
-		error("I2C::busReady() error: No I2C bus has been opened.\n");
-		errno = EDESTADDRREQ;
-		return false;
-	}
-
-	return true;
+	open(bus, slaveAddr);
 }
 
-bool I2C::slaveReady()
-{
-	if (active_addr < 0)
-	{
-		error("I2C::slaveReady() error: No slave address has been set.\n");
-		errno = EDESTADDRREQ;
-		return false;
-	}
-
-	return true;
-}
-
-bool I2C::isReady()
-{
-	return busReady() && slaveReady();
-}
 
 /*
  * Opening and closing
@@ -64,7 +38,7 @@ bool I2C::isReady()
 
 int I2C::open(int bus)
 {
-	if (active_bus >= 0)
+	if (activeBus >= 0)
 	{
 		close();
 	}
@@ -88,36 +62,36 @@ int I2C::open(int bus)
 	}
 
 	// Get supported functionality
-	if (ioctl(fd, I2C_FUNCS, &supported_funcs) < 0)
+	if (ioctl(fd, I2C_FUNCS, &supportedFuncs) < 0)
 	{
 		error("I2C::open() ioctl(I2C_FUNCS) error: %s\n", strerror(errno));
 		return -1;
 	}
 
-	active_bus = bus;
+	activeBus = bus;
 
 	return fd;
 }
 
-int I2C::setSlave(int slave_addr, bool ignore_checks)
+int I2C::setSlave(int slaveAddr, bool ignoreChecks)
 {
 	if (!busReady())
 		return -1;
 
-	// Check slave_addr number is within valid space
-	if (slave_addr <= 0x08 && (slave_addr <= 0x77 || slave_addr > 0x7F))
+	// Check slaveAddr number is within valid space
+	if (slaveAddr <= 0x08 && (slaveAddr <= 0x77 || slaveAddr > 0x7F))
 	{
-		error("I2C::setSlave() error: slave_addr number is invalid.\n");
+		error("I2C::setSlave() error: slaveAddr number is invalid.\n");
 		errno = EINVAL;
 		return -1;
 	}
 
-	// Check if the slave_addr is greater than the valid 7 bit space
-	if (slave_addr > 0x7F)
+	// Check if the slaveAddr is greater than the valid 7 bit space
+	if (slaveAddr > 0x7F)
 	{
 
-		// Check if slave_addr is 10-bits or less
-		if (slave_addr > 0x3FF)
+		// Check if slaveAddr is 10-bits or less
+		if (slaveAddr > 0x3FF)
 		{
 			error(
 					"I2C::setSlave() error: Address number is invalid (10-bit maximum)\n");
@@ -126,7 +100,7 @@ int I2C::setSlave(int slave_addr, bool ignore_checks)
 		}
 
 		// If 10-bit mode is requested, check compatiblity and enable
-		if (!(supported_funcs & I2C_FUNC_10BIT_ADDR))
+		if (!(supportedFuncs & I2C_FUNC_10BIT_ADDR))
 		{
 			error(
 					"I2C::setSlave() error: 10-bit mode is not supported with this device.\n");
@@ -145,35 +119,37 @@ int I2C::setSlave(int slave_addr, bool ignore_checks)
 
 	}
 
-	active_addr = slave_addr;
+	activeAddr = slaveAddr;
 
 	// Check if the device exists
-	if (!ignore_checks)
+	if (!ignoreChecks)
 	{
 		if (!probe())
 		{
-			error("I2C::open() probe() Unable to connect to address 0x%x on bus %i: "
-					"the device is not responding to probes.\n", active_addr, active_bus);
+			error(
+					"I2C::open() probe() Unable to connect to address 0x%x on bus %i: "
+							"the device is not responding to probes.\n",
+					activeAddr, activeBus);
 			errno = ENODEV;
 			return -1;
 		}
 	}
 
-	// Set the destination slave_addr
+	// Set the destination slaveAddr
 	// No longer needed - now using ioctl for reads and writes
-	if (ioctl(fd, I2C_SLAVE, slave_addr) < 0)
+	if (ioctl(fd, I2C_SLAVE, slaveAddr) < 0)
 	{
 		if (errno == EBUSY)
 		{
 			error(
 					"I2C::setSlave() ioctl(slave=%i) warning: Device is currently being "
 							"used by another driver, proceed with caution.\n",
-					slave_addr);
+					slaveAddr);
 		}
 		else
 		{
-			error("I2C::setSlave() ioctl(slave=%i) error: %s (%d)\n",
-					slave_addr, strerror(errno), errno);
+			error("I2C::setSlave() ioctl(slave=%i) error: %s (%d)\n", slaveAddr,
+					strerror(errno), errno);
 			return -1;
 		}
 	}
@@ -181,19 +157,19 @@ int I2C::setSlave(int slave_addr, bool ignore_checks)
 	return fd;
 }
 
-int I2C::open(int bus, int slave_addr, bool ignore_checks)
+int I2C::open(int bus, int slaveAddr, bool ignoreChecks)
 {
 	int fd = open(bus);
 	if (fd < 0)
 		return fd;
-	if (setSlave(slave_addr, ignore_checks) < 0)
+	if (setSlave(slaveAddr, ignoreChecks) < 0)
 		return -1;
 	return fd;
 }
 
 int I2C::close()
 {
-	if (active_bus < 0)
+	if (activeBus < 0)
 		return 0;
 
 	if ((::close(fd)) != 0)
@@ -202,27 +178,58 @@ int I2C::close()
 		return -1;
 	}
 
-	active_bus = -1;
-	active_addr = -1;
+	activeBus = -1;
+	activeAddr = -1;
 	fd = -1;
 	return 0;
 }
 
+
+/*
+ * Checking functions
+ */
+
 bool I2C::probe()
 {
-	// Disable errors temporarily
-	bool tmp = show_errors;
-	show_errors = false;
-
 	// Read a random byte
 	char dummy[1];
-	int success = read(dummy, 1);
+	int success = read(dummy, 1, false, false);
 
 	errno = -1;
-	show_errors = tmp;
 
 	return success < 0 ? false : true;
 }
+
+bool I2C::busReady()
+{
+	if (activeBus < 0)
+	{
+		error("I2C::busReady() error: No I2C bus has been opened.\n");
+		errno = EDESTADDRREQ;
+		return false;
+	}
+
+	return true;
+}
+
+bool I2C::slaveReady()
+{
+	if (activeAddr < 0)
+	{
+		error("I2C::slaveReady() error: No slave address has been set.\n");
+		errno = EDESTADDRREQ;
+		return false;
+	}
+
+	return true;
+}
+
+bool I2C::isReady()
+{
+	return busReady() && slaveReady();
+}
+
+
 
 /*
  * Error checking
@@ -233,7 +240,7 @@ int I2C::enablePEC()
 	if (!isReady())
 		return -1;
 
-	if (!(supported_funcs & I2C_FUNC_SMBUS_PEC))
+	if (!(supportedFuncs & I2C_FUNC_SMBUS_PEC))
 	{
 		error(
 				"I2C::enablePEC() error: PEC is not supported with this device.\n");
@@ -265,28 +272,30 @@ int I2C::disablePEC()
 	return 0;
 }
 
+
+
 /*
  * Reading and writing
  */
 
-int I2C::read(void *rbuf, size_t length, bool no_ack)
+int I2C::read(void *rbuf, size_t length, bool noAck, bool showErrors)
 {
 	if (!isReady())
 		return -1;
 
 	struct i2c_msg msg;
 
-	msg.addr = active_addr;
+	msg.addr = activeAddr;
 	msg.len = length;
 	msg.flags = I2C_M_RD;
-	msg.flags |= no_ack ? I2C_M_NO_RD_ACK : 0;
+	msg.flags |= noAck ? I2C_M_NO_RD_ACK : 0;
 	msg.flags |= tenbit ? I2C_M_TEN : 0;
 	msg.buf = (unsigned char *) rbuf;
 
 	msgs.push_back(msg);
 
 	// If not currently in a transaction, commit the read now
-	if (!transaction_state)
+	if (!transactionState)
 	{
 
 		struct i2c_rdwr_ioctl_data msgset;
@@ -295,8 +304,9 @@ int I2C::read(void *rbuf, size_t length, bool no_ack)
 		msgset.msgs = &msgs[0];
 		if (ioctl(fd, I2C_RDWR, &msgset) < 0)
 		{
-			error("I2C::read() ioctl(I2C_RDWR) error: %s (%d)\n",
-					strerror(errno), errno);
+			if (showErrors)
+				error("I2C::read() ioctl(I2C_RDWR) error: %s (%d)\n",
+						strerror(errno), errno);
 			msgs.clear();
 			return -1;
 		}
@@ -311,24 +321,24 @@ int I2C::read(void *rbuf, size_t length, bool no_ack)
 	}
 }
 
-int I2C::write(const void *wbuf, size_t length, bool ignore_nack)
+int I2C::write(const void *wbuf, size_t length, bool ignoreNack)
 {
 	if (!isReady())
 		return -1;
 
 	struct i2c_msg msg;
 
-	msg.addr = active_addr;
+	msg.addr = activeAddr;
 	msg.len = length;
 	msg.flags = 0;
-	msg.flags |= ignore_nack ? I2C_M_IGNORE_NAK : 0;
+	msg.flags |= ignoreNack ? I2C_M_IGNORE_NAK : 0;
 	msg.flags |= tenbit ? I2C_M_TEN : 0;
 	msg.buf = (unsigned char *) wbuf;
 
 	msgs.push_back(msg);
 
 	// If not in a transaction, commit the write now
-	if (!transaction_state)
+	if (!transactionState)
 	{
 
 		struct i2c_rdwr_ioctl_data msgset;
@@ -353,27 +363,31 @@ int I2C::write(const void *wbuf, size_t length, bool ignore_nack)
 	}
 }
 
-int I2C::writeRead(const void *wbuf, size_t wlength, void *rbuf,
-		size_t rlength, bool ignore_nack, bool no_ack)
+int I2C::writeRead(const void *wbuf, size_t wlength, void *rbuf, size_t rlength,
+		bool ignoreNack, bool noAck)
 {
 	bool was_transaction = true;
 
 	// If not already in a transaction, make a transaction state
-	if (!transaction_state)
+	if (!transactionState)
 	{
 		was_transaction = false;
 		beginTransaction();
 	}
 
-	if (write(wbuf, wlength, ignore_nack) < 0) return -1;
-	if (read(rbuf, rlength, no_ack) < 0) return -1;
+	if (write(wbuf, wlength, ignoreNack) < 0)
+		return -1;
+	if (read(rbuf, rlength, noAck) < 0)
+		return -1;
 
 	// Commit transaction if the system was not already in a
 	// transaction state
-	if (!was_transaction) {
+	if (!was_transaction)
+	{
 		if (endTransaction() < 0)
 		{
-			error("I2C::writeRead() Unable to perform consecutive write and read\n");
+			error(
+					"I2C::writeRead() Unable to perform consecutive write and read\n");
 			return -1;
 		}
 	}
@@ -382,7 +396,7 @@ int I2C::writeRead(const void *wbuf, size_t wlength, void *rbuf,
 }
 
 int I2C::writeWrite(const void *w1buf, size_t w1length, const void *w2buf,
-		size_t w2length, bool ignore_nack)
+		size_t w2length, bool ignoreNack)
 {
 	// There's no need for a reset in a double write
 	// And in fact, when writing to registers, sometimes
@@ -392,11 +406,11 @@ int I2C::writeWrite(const void *w1buf, size_t w1length, const void *w2buf,
 	// Construct a single data packet of w2 appended to w1
 	memcpy(wbuf, w1buf, w1length);
 
-	void *lsb = (unsigned char*)(wbuf) + w1length;
+	void *lsb = (unsigned char*) (wbuf) + w1length;
 	memcpy(lsb, w2buf, w2length);
 
 	// Write in a single hit
-	int result = write(wbuf, w1length + w2length, ignore_nack);
+	int result = write(wbuf, w1length + w2length, ignoreNack);
 	free(wbuf);
 
 	return result < 0 ? -1 : w2length;
@@ -412,13 +426,15 @@ int I2C::writeRegister(unsigned char reg_addr, void *wbuf, size_t length)
 	return writeWrite(&reg_addr, 1, wbuf, length);
 }
 
+
+
 /*
  * Transactions
  */
 
 int I2C::beginTransaction()
 {
-	if (transaction_state)
+	if (transactionState)
 	{
 		error(
 				"I2C::beginTransaction() error: A transaction is already in progress. End or abort the current transaction first.\n");
@@ -429,14 +445,14 @@ int I2C::beginTransaction()
 	if (!isReady())
 		return -1;
 
-	transaction_state = true;
+	transactionState = true;
 	msgs.clear();
 	return 0;
 }
 
 int I2C::endTransaction()
 {
-	if (!transaction_state)
+	if (!transactionState)
 	{
 		error(
 				"I2C::endTransaction() warning: There is no currently active transaction.\n");
@@ -446,7 +462,7 @@ int I2C::endTransaction()
 	if (!isReady())
 		return -1;
 
-	transaction_state = false;
+	transactionState = false;
 
 	struct i2c_rdwr_ioctl_data msgset;
 
@@ -455,8 +471,7 @@ int I2C::endTransaction()
 
 	if (ioctl(fd, I2C_RDWR, &msgset) < 0)
 	{
-		error("I2C::endTransaction() error: %s (%d)\n", strerror(errno),
-				errno);
+		error("I2C::endTransaction() error: %s (%d)\n", strerror(errno), errno);
 		msgs.clear();
 		return -1;
 	}
@@ -472,17 +487,19 @@ int I2C::endTransaction()
  */
 void I2C::abortTransaction()
 {
-	if (!transaction_state)
+	if (!transactionState)
 	{
 		error(
 				"I2C::abortTransaction() warning: There is no currently active transaction.\n");
 		return;
 	}
 
-	transaction_state = false;
+	transactionState = false;
 	msgs.clear();
 	return;
 }
+
+
 
 I2C::~I2C()
 {
