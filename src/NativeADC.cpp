@@ -31,6 +31,12 @@ NativeADC::NativeADC(int adcNumber) : NativeADC()
 	open(adcNumber);
 }
 
+int NativeADC::init()
+{
+	// No initialization required
+	return 0;
+}
+
 int NativeADC::open(int adcNumber)
 {
 	if (activeADC > -1) {
@@ -81,21 +87,26 @@ long NativeADC::takeMeasurement()
 	if (activeADC < 0) {
 		error("NativeADC::takeMeasurement() error: No ADC device has been opened.\n");
 		errno = EDESTADDRREQ;
-		return -1;
+		return 0;
 	}
 
 	char buf[ADC_CHAR_LENGTH];
 	if (read(fd, &buf, ADC_CHAR_LENGTH) < 0) {
 		error("NativeADC::takeMeasurement() read() error: %s (%d)\n", strerror(errno), errno);
-		return -1;
+		return 0;
 	}
 
 	return strtol(buf, nullptr, 10);
 }
 
+double NativeADC::takeMeasurementF()
+{
+	return takeMeasurement() / ADC_MAX_VALUE;
+}
+
 double NativeADC::takeMeasurementVolts()
 {
-	return takeMeasurement() * ADC_MAX_VOLTAGE / ADC_MAX_VALUE;
+	return takeMeasurementF() * ADC_MAX_VOLTAGE;
 }
 
 NativeADC::~NativeADC()

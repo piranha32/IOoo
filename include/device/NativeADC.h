@@ -5,8 +5,8 @@
  *      Author: chris
  */
 
-#ifndef THIRD_PARTY_IOOO_SRC_DEVICE_NATIVEADC_H_
-#define THIRD_PARTY_IOOO_SRC_DEVICE_NATIVEADC_H_
+#ifndef NATIVEADC_H_
+#define NATIVEADC_H_
 
 #include "ADC.h"
 #include "debug.h"
@@ -20,12 +20,15 @@ public:
 	NativeADC();
 	NativeADC(int adcNumber);
 
+	virtual int init();
+
 	virtual int open(int adcNumber);
 	virtual int close();
 	virtual long takeMeasurement();
+	virtual double takeMeasurementF();
 	virtual double takeMeasurementVolts();
 
 	virtual ~NativeADC();
 };
 
-#endif /* THIRD_PARTY_IOOO_SRC_DEVICE_NATIVEADC_H_ */
+#endif /* NATIVEADC_H_ */

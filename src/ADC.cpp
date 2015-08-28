@@ -11,7 +11,7 @@
 	#include "device/NativeADC.h"
 #endif
 
-ADC* ADC::getNativeADC(int adcNumber)
+NativeADC* ADC::getNativeADC(int adcNumber)
 {
 #if defined(_HW_PLATFORM_BEAGLEBONE)
 	return new BeagleADC(adcNumber);

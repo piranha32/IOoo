@@ -5,24 +5,27 @@
  *      Author: chris
  */
 
-#ifndef THIRD_PARTY_IOOO_SRC_ADC_H_
-#define THIRD_PARTY_IOOO_SRC_ADC_H_
+#ifndef ADC_H_
+#define ADC_H_
 
 #include "debug.h"
+
+// Let the compiler know that this class exists somewhere in the chain
+class NativeADC;
 
 class ADC
 {
 public:
-	static ADC *getNativeADC(int adcNumber);
+	static NativeADC *getNativeADC(int adcNumber);
+
+	virtual int init() = 0;
 
 	virtual long takeMeasurement() = 0;
-	virtual double takeMeasurementF() {
-		return (double) takeMeasurement();
-	}
+	virtual double takeMeasurementF() = 0;
 
 	virtual double takeMeasurementVolts() = 0;
 
 	virtual ~ADC() {}
 };
 
-#endif /* THIRD_PARTY_IOOO_SRC_ADC_H_ */
+#endif /* ADC_H_ */
