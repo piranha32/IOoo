@@ -8,9 +8,9 @@
 #ifndef LTC248X_H_
 #define LTC248X_H_
 
-#include "ADC.h"
-#include "I2C.h"
-#include "debug.h"
+#include "../ADC.h"
+#include "../I2C.h"
+#include "../debug.h"
 
 #define LTC248X_DEFAULT	0x0
 

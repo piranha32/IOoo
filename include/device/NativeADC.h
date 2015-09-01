@@ -8,8 +8,8 @@
 #ifndef NATIVEADC_H_
 #define NATIVEADC_H_
 
-#include "ADC.h"
-#include "debug.h"
+#include "../ADC.h"
+#include "../debug.h"
 
 class NativeADC : public ADC
 {
