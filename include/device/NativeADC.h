@@ -13,17 +13,19 @@
 
 class NativeADC : public ADC
 {
-protected:
-	int activeADC;
+private:
 	int fd;
+	int open();
+	int close();
+protected:
+	char *adcPath;
+	int activeADC;
 public:
 	NativeADC();
 	NativeADC(int adcNumber);
 
-	virtual int init();
+	virtual int init(int adcNumber);
 
-	virtual int open(int adcNumber);
-	virtual int close();
 	virtual long takeMeasurement();
 	virtual double takeMeasurementF();
 	virtual double takeMeasurementVolts();

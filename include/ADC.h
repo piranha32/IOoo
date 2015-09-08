@@ -18,8 +18,6 @@ class ADC
 public:
 	static NativeADC *getNativeADC(int adcNumber);
 
-	virtual int init() = 0;
-
 	virtual long takeMeasurement() = 0;
 	virtual double takeMeasurementF() = 0;
 

@@ -14,38 +14,30 @@
 
 #define MAX_PATH_LEN 40
 #define ADC_DEVICE_PATH_BASE "/sys/devices/ocp.3/helper.12/AIN"
-#define ADC_MAX_VOLTAGE 1.8
-#define ADC_MAX_VALUE 4096
+#define ADC_MAX_VOLTAGE 1.799
+#define ADC_MAX_VALUE 1799
 #define ADC_CHAR_LENGTH 4
 
 NativeADC::NativeADC()
 {
+	adcPath = new char[MAX_PATH_LEN];
 	activeADC = -1;
 	fd = -1;
 }
 
 NativeADC::NativeADC(int adcNumber) : NativeADC()
 {
-	// Beware, this only calls NativeADC::open
+	// Beware, this only calls NativeADC::init
 	// Re-implement for child classes if open differs
-	open(adcNumber);
+	init(adcNumber);
 }
 
-int NativeADC::init()
+int NativeADC::init(int adcNumber)
 {
-	// No initialization required
-	return 0;
-}
-
-int NativeADC::open(int adcNumber)
-{
-	if (activeADC > -1) {
-		close();
-	}
+	activeADC = adcNumber;
 
 	// Check device path
-	char path[MAX_PATH_LEN];
-	if (snprintf(path, MAX_PATH_LEN, "%s%d", ADC_DEVICE_PATH_BASE,
+	if (snprintf(adcPath, MAX_PATH_LEN, "%s%d", ADC_DEVICE_PATH_BASE,
 			adcNumber) >= MAX_PATH_LEN)
 	{
 		error("NativeADC::open() error: ADC number is too long.\n");
@@ -53,23 +45,44 @@ int NativeADC::open(int adcNumber)
 		return -1;
 	}
 
-	// Open device for reading only
-	if ((fd = ::open(path, O_RDONLY)) < 0)
+	// Open device to test reading
+	int success = open();
+	if (success < 0) {
+		activeADC = -1;
+		return success;
+	}
+	close();
+
+
+
+	return 0;
+}
+
+int NativeADC::open()
+{
+	if (activeADC < 0) {
+		error("NativeADC::open() error: No ADC device has been initialized.\n");
+		errno = EDESTADDRREQ;
+		return 0;
+	}
+
+	if ((fd = ::open(adcPath, O_RDONLY)) < 0)
 	{
-		error("I2C::open() open(%s) error: %s (%d)\n", path, strerror(errno),
+		error("NativeADC::open() open(%s) error: %s (%d)\n", adcPath, strerror(errno),
 				errno);
 		return fd; // fd is negative
 	}
 
-	activeADC = adcNumber;
-
-	return fd;
+	return 0;
 }
 
 int NativeADC::close()
 {
-	if (activeADC < 0)
+	if (activeADC < 0) {
+		error("NativeADC::close() error: No ADC device has been initialized.\n");
+		errno = EDESTADDRREQ;
 		return 0;
+	}
 
 	if ((::close(fd)) != 0)
 	{
@@ -77,18 +90,19 @@ int NativeADC::close()
 		return -1;
 	}
 
-	activeADC = -1;
-	fd = -1;
 	return 0;
 }
 
 long NativeADC::takeMeasurement()
 {
 	if (activeADC < 0) {
-		error("NativeADC::takeMeasurement() error: No ADC device has been opened.\n");
+		error("NativeADC::takeMeasurement() error: No ADC device has been initialized.\n");
 		errno = EDESTADDRREQ;
 		return 0;
 	}
+
+	// We must open and close on each reading (at least with the BeagleBone we do)
+	if (open() < 0) return 0;
 
 	char buf[ADC_CHAR_LENGTH];
 	if (read(fd, &buf, ADC_CHAR_LENGTH) < 0) {
@@ -96,12 +110,14 @@ long NativeADC::takeMeasurement()
 		return 0;
 	}
 
+	close();
+
 	return strtol(buf, nullptr, 10);
 }
 
 double NativeADC::takeMeasurementF()
 {
-	return takeMeasurement() / ADC_MAX_VALUE;
+	return ((double) takeMeasurement()) / ADC_MAX_VALUE;
 }
 
 double NativeADC::takeMeasurementVolts()
