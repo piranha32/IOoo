@@ -1,3 +1,5 @@
 .svn
 *.o
+bin/*
+lib/libgpiooo.a
 
