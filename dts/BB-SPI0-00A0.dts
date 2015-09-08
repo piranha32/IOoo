@@ -1,0 +1,83 @@
+/*
+ * Copyright (C) 2013 CircuitCo
+ *
+ * Virtual cape for SPI0 on connector pins P9.22 P9.21 P9.18 P9.17
+ *
+ * D0 = Input
+ * D1 = Output
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "ti,beaglebone", "ti,beaglebone-black";
+
+	/* identification */
+	part-number = "BB-SPI0";
+	version = "00A0";
+
+	/* state the resources this cape uses */
+	exclusive-use =
+		/* the pin header uses */
+		"P9.22",	/* spi0_sclk */
+		"P9.21",	/* spi0_d0 */
+		"P9.18",	/* spi0_d1 */
+		"P9.17",	/* spi0_cs0 */
+		// "P9.42",	/* spi0_cs1 */
+		/* the hardware ip uses */
+		"spi0";
+
+	fragment@0 {
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			/* default state has all gpios released and mode set to uart1 */
+			bb_spi1_pins: pinmux_bb_spi1_pins {
+				pinctrl-single,pins = <
+					0x150 0x33	/* mcasp0_aclkx.spi0_sclk, INPUT_PULLUP | MODE3 */
+					0x154 0x33	/* mcasp0_fsx.spi0_d0, INPUT_PULLUP | MODE3 */
+					0x158 0x13	/* mcasp0_axr0.spi0_d1, OUTPUT_PULLUP | MODE3 */
+					0x15c 0x13	/* mcasp0_ahclkr.spi0_cs0, OUTPUT_PULLUP | MODE3 */
+					// 0x164 0x12	/* eCAP0_in_PWM0_out.spi1_cs1 OUTPUT_PULLUP | MODE2 */
+				>;
+			};
+		};
+	};
+
+	fragment@1 {
+		target = <&spi0>;	/* spi0 is numbered correctly */
+		__overlay__ {
+			status = "okay";
+			pinctrl-names = "default";
+			pinctrl-0 = <&bb_spi1_pins>;
+
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			channel@0 {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				compatible = "spidev";
+
+				reg = <0>;
+				spi-max-frequency = <16000000>;
+				spi-cpha;
+			};
+
+
+			channel@1 {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				compatible = "spidev";
+
+				reg = <1>;
+				spi-max-frequency = <16000000>;
+			};
+		};
+	};
+};
