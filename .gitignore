@@ -10,3 +10,6 @@ build
 Makefile
 config.*
 stamp-h1
+bin/*
+lib/libgpiooo.a
+

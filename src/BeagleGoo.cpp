@@ -92,6 +92,8 @@ struct BeagleGoo::GPIOInfo BeagleGoo::gpioInfos[] =
 		{ (char*) "P9_41", 0, 20, 0, 0 },
 		{ (char*) "P9_42", 0, 7, 0, 0 } };
 
+size_t BeagleGoo::gpioCount = sizeof(BeagleGoo::gpioInfos) / sizeof(BeagleGoo::GPIOInfo);
+
 uint16_t BeagleGoo::addrs[] =
 	{ 0x0818, 0x081C, 0x0808,	                //p8_4, p8_5
 			0x080C, 0x0890, 0x0894, 0x089C, 0x0898, //p8_6 .. p8_10
@@ -161,7 +163,7 @@ GPIOpin *BeagleGoo::claim(char* names[], int num, gpioWriteSemantics semantics,
 		pininfos[i] = _findGpio(names[i]);
 		if (pininfos[i] == NULL)
 		{
-			debug(1, "Pin '%s' not found\n", names[i]);
+			debug(1, "Pin '%s' is not a valid GPIO pin\n", names[i]);
 			delete[] pininfos;
 			return NULL;
 		}
@@ -200,7 +202,7 @@ GPIOpin *BeagleGoo::claim(char* names[], int num, gpioWriteSemantics semantics,
 
 struct BeagleGoo::GPIOInfo* BeagleGoo::_findGpio(char* name)
 {
-	for (int i = 0; gpioInfos[i].name != NULL; i++)
+	for (unsigned int i = 0; i < gpioCount; i++)
 		if (strncmp(gpioInfos[i].name, name, MaxGpioNameLen) == 0)
 			return (struct GPIOInfo *) &gpioInfos[i];
 	debug(0, "BeagleGoo::_findGpio(): pin %s not found\n", name);
