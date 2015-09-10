@@ -53,12 +53,13 @@ Building and Installation Instructions
 
 After cloning the repository and cd'ing into the new folder, run the following commands in the terminal.
   
-    autoreconf
     ./configure
     make
     sudo make install
   
 If you are cross compiling, you can add a `--host=cross-compiler-prefix` option to the `./configure` command.
+
+If there are problems with the ./configure, you can try `autoreconf` to fix the build scripts.
   
 Tutorial
 ======

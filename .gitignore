@@ -1,14 +1,12 @@
 .svn
 *.o
-*.in
 autom4te.cache
-aclocal.m4
-configure
-config.h.in
 build
+config.h
+config.status
+config.log
 *.Po
 Makefile
-config.*
 stamp-h1
 bin/*
 lib/libgpiooo.a
