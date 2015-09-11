@@ -158,6 +158,10 @@ long LTC2485::takeMeasurement()
 	// This may change for other compilers maybe?
 	result >>= 6;
 
+	// Result is relative to +/- 0.5 * vref
+	// Remove negative results (requires Vground to be 0v for now)
+	result += LTC2485_MAX_VALUE;
+
 	return result;
 }
 
