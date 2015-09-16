@@ -16,8 +16,8 @@
  * Family generic functions
  */
 
-LTC248X::LTC248X(I2C *handle, double vref) :
-		handle(handle), vref(vref)
+LTC248X::LTC248X(I2C *handle, double vref, double vground) :
+		handle(handle), vref(vref), vground(vground), initialized(false)
 {
 	// Last conversion was never: epoch
 	lastConv = 0;
@@ -69,8 +69,8 @@ LTC248X::~LTC248X()
  * Device specific functions
  */
 
-LTC2485::LTC2485(I2C *handle, double vref) :
-		LTC248X(handle, vref)
+LTC2485::LTC2485(I2C *handle, double vref, double vground) :
+		LTC248X(handle, vref, vground)
 {
 }
 
@@ -125,6 +125,8 @@ long LTC2485::takeMeasurement()
 		return 0;
 	}
 
+	if (!initialized) init();
+
 	int32_t raw = 0, result = 0;
 
 	waitForConversion();
@@ -158,22 +160,21 @@ long LTC2485::takeMeasurement()
 	// This may change for other compilers maybe?
 	result >>= 6;
 
-	// Result is relative to +/- 0.5 * vref
-	// Remove negative results (requires Vground to be 0v for now)
-	result += LTC2485_MAX_VALUE;
-
 	return result;
 }
 
 double LTC2485::takeMeasurementF()
 {
-	return ((double) takeMeasurement())
-			/ (LTC2485_MAX_VALUE - LTC2485_MIN_VALUE);
+	// Raw is relative to +/- 0.5 * (vref - vground)
+	// Convert negative results to positive results relative to vground
+	double raw = takeMeasurement() + LTC2485_MAX_VALUE;
+
+	return raw / (LTC2485_MAX_VALUE - LTC2485_MIN_VALUE);
 }
 
 double LTC2485::takeMeasurementVolts()
 {
-	return takeMeasurementF() * vref;
+	return takeMeasurementF() * (vref - vground) + vground;
 }
 
 LTC2485::~LTC2485()

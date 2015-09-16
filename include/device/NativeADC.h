@@ -21,15 +21,35 @@ protected:
 	char *adcPath;
 	int activeADC;
 public:
+	/*
+	 * Default constructor for the NativeADC class
+	 */
 	NativeADC();
+	/*
+	 * Convinience constructor for the ADC class:
+	 * The ADC will be automatically initialized
+	 * with the given adcNumber
+	 *
+	 * @param adcNumber The numeric identifier of the
+	 * ADC to read from - commonly between 0 and 7
+	 */
 	NativeADC(int adcNumber);
 
+	/*
+	 * Initialize a specific native ADC channel
+	 *
+	 * @param adcNumber The numeric identifier of the
+	 * ADC to read from - commonly between 0 and 7
+	 */
 	virtual int init(int adcNumber);
 
 	virtual long takeMeasurement();
 	virtual double takeMeasurementF();
 	virtual double takeMeasurementVolts();
 
+	/*
+	 * Destructor for the NativeADC class
+	 */
 	virtual ~NativeADC();
 };
 
