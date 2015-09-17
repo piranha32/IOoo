@@ -126,6 +126,16 @@ public:
 	 */
 	bool isReady();
 
+	/*
+	 * @return Bus number in use
+	 */
+	int getActiveBus();
+
+	/*
+	 * "return Address in use
+	 */
+	int getActiveAddress();
+
 	/**
 	 * Enable error checking for this bus
 	 *
