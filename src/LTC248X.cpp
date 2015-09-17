@@ -9,15 +9,17 @@
 
 #include <stdint.h>
 
+#define LTC2485_TRY_COUNT 10
 #define LTC2485_MAX_VALUE 16777216
 #define LTC2485_MIN_VALUE -16777216
+#define LTC2485_V_MULTIPLIER 10000000
 
 /*
  * Family generic functions
  */
 
-LTC248X::LTC248X(I2C *handle, double vref, double vground) :
-		handle(handle), vref(vref), vground(vground), initialized(false)
+LTC248X::LTC248X(I2C *handle) :
+		handle(handle), initialized(false)
 {
 	// Last conversion was never: epoch
 	lastConv = 0;
@@ -44,7 +46,7 @@ int LTC248X::init(int flags)
 	// If 50Hz and 60Hz to be rejected simultaneously,
 	// the correct bit pattern is 0000, not 0110
 	if (((flags & LTC248X_REJECT_50HZ) & LTC248X_REJECT_60HZ) != 0)
-		flags ^= LTC248X_REJECT_50HZ & LTC248X_REJECT_60HZ;
+		flags ^= LTC248X_REJECT_50HZ | LTC248X_REJECT_60HZ;
 
 	if (handle->write(&flags, 1) < 0)
 	{
@@ -56,6 +58,8 @@ int LTC248X::init(int flags)
 
 	// Record current flags in use
 	this->flags = flags;
+
+	this->initialized = true;
 
 	return 0;
 }
@@ -69,8 +73,8 @@ LTC248X::~LTC248X()
  * Device specific functions
  */
 
-LTC2485::LTC2485(I2C *handle, double vref, double vground) :
-		LTC248X(handle, vref, vground)
+LTC2485::LTC2485(I2C *handle) :
+		LTC248X(handle)
 {
 }
 
@@ -79,7 +83,7 @@ void LTC2485::waitForConversion()
 	// Get the correct wait time in seconds (according to datasheet)
 	// These are the typical values. It can take a bit longer, but
 	// this should be cancelled out by the latency of I2C.
-	// If not, conversion reads are attempted twice anyway
+	// If not, conversion reads are attempted multiple times anyway
 	double waitTime;
 	if (flags & LTC248X_REJECT_50HZ)
 	{
@@ -95,17 +99,13 @@ void LTC2485::waitForConversion()
 		else
 			waitTime = 0.1336;
 	}
-	else if (flags & LTC248X_REJECT_BOTH)
+	else
 	{
+		// REJECT_BOTH
 		if (flags & LTC248X_SPEED_MODE)
 			waitTime = 0.0736;
 		else
 			waitTime = 0.1469;
-	}
-	else
-	{
-		// Should not happen
-		waitTime = 0.200;
 	}
 
 	double elapsed;
@@ -130,17 +130,22 @@ long LTC2485::takeMeasurement()
 	int32_t raw = 0, result = 0;
 
 	waitForConversion();
-	if (handle->read(&raw, 4) < 0)
-	{
-		// Try again, just to be sure
-		if (handle->read(&result, 4) < 0)
-		{
-			error("LTC2485::takeMeasurement() error: %s (%d)\n",
-					strerror(errno), errno);
-			return 0;
-		}
+
+	// Try multiple times to read the value from the ADC, just in case it's taking
+	// longer than usual
+	int i = LTC2485_TRY_COUNT;
+	int success;
+	do {
+		success = handle->read(&raw, 4, false, false);
+	} while (success < 0 && --i > 0);
+
+	if (i <= 0) {
+		error("LTC2485::takeMeasurement() error: %s (%d)\n",
+				strerror(errno), errno);
+		return 0;
 	}
-	// A conversion is initialized when all 32 bits are read
+
+	// A conversion is initialized when all 32 bits are successfully read
 	lastConv = clock();
 
 	// Flip byte order
@@ -165,16 +170,12 @@ long LTC2485::takeMeasurement()
 
 double LTC2485::takeMeasurementF()
 {
-	// Raw is relative to +/- 0.5 * (vref - vground)
-	// Convert negative results to positive results relative to vground
-	double raw = takeMeasurement() + LTC2485_MAX_VALUE;
-
-	return raw / (LTC2485_MAX_VALUE - LTC2485_MIN_VALUE);
+	return takeMeasurement() / (LTC2485_MAX_VALUE - LTC2485_MIN_VALUE);
 }
 
 double LTC2485::takeMeasurementVolts()
 {
-	return takeMeasurementF() * (vref - vground) + vground;
+	return ((double) takeMeasurement()) / LTC2485_V_MULTIPLIER;
 }
 
 LTC2485::~LTC2485()

@@ -38,14 +38,13 @@ class LTC248X: public ADC
 {
 protected:
 	I2C *handle;
-	double vref, vground;
 	int flags;
 
 	clock_t lastConv;
 
 	bool initialized;
 
-	LTC248X(I2C *handle, double vref, double vground);
+	LTC248X(I2C *handle);
 
 	/*
 	 * Waits the required amount of time
@@ -91,7 +90,7 @@ public:
 	 * @param vground The minimum input voltage of the chip
 	 * 					Defaults to 0v
 	 */
-	LTC2485(I2C *handle, double vref, double vground = 0);
+	LTC2485(I2C *handle);
 
 	virtual long takeMeasurement();
 	virtual double takeMeasurementF();

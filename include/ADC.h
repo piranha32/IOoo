@@ -41,10 +41,12 @@ public:
 	/*
 	 * Takes a measurement from the ADC and returns a floating
 	 * point value between 0 (ground) and 1 (full-scale)
+	 * or -1 (negative full-scale) and 1 (full-scale) depending
+	 * on the type of ADC
 	 *
 	 * Useful to use for percentage
 	 *
-	 * @return Floating point value between 0 and 1
+	 * @return Floating point value as a ratio of full-scale voltage
 	 */
 	virtual double takeMeasurementF() = 0;
 
