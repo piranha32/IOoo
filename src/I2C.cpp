@@ -421,7 +421,7 @@ int I2C::readRegister(unsigned char reg_addr, void *rbuf, size_t length)
 	return writeRead(&reg_addr, 1, rbuf, length);
 }
 
-int I2C::writeRegister(unsigned char reg_addr, void *wbuf, size_t length)
+int I2C::writeRegister(unsigned char reg_addr, const void *wbuf, size_t length)
 {
 	return writeWrite(&reg_addr, 1, wbuf, length);
 }
