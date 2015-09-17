@@ -230,6 +230,20 @@ bool I2C::isReady()
 }
 
 
+/*
+ * Accessors
+ */
+
+int I2C::getActiveBus()
+{
+	return activeBus;
+}
+
+int I2C::getActiveAddress()
+{
+	return activeAddr;
+}
+
 
 /*
  * Error checking
