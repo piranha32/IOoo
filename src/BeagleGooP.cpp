@@ -36,7 +36,7 @@ BeagleGooP::BeagleGooP(int num, BeagleGoo::gpioWriteSemantics semantics,
 		masks[i]=0;
 		pins[i]=NULL;
 	}
-	debug(2,"BeagleGooP::BeagleGooP(): done\n");
+	iooo_debug(2,"BeagleGooP::BeagleGooP(): done\n");
 }
 
 BeagleGooP::~BeagleGooP()
@@ -48,7 +48,7 @@ BeagleGooP::~BeagleGooP()
 		pins[i]->refCounter--;
 		//sanity check
 		if (pins[i]->refCounter < 0)
-			debug(0,
+			iooo_debug(0,
 					"BeagleGooP::~BeagleGooP(): reference count on pin '%s' is lower than zero\n",
 					pins[i]->name);
 		//clear gpioExclusive pin if present
@@ -70,7 +70,7 @@ int BeagleGooP::addPin(BeagleGoo::GPIOInfo *pin)
 {
 	if (current >= num)
 	{
-		debug(2,"BeagleGooP::addPin(): current >= num\n");
+		iooo_debug(2,"BeagleGooP::addPin(): current >= num\n");
 		return -1;
 	}
 
@@ -79,7 +79,7 @@ int BeagleGooP::addPin(BeagleGoo::GPIOInfo *pin)
 	masks[current] = 1 << (pin->bitNum);
 	localNames[current] = pin->name;
 	pin->refCounter++;
-	debug(2,
+	iooo_debug(2,
 			"BeagleGooP::addPin(): current=%i, pin->gpioNum=%i, pin->bitNum=%i, masks=%08x, localNames=\"%s\"\n",
 			current, pin->gpioNum, pin->bitNum, masks[current],
 			localNames[current]);
@@ -94,7 +94,7 @@ void BeagleGooP::namePin(int i, char* name)
 		return;
 	//if localNames[i]==pins[i]->name then local name is just a reference to the system pin name.
 	//If so, local storage has to be allocated.
-	debug(2,"Naming pin %i as \"%s\" (formerly \"%s\")\n",i,name,localNames[i]);
+	iooo_debug(2,"Naming pin %i as \"%s\" (formerly \"%s\")\n",i,name,localNames[i]);
 	if (localNames[i] == pins[i]->name)
 		localNames[i] = new char[BeagleGoo::MaxGpioNameLen + 1];
 	for(int j=0;j<BeagleGoo::MaxGpioNameLen + 1;j++)
@@ -114,7 +114,7 @@ int BeagleGooP::findPinIndex(char* name)
 	for (int i = 0; i < current; i++)
 		if (strncmp(localNames[i], name, BeagleGoo::MaxGpioNameLen) == 0)
 			return i;
-	debug(0,"BeagleGooP::findPinIndex(): Index for pin %s not found\n", name);
+	iooo_debug(0,"BeagleGooP::findPinIndex(): Index for pin %s not found\n", name);
 	return -1;
 }
 
@@ -126,13 +126,13 @@ void BeagleGooP::enableOutput(bool enable)
 
 void BeagleGooP::enableOutput(int i, bool enable)
 {
-	debug(2,"BeagleGooP::enableOutput(): i=%i, enable=%i\n", i, enable);
+	iooo_debug(2,"BeagleGooP::enableOutput(): i=%i, enable=%i\n", i, enable);
 	if (i < 0 || i >= current)
 	{
-		debug(1,"BeagleGooP::enableOutput(): Index %i out of range\n", i);
+		iooo_debug(1,"BeagleGooP::enableOutput(): Index %i out of range\n", i);
 		return;
 	}
-	debug(2,
+	iooo_debug(2,
 			"BeagleGooP::enableOutput(): enabling pin %i (%s): port=%i, mask=%08x, OE_REG=%08x\n",
 			i, localNames[i], ports[i], masks[i],
 			parent->gpios[ports[i]][GPIO_OE_REG / 4]);
@@ -140,16 +140,16 @@ void BeagleGooP::enableOutput(int i, bool enable)
 		parent->gpios[ports[i]][GPIO_OE_REG / 4] &= ~masks[i];
 	else
 		parent->gpios[ports[i]][GPIO_OE_REG / 4] |= masks[i];
-	debug(2,"BeagleGooP::enableOutput(): port=%i, mask=%08x, OE_REG=%08x\n",
+	iooo_debug(2,"BeagleGooP::enableOutput(): port=%i, mask=%08x, OE_REG=%08x\n",
 			ports[i], masks[i], parent->gpios[ports[i]][GPIO_OE_REG / 4]);
 }
 
 void BeagleGooP::enableOutput(int* outs, int num)
 {
-	debug(2,"BeagleGooP::enableOutput(arr): enabling %i pins\n", num);
+	iooo_debug(2,"BeagleGooP::enableOutput(arr): enabling %i pins\n", num);
 	if (outs == NULL || num <= 0 || num>current )
 	{
-		debug(0,"BeagleGooP::enableOutput(): fail (current=%i, num=%i)\n",
+		iooo_debug(0,"BeagleGooP::enableOutput(): fail (current=%i, num=%i)\n",
 				current, num);
 		return;
 	}
@@ -169,10 +169,10 @@ void BeagleGooP::enableOutput(int* outs, int num)
 
 void BeagleGooP::enableOutput(char** outNames, int num)
 {
-	debug(2,"BeagleGooP::enableOutput(names): enabling %i named pins\n", num);
+	iooo_debug(2,"BeagleGooP::enableOutput(names): enabling %i named pins\n", num);
 	if (outNames == NULL || num <= 0 || num >= current)
 	{
-		debug(0,"BeagleGooP::enableOutput(): fail\n");
+		iooo_debug(0,"BeagleGooP::enableOutput(): fail\n");
 		return;
 	}
 	bool *oe=new bool[current];
@@ -192,7 +192,7 @@ void BeagleGooP::enableOutput(char** outNames, int num)
 
 void BeagleGooP::write(uint32_t v)
 {
-	debug(3,"BeagleGooP::write(): writing %i\n",v);
+	iooo_debug(3,"BeagleGooP::write(): writing %i\n",v);
 	switch (writeSemantics)
 	{
 		case GPIOoo::gpioWrite:
@@ -258,7 +258,7 @@ void BeagleGooP::write(uint32_t v)
 
 		case GPIOoo::gpioWriteAtomic: //atomic write is not supported on Beagle.
 		default:
-			debug(0,"BeagleGooP::write(): Incorrect semantics\n");
+			iooo_debug(0,"BeagleGooP::write(): Incorrect semantics\n");
 			//do nothing
 			break;
 	}
