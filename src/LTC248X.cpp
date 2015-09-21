@@ -125,7 +125,10 @@ long LTC2485::takeMeasurement()
 		return 0;
 	}
 
-	if (!initialized) init();
+	if (!initialized
+			|| ((double) clock() - lastConv) / CLOCKS_PER_SEC
+			> LTC248X_MAX_CONVERSION_AGE)
+		init();
 
 	int32_t raw = 0, result = 0;
 

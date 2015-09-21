@@ -34,6 +34,9 @@
 #define LTC248X_REJECT_50HZ	0x02
 #define LTC248X_REJECT_BOTH	0x00
 
+// Maximum age of the last conversion before a new conversion is made (seconds)
+#define LTC248X_MAX_CONVERSION_AGE 0.2
+
 class LTC248X: public ADC
 {
 protected:
