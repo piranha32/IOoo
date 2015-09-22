@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2013 CircuitCo
  *
- * Virtual cape for SPI0 on connector pins P9.22 P9.21 P9.18 P9.17
+ * Virtual cape for SPI0 on connector pins P9.17 P9.18 P9.21 P9.22
  *
  * D0 = Output
  * D1 = Input
@@ -23,25 +23,24 @@
 	/* state the resources this cape uses */
 	exclusive-use =
 		/* the pin header uses */
-		"P9.22",	/* spi0_sclk */
-		"P9.21",	/* spi0_d0 */
-		"P9.18",	/* spi0_d1 */
 		"P9.17",	/* spi0_cs0 */
-		// "P9.42",	/* spi0_cs1 */
+		"P9.18",	/* spi0_d1 */
+		"P9.21",	/* spi0_d0 */
+		"P9.22",	/* spi0_sclk */
 		/* the hardware ip uses */
 		"spi0";
 
 	fragment@0 {
 		target = <&am33xx_pinmux>;
 		__overlay__ {
-			/* default state has all gpios released and mode set to uart1 */
-			bb_spi1_pins: pinmux_bb_spi1_pins {
+			bb_spi0_pins: pinmux_bb_spi0_pins {
+				/* see BeagleBone System Reference Manual 7.1 - Expansion Connectors */
+				/* for pinmux offsets, see Derek Molloy's tables at http://exploringbeaglebone.com/chapter8/ */
 				pinctrl-single,pins = <
-					0x150 0x33	/* mcasp0_aclkx.spi0_sclk, INPUT_PULLUP | MODE3 */
-					0x154 0x13	/* mcasp0_fsx.spi0_d0, OUTPUT_PULLUP | MODE3 */
-					0x158 0x33	/* mcasp0_axr0.spi0_d1, INPUT_PULLUP | MODE3 */
-					0x15c 0x13	/* mcasp0_ahclkr.spi0_cs0, OUTPUT_PULLUP | MODE3 */
-					// 0x164 0x12	/* eCAP0_in_PWM0_out.spi1_cs1 OUTPUT_PULLUP | MODE2 */
+					0x15c 0x10	/* i2c1_scl.spi0_cs0, OUTPUT_PULLUP | MODE0 */
+					0x158 0x30	/* i2c1_sda.spi0_d1, INPUT_PULLUP | MODE0 */
+					0x154 0x10	/* uart2_txd.spi0_d0, OUTPUT_PULLUP | MODE0 */
+					0x150 0x30	/* uart2_rxd.spi0_sclk, INPUT_PULLUP | MODE0 */
 				>;
 			};
 		};
