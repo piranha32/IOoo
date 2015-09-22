@@ -20,7 +20,7 @@ TLC5946phy::TLC5946phy(SPI *spi, GPIOpin *ctrl)
 
 	if (spi == NULL || ctrl == NULL)
 	{
-		debug(0, "No valid control interfaces passed to TLC5946phy\n");
+		iooo_debug(0, "No valid control interfaces passed to TLC5946phy\n");
 		return;
 	}
 
@@ -40,7 +40,7 @@ TLC5946phy::TLC5946phy(SPI *spi, GPIOpin *ctrl)
 
 TLC5946phy::~TLC5946phy()
 {
-	debug(2, "TLC5946phy::~TLC5946phy()");
+	iooo_debug(2, "TLC5946phy::~TLC5946phy()");
 }
 
 void TLC5946phy::setBlank(uint8_t blank)
@@ -58,7 +58,7 @@ void TLC5946phy::setMode(uint8_t mode)
 {
 	if (!active || (mode_pin_pin < 0))
 		return;
-	debug(2, "set mode to %d\n", mode);
+	iooo_debug(2, "set mode to %d\n", mode);
 	if (mode)
 		ctrl->setBit(mode_pin_pin);
 	else

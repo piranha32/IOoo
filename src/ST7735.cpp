@@ -92,11 +92,11 @@ void ST7735::on()
 {
 	if(!active)
 	{
-		debug(1,"ST7735 has not been activated properly!\n");
+		iooo_debug(1,"ST7735 has not been activated properly!\n");
 		return;
 	}
 
-	debug(1,"Turning ST7735 on\n");
+	iooo_debug(1,"Turning ST7735 on\n");
 	uint8_t cmd[1]={DISPON};
 	phy->setDataMode(false);
 	phy->send(cmd,1);

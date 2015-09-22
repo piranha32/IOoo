@@ -29,6 +29,8 @@
 		target = <&am33xx_pinmux>;
 		__overlay__ {
 			bb_i2c1_pins: pinmux_bb_i2c1_pins {
+				/* see BeagleBone System Reference Manual 7.1 - Expansion Connectors */
+				/* for pinmux offsets, see Derek Molloy's tables at http://exploringbeaglebone.com/chapter8/ */
 				pinctrl-single,pins = <
 					0x158 0x72	/* spi0_d1.i2c1_sda, SLEWCTRL_SLOW | INPUT_PULLUP | MODE2 */
 					0x15c 0x72	/* spi0_cs0.i2c1_scl, SLEWCTRL_SLOW | INPUT_PULLUP | MODE2 */
