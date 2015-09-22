@@ -74,7 +74,7 @@ void TLC5946chain::commit()
 
 	if (brightness_changed)
 	{
-		debug(2, "Committing brightness\n");
+		iooo_debug(2, "Committing brightness\n");
 		phy->setMode(0);
 
 		/*

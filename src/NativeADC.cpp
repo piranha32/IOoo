@@ -40,7 +40,7 @@ int NativeADC::init(int adcNumber)
 	if (snprintf(adcPath, MAX_PATH_LEN, "%s%d", ADC_DEVICE_PATH_BASE,
 			adcNumber) >= MAX_PATH_LEN)
 	{
-		error("NativeADC::open() error: ADC number is too long.\n");
+		iooo_error("NativeADC::open() error: ADC number is too long.\n");
 		errno = ENAMETOOLONG;
 		return -1;
 	}
@@ -61,14 +61,14 @@ int NativeADC::init(int adcNumber)
 int NativeADC::open()
 {
 	if (activeADC < 0) {
-		error("NativeADC::open() error: No ADC device has been initialized.\n");
+		iooo_error("NativeADC::open() error: No ADC device has been initialized.\n");
 		errno = EDESTADDRREQ;
 		return 0;
 	}
 
 	if ((fd = ::open(adcPath, O_RDONLY)) < 0)
 	{
-		error("NativeADC::open() open(%s) error: %s (%d)\n", adcPath, strerror(errno),
+		iooo_error("NativeADC::open() open(%s) error: %s (%d)\n", adcPath, strerror(errno),
 				errno);
 		return fd; // fd is negative
 	}
@@ -79,14 +79,14 @@ int NativeADC::open()
 int NativeADC::close()
 {
 	if (activeADC < 0) {
-		error("NativeADC::close() error: No ADC device has been initialized.\n");
+		iooo_error("NativeADC::close() error: No ADC device has been initialized.\n");
 		errno = EDESTADDRREQ;
 		return 0;
 	}
 
 	if ((::close(fd)) != 0)
 	{
-		error("NativeADC::close() close() error: %s (%d)\n", strerror(errno), errno);
+		iooo_error("NativeADC::close() close() error: %s (%d)\n", strerror(errno), errno);
 		return -1;
 	}
 
@@ -96,7 +96,7 @@ int NativeADC::close()
 long NativeADC::takeMeasurement()
 {
 	if (activeADC < 0) {
-		error("NativeADC::takeMeasurement() error: No ADC device has been initialized.\n");
+		iooo_error("NativeADC::takeMeasurement() error: No ADC device has been initialized.\n");
 		errno = EDESTADDRREQ;
 		return 0;
 	}
@@ -106,7 +106,7 @@ long NativeADC::takeMeasurement()
 
 	char buf[ADC_CHAR_LENGTH];
 	if (read(fd, &buf, ADC_CHAR_LENGTH) < 0) {
-		error("NativeADC::takeMeasurement() read() error: %s (%d)\n", strerror(errno), errno);
+		iooo_error("NativeADC::takeMeasurement() read() error: %s (%d)\n", strerror(errno), errno);
 		return 0;
 	}
 

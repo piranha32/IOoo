@@ -8,8 +8,8 @@
 #include "device/LTC248X.h"
 
 #include <stdint.h>
+#include <unistd.h>
 
-#define LTC2485_TRY_COUNT 10
 #define LTC2485_MAX_VALUE 16777216
 #define LTC2485_MIN_VALUE -16777216
 #define LTC2485_V_MULTIPLIER 10000000
@@ -38,7 +38,7 @@ int LTC248X::init(int flags)
 {
 	if (!handle->isReady())
 	{
-		error("LTC248X::init() error: The I2C interface is not open.\n");
+		iooo_error("LTC248X::init() error: The I2C interface is not open.\n");
 		errno = EDESTADDRREQ;
 		return -1;
 	}
@@ -48,9 +48,9 @@ int LTC248X::init(int flags)
 	if (((flags & LTC248X_REJECT_50HZ) & LTC248X_REJECT_60HZ) != 0)
 		flags ^= LTC248X_REJECT_50HZ | LTC248X_REJECT_60HZ;
 
-	if (handle->write(&flags, 1) < 0)
+	if (handle->write(&flags, 1) < 1)
 	{
-		error("LTC248X::init() error: %s (%i)\n", strerror(errno), errno);
+		iooo_error("LTC248X::init() error: %s (%i)\n", strerror(errno), errno);
 		return -1;
 	}
 	// Writes also initialize a conversion
@@ -108,42 +108,55 @@ void LTC2485::waitForConversion()
 			waitTime = 0.1469;
 	}
 
-	double elapsed;
-	do
+	double remainingWait = waitTime
+			- ((double) clock() - lastConv) / CLOCKS_PER_SEC;
+
+	if (remainingWait > 0)
 	{
-		elapsed = ((double) clock() - lastConv) / CLOCKS_PER_SEC;
-	} while (elapsed < waitTime);
+		usleep((long) (remainingWait * 1000000));
+	}
 }
 
 long LTC2485::takeMeasurement()
 {
 	if (!handle->isReady())
 	{
-		error(
+		iooo_error(
 				"LTC2485::takeMeasurement() error: The I2C interface is not open.\n");
 		errno = EDESTADDRREQ;
 		return 0;
 	}
 
-	if (!initialized) init();
+	if (!initialized
+			|| ((double) clock() - lastConv) / CLOCKS_PER_SEC
+					> LTC248X_MAX_CONVERSION_AGE)
+		init();
 
 	int32_t raw = 0, result = 0;
 
+
 	waitForConversion();
+
 
 	// Try multiple times to read the value from the ADC, just in case it's taking
 	// longer than usual
-	int i = LTC2485_TRY_COUNT;
+	int i = LTC248X_TRY_COUNT;
 	int success;
-	do {
+	do
+	{
 		success = handle->read(&raw, 4, false, false);
+		usleep(LTC248X_TRY_INTERVAL * 1000000L);
 	} while (success < 0 && --i > 0);
 
-	if (i <= 0) {
-		error("LTC2485::takeMeasurement() error: %s (%d)\n",
-				strerror(errno), errno);
+
+	if (i <= 0)
+	{
+		iooo_error(
+				"LTC2485::takeMeasurement() error: %s (%d) after %d attempts\n",
+				strerror(errno), errno, LTC248X_TRY_COUNT);
 		return 0;
 	}
+
 
 	// A conversion is initialized when all 32 bits are successfully read
 	lastConv = clock();
