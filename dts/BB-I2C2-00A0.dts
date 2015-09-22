@@ -32,8 +32,8 @@
 				/* see BeagleBone System Reference Manual 7.1 - Expansion Connectors */
 				/* for pinmux offsets, see Derek Molloy's tables at http://exploringbeaglebone.com/chapter8/ */
 				pinctrl-single,pins = <
-					0x178 0x72	/* i2c2_sda, SLEWCTRL_SLOW | INPUT_PULLUP | MODE3 */
-					0x17c 0x72	/* i2c2_scl, SLEWCTRL_SLOW | INPUT_PULLUP | MODE3 */
+					0x178 0x73	/* i2c2_sda, SLEWCTRL_SLOW | INPUT_PULLUP | MODE3 */
+					0x17c 0x73	/* i2c2_scl, SLEWCTRL_SLOW | INPUT_PULLUP | MODE3 */
 				>;
 			};
 		};
