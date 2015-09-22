@@ -14,6 +14,22 @@
 #include "../I2C.h"
 #include "../debug.h"
 
+/*
+ * Maximum age of the last conversion before a new conversion
+ * is made in fractional seconds
+ */
+#define LTC248X_MAX_CONVERSION_AGE 0.2
+/*
+ * Maximum number of tries after waiting for the conversion
+ * to read the result
+ */
+#define LTC248X_TRY_COUNT 3
+/*
+ * The interval in fractional seconds between tries
+ */
+#define LTC248X_TRY_INTERVAL 0.010
+
+
 #define LTC248X_DEFAULT	0x0
 
 // Gain does NOT apply to LTC2485
@@ -33,9 +49,6 @@
 #define LTC248X_REJECT_60HZ	0x04
 #define LTC248X_REJECT_50HZ	0x02
 #define LTC248X_REJECT_BOTH	0x00
-
-// Maximum age of the last conversion before a new conversion is made (seconds)
-#define LTC248X_MAX_CONVERSION_AGE 0.2
 
 class LTC248X: public ADC
 {
