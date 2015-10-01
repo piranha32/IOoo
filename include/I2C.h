@@ -126,6 +126,16 @@ public:
 	 */
 	bool isReady();
 
+	/*
+	 * @return Bus number in use
+	 */
+	int getActiveBus();
+
+	/*
+	 * "return Address in use
+	 */
+	int getActiveAddress();
+
 	/**
 	 * Enable error checking for this bus
 	 *
@@ -259,7 +269,7 @@ public:
 	 * @return Number of bytes successfully written, or -1 for error.
 	 * 			errno is updated.
 	 */
-	int writeRegister(unsigned char regAddr, void *rbuf, size_t length);
+	int writeRegister(unsigned char regAddr, const void *wbuf, size_t length);
 
 	/**
 	 * Begin a transaction for all following I2C commands

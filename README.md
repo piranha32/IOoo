@@ -15,12 +15,14 @@ What it is
 
 IOoo is an object oriented, universal framework that allows to write applications that can be easily ported between different platforms. The library's core are basic I/O operations, like GPIO, SPI, I2C, etc. The next layer is built by simple device drivers, implementing basic functions of connected devices. The interface is defined by an abstract class, which describes what functions can be called by the higher layers. Except for instantiation, the application should always refer to the methods defined by the generic interface. Implementations can contain platform-specific methods, however their use is limited to the parts of the application that are tied to the underlying hardware (i.e. setting pin muxing). Hardware-independent modules should always refer to the generic interfaces. 
 
-Currently the interfaces are defined for GPIO and SPI. I2C should follow shortly. Hardware implementation exists for Beaglebone. Because of the way how the platform-specific classes are implemented, porting the framework to Raspberry PI should be trivial.
+Currently the interfaces are defined for GPIO, SPI, I2C and ADC. Hardware implementation exists for Beaglebone. Because of the way how the platform-specific classes are implemented, porting the framework to Raspberry PI should be trivial.
 
 Implemented hardware interfaces
 -------------------
   - __GPIO:__ GPIO operations on Beaglebone are implemented using memory mapped interface. This is the fastest way to access the I/O lines.
   - __SPI:__ SPI implementation relies on kernel drivers and accesses SPI buses through the /dev interface. This implementation should be portable across all Linux versions.
+  - __I2C:__ I2C implementation also relies on kernel drivers and the /dev interface.
+  - __ADC:__ Since it is common to put your own ADC chips on a circuit board for better accuracy, both the native ADC of the BeagleBone and the ability to use external ADCs like the LTC2485 are exposed. The native ADC uses the /sys/device interface and if the 'helper' files change from platform to platform, it is trivial to set the correct file path for each device using a class for each host system. The LTC248X set of chips are built on top of the I2C implementation.
 
 Implemented device drivers
 ----------------
@@ -70,11 +72,11 @@ Known problems and limitations
 - 4-bit interface for HD44780 has not been tested.
 - Linux implementation is not MT-safe
 - Incomplete documentation
+- I2C class and all subclasses of ADC have not yet been formally tested (you can help!)
 
 Future work
 ========
 - Write more docs
-- Add I2C interface (shouldn't take long)
 - Add more device drivers
 - Split the memory-mapped GPIO interface into two parts: 
     - Generic functionality common for all memory-mapped implementations,
