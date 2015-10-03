@@ -113,7 +113,7 @@ BeagleGoo::BeagleGoo()
 	gpioFd = open("/dev/mem", O_RDWR | O_SYNC);
 	if (gpioFd < 0)
 	{
-		debug(0, "BeagleGoo::BeagleGoo(): Can't open /dev/mem\n");
+		iooo_debug(0, "BeagleGoo::BeagleGoo(): Can't open /dev/mem\n");
 		return;
 	}
 
@@ -123,14 +123,14 @@ BeagleGoo::BeagleGoo()
 				PROT_READ | PROT_WRITE, MAP_SHARED, gpioFd, gpioAddrs[i]);
 		if (gpios[i] == MAP_FAILED )
 		{
-			debug(0, "GPIO Mapping failed for GPIO Module %i\n", i);
+			iooo_debug(0, "GPIO Mapping failed for GPIO Module %i\n", i);
 			return;
 		}
-		debug(1,
+		iooo_debug(1,
 				"BeagleGoo::BeagleGoo() gpio[%i] at address 0x%08x mapped at 0x%08x\n",
 				i, gpioAddrs[i], gpios[i]);
 	}
-	debug(2, "BeagleGoo successfully activated\n");
+	iooo_debug(2, "BeagleGoo successfully activated\n");
 	active = true;
 }
 
@@ -147,13 +147,13 @@ GPIOpin *BeagleGoo::claim(char* names[], int num, gpioWriteSemantics semantics,
 {
 	if (!active)
 	{
-		debug(1, "BeagleGoo::claim: BeagleGoo not active\n");
+		iooo_debug(1, "BeagleGoo::claim: BeagleGoo not active\n");
 		return NULL;
 	}
 
 	if (num == 0)
 	{
-		debug(1, "BeagleGoo::claim(): num is 0\n");
+		iooo_debug(1, "BeagleGoo::claim(): num is 0\n");
 		return NULL;
 	}
 
@@ -163,7 +163,7 @@ GPIOpin *BeagleGoo::claim(char* names[], int num, gpioWriteSemantics semantics,
 		pininfos[i] = _findGpio(names[i]);
 		if (pininfos[i] == NULL)
 		{
-			debug(1, "Pin '%s' is not a valid GPIO pin\n", names[i]);
+			iooo_debug(1, "Pin '%s' is not a valid GPIO pin\n", names[i]);
 			delete[] pininfos;
 			return NULL;
 		}
@@ -172,23 +172,23 @@ GPIOpin *BeagleGoo::claim(char* names[], int num, gpioWriteSemantics semantics,
 				&& ((pininfos[i]->flags & gpioExclusive)
 						|| (flags & gpioExclusive)))
 		{
-			debug(0, "Pin '%s' already claimed and can not be shared\n",
+			iooo_debug(0, "Pin '%s' already claimed and can not be shared\n",
 					names[i]);
 			delete[] pininfos;
 			return NULL;
 		}
-		debug(2,
+		iooo_debug(2,
 				"BeagleGoo::claim(): found pin %i: name: \"%s\", port=%i, bit=%i\n",
 				i, pininfos[i]->name, pininfos[i]->gpioNum, pininfos[i]->bitNum);
 	}
 
-	debug(3, "Creating BeagleGooP\n");
+	iooo_debug(3, "Creating BeagleGooP\n");
 	BeagleGooP *pin = new BeagleGooP(num, semantics, this);
 
-	debug(3, "Adding pins\n");
+	iooo_debug(3, "Adding pins\n");
 	for (int i = 0; i < num; i++)
 	{
-		debug(3, "Adding pin %i\n", i);
+		iooo_debug(3, "Adding pin %i\n", i);
 		pin->addPin(pininfos[i]);
 		pininfos[i]->refCounter++;
 		if (flags & gpioExclusive)
@@ -196,7 +196,7 @@ GPIOpin *BeagleGoo::claim(char* names[], int num, gpioWriteSemantics semantics,
 	}
 
 	delete[] pininfos;
-	debug(3, "BeagleGoo::claim: finish\n");
+	iooo_debug(3, "BeagleGoo::claim: finish\n");
 	return pin;
 }
 
@@ -205,7 +205,7 @@ struct BeagleGoo::GPIOInfo* BeagleGoo::_findGpio(char* name)
 	for (unsigned int i = 0; i < gpioCount; i++)
 		if (strncmp(gpioInfos[i].name, name, MaxGpioNameLen) == 0)
 			return (struct GPIOInfo *) &gpioInfos[i];
-	debug(0, "BeagleGoo::_findGpio(): pin %s not found\n", name);
+	iooo_debug(0, "BeagleGoo::_findGpio(): pin %s not found\n", name);
 	return NULL;
 }
 

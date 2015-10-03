@@ -23,14 +23,14 @@ JDT18003T01::JDT18003T01(SPI *spi, GPIOpin *ctrl)
 
 	if (spi == NULL || ctrl == NULL)
 	{
-		debug(0, "No valid control interfaces passed to JDT18003T01\n");
+		iooo_debug(0, "No valid control interfaces passed to JDT18003T01\n");
 		return;
 	}
 
 	reset_pin = ctrl->findPinIndex((char *) "reset");
 	rs_pin = ctrl->findPinIndex((char *) "rs");
 
-	debug(2,"JDT18003T01::JDT18003T01: rs_pin:%i, reset_pin:%i",rs_pin,reset_pin);
+	iooo_debug(2,"JDT18003T01::JDT18003T01: rs_pin:%i, reset_pin:%i",rs_pin,reset_pin);
 
 	//setup directions on control lines
 	ctrl->enableOutput(reset_pin, true);
@@ -43,7 +43,7 @@ JDT18003T01::JDT18003T01(SPI *spi, GPIOpin *ctrl)
 
 JDT18003T01::~JDT18003T01()
 {
-	debug(2, "JDT18003T01::~JDT18003T01()");
+	iooo_debug(2, "JDT18003T01::~JDT18003T01()");
 }
 
 void JDT18003T01::setReset(uint8_t reset)

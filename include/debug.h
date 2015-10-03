@@ -28,19 +28,19 @@
  */
 #if IOOO_DEBUG_LEVEL > 0
 	// This used to use ##__VA_ARGS__, but this is classed as too ambiguous in G++11
-	#define debugfva(level, format, ...) { \
+	#define iooo_debugfva(level, format, ...) { \
 		if(level <= DEBUG_LEVEL){ \
 			printf("%s:%i:"#format"\n", __FILE__, __LINE__, __VA_ARGS__); \
 		} \
 	}
 
-	#define debugf(level, format) debug(level, format, NULL)
+	#define iooo_debugf(level, format) iooo_debug(level, format, NULL)
 
 	// Manual sneaky macro overloading
 	#define GET_DEBUG(_1, _2, _3, NAME, ...) NAME
-	#define debug(...) GET_DEBUG(__VA_ARGS__, debugfva, debugf)(__VA_ARGS__)
+	#define iooo_debug(...) GET_DEBUG(__VA_ARGS__, iooo_debugfva, iooo_debugf)(__VA_ARGS__)
 #else
-	#define debug(...) ((void) 0)
+	#define iooo_debug(...) ((void) 0)
 #endif
 
 /**
@@ -50,13 +50,13 @@
  *   			followed by format arguments
  */
 #if IOOO_ERROR_LEVEL > 0
-	#define error(...) { \
+	#define iooo_error(...) { \
 		int errnobkp = errno; \
 		fprintf(stderr, __VA_ARGS__); \
 		errno = errnobkp; \
 	}
 #else
-	#define error(...) ((void) 0)
+	#define iooo_error(...) ((void) 0)
 #endif
 
 #endif /* IOOO_DEBUG_H_ */
