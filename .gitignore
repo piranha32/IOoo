@@ -1,5 +1,13 @@
 .svn
 *.o
+autom4te.cache
+build
+config.h
+config.status
+config.log
+*.Po
+Makefile
+stamp-h1
 bin/*
 lib/libgpiooo.a
 

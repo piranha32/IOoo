@@ -4,6 +4,7 @@ Table of contents
     * [Implemented hardware interfaces](#implemented-hardware-interfaces)
     * [Implemented device drivers](#implemented-device-drivers)
 * [Why yet another I/O library?](#why-yet-another-io-library)
+* [Building and Installation Instructions](#building-and-installation-instructions)
 * [Tutorial](#tutorial)
 * [Known problems and limitations](#known-problems-and-limitations)
 * [Future work](#future-work)
@@ -43,8 +44,25 @@ The idea behind the components of the framework is simple:
     - Low-level interface, mapping control signals to hardware lines (like "set MODE line to 1", "write 0x3D to DATA lines").
     - Higher level module, implementing device's functionality (like "putChar", "clear", "drawPoint").
 
-  Splitting the driver into two parts  completely isolates the high-level module from the wire-level interface. The PHY (low level) modules may use the abstract I/O interfaces described above, but they are not required to. As long as the PHY supports all the operations used by the upper layer, the implementation can be as close to the actual hardware as necessary. A good example of this approach is TLC5946 PHY module for Beaglebone. The module is based on generic PHY using GPIOs to control the chip, but uses PRU to generate waveforms required by GSCLK and BLANK lines.
+Splitting the driver into two parts  completely isolates the high-level module from the wire-level interface. The PHY (low level) modules may use the abstract I/O interfaces described above, but they are not required to. As long as the PHY supports all the operations used by the upper layer, the implementation can be as close to the actual hardware as necessary. A good example of this approach is TLC5946 PHY module for Beaglebone. The module is based on generic PHY using GPIOs to control the chip, but uses PRU to generate waveforms required by GSCLK and BLANK lines.
 
+Building and Installation Instructions
+======
+  You need to have the following tools installed.
+- gcc-4.7 or higher
+- automake
+- autoconf
+
+After cloning the repository and cd'ing into the new folder, run the following commands in the terminal.
+  
+    ./configure
+    make
+    sudo make install
+  
+If you are cross compiling, you can add a `--host=cross-compiler-prefix` option to the `./configure` command.
+
+If there are problems with the ./configure, you can try `autoreconf` to fix the build scripts.
+  
 Tutorial
 ======
 *[TBD]*
