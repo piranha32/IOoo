@@ -10,7 +10,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <vector>
-#include <linux/i2c.h>
+#include <linux/i2c-dev.h>
 
 #include "debug.h"
 
