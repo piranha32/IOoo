@@ -110,22 +110,24 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = aclocal-1.14
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AR = ar
+AR = arm-linux-gnueabihf-ar
 AUTOCONF = autoconf
 AUTOHEADER = autoheader
 AUTOMAKE = automake-1.14
 AWK = mawk
-CC = gcc
+CC = arm-linux-gnueabihf-gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -g -O2
+CFLAGS = -march=armv7-a -mtune=cortex-a8
 CPPFLAGS = 
-CXX = g++
-CXXCPP = g++ -E
+CXX = arm-linux-gnueabihf-g++
+CXXCPP = arm-linux-gnueabihf-g++ -E
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -g -O2 -std=gnu++11
+CXXFLAGS = -march=armv7-a -mtune=cortex-a8 -std=gnu++11
 CYGPATH_W = echo
+DEBUG_LEVEL = 0
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
+DTC = /home/chris/workspace/ibm-gas-sensor/third-party/dtc/dtc
 ECHO_C = 
 ECHO_N = -n
 ECHO_T = 
@@ -153,18 +155,18 @@ PACKAGE_TARNAME = iooo
 PACKAGE_URL = 
 PACKAGE_VERSION = 0.1
 PATH_SEPARATOR = :
-RANLIB = ranlib
+RANLIB = arm-linux-gnueabihf-ranlib
 SET_MAKE = 
 SHELL = /bin/bash
-STRIP = 
+STRIP = arm-linux-gnueabihf-strip
 VERSION = 0.1
-abs_builddir = /media/sf_RBM/IOoo/dts
-abs_srcdir = /media/sf_RBM/IOoo/dts
-abs_top_builddir = /media/sf_RBM/IOoo
-abs_top_srcdir = /media/sf_RBM/IOoo
-ac_ct_AR = ar
-ac_ct_CC = gcc
-ac_ct_CXX = g++
+abs_builddir = /home/chris/workspace/ibm-gas-sensor/third-party/iooo/dts
+abs_srcdir = /home/chris/workspace/ibm-gas-sensor/third-party/iooo/dts
+abs_top_builddir = /home/chris/workspace/ibm-gas-sensor/third-party/iooo
+abs_top_srcdir = /home/chris/workspace/ibm-gas-sensor/third-party/iooo
+ac_ct_AR = 
+ac_ct_CC = 
+ac_ct_CXX = 
 am__include = include
 am__leading_dot = .
 am__quote = 
@@ -178,11 +180,11 @@ datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host_alias = 
+host_alias = arm-linux-gnueabihf
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /root/install-sh
+install_sh = ${SHELL} /home/chris/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -202,8 +204,11 @@ target_alias =
 top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
-DTS = gpio_hd44780-00A0.dts gpio_leds-00A0.dts tlc5946-00A0.dts gpio_buttons-00A0.dts spi1-00A0.dts jd-t18003-ctrl-00A0.dts
-DTBs = $(patsubst %.dts,%.dtbo,$(DTS))
+DTS = gpio_hd44780-00A0.dts gpio_leds-00A0.dts tlc5946-00A0.dts \
+	gpio_buttons-00A0.dts jd-t18003-ctrl-00A0.dts BB-ADC-00A0.dts \
+	BB-I2C1-00A0.dts BB-I2C2-00A0.dts BB-SPI0-00A0.dts \
+	BB-SPI0-ALT-00A0.dts BB-SPI1-00A0.dts BB-SPI1-ALT-00A0.dts
+DTBs = $(subst .dts,.dtbo,$(DTS))
 all: all-am
 
 .SUFFIXES:
@@ -308,7 +313,9 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
-clean-am: clean-generic mostlyclean-am
+clean: clean-am
+
+clean-am: clean-generic clean-local mostlyclean-am
 
 distclean: distclean-am
 	-rm -f Makefile
@@ -374,25 +381,25 @@ uninstall-am:
 
 .MAKE: install-am install-strip
 
-.PHONY: all all-am check check-am clean clean-generic cscopelist-am \
-	ctags-am distclean distclean-generic distdir dvi dvi-am html \
-	html-am info info-am install install-am install-data \
-	install-data-am install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am install-info \
-	install-info-am install-man install-pdf install-pdf-am \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
+.PHONY: all all-am check check-am clean clean-generic clean-local \
+	cscopelist-am ctags-am distclean distclean-generic distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-dvi install-dvi-am \
+	install-exec install-exec-am install-html install-html-am \
+	install-info install-info-am install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
 	pdf-am ps ps-am tags-am uninstall uninstall-am
 
 
 %.dtbo: %.dts
-	dtc -O dtb -o $@ -b 0 -@ $<
+	$(DTC) -O dtb -o $@ -b 0 -@ $<
 
 all: $(DTBs)
 
-clean:
-	rm -f  $(DTBs)
+clean-local:
+	-rm -f *.dtbo
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

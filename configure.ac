@@ -5,6 +5,30 @@ AC_INIT([IOoo], [0.1], [james.zapico@gmail.com])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADERS([config.h])
 
+# Allow for non-standard DTC compiler to be supplied
+AC_SUBST([DTC])
+
+AC_ARG_WITH(dtc,
+    AS_HELP_STRING([--with-confdir=/path/to/dtc],
+		[compiler for .dts files - must be compatible with overlay (-@) option]),
+    [DTC="$withval"],
+    [DTC=dtc]
+)
+
+# Debugging option --enable-debug[=level]
+AC_ARG_ENABLE(debug,
+	AS_HELP_STRING([--enable-debug],
+               [enable debugging, default: no]),
+	[case "${enableval}" in
+             yes)		debug=3 ;;
+             no)		debug=0 ;;
+             [0-6])		debug=${enableval} ;;
+             *)			AC_MSG_ERROR([bad value ${enableval} for --enable-debug]) ;;
+	esac],
+	[debug=0])
+
+AC_SUBST(DEBUG_LEVEL, "$debug")
+
 # Checks for programs.
 AC_PROG_CXX
 AC_PROG_CC

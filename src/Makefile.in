@@ -205,8 +205,10 @@ CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
 CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
+DEBUG_LEVEL = @DEBUG_LEVEL@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
+DTC = @DTC@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
@@ -283,8 +285,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-DEBUG_LEVEL = 3
-AM_CPPFLAGS = -I${top_srcdir}/include/  -D_HW_PLATFORM_BEAGLEBONE -DDEBUG_LEVEL=$(DEBUG_LEVEL)
+AM_CPPFLAGS = -I${top_srcdir}/include/ -D_HW_PLATFORM_BEAGLEBONE -DDEBUG_LEVEL=$(DEBUG_LEVEL)
 AM_LDFLAGS = -Llib
 AM_ARFLAGS = rvs
 lib_LIBRARIES = libgpiooo.a
