@@ -19,15 +19,30 @@
 
 class I2C
 {
+public:
+	enum byte_order {
+		LSB_first, MSB_first
+	};
+
 private:
 	int activeBus;
 	int activeAddr;
 	int fd;
 	unsigned long supportedFuncs;
 	bool tenbit;
+	byte_order byteOrder = MSB_first;
 
 	bool transactionState;
 	std::vector<struct i2c_msg> msgs;
+
+protected:
+	/*
+	 * Swaps the byte order of a character array
+	 *
+	 * @param target Pointer to array to be modified
+	 * @param length Number of bytes in target
+	 */
+	void swapByteOrder(unsigned char *target, size_t length);
 
 public:
 
@@ -132,9 +147,25 @@ public:
 	int getActiveBus();
 
 	/*
-	 * "return Address in use
+	 * @return Address in use
 	 */
 	int getActiveAddress();
+
+	/**
+	 * Get the order of the bytes the devices expect
+	 * to be sent and received with.
+	 *
+	 * Default is MSB_first
+	 */
+	byte_order getByteOrder();
+
+	/**
+	 * Set the order of the bytes the devices expect
+	 * to be sent and received with.
+	 *
+	 * Default is MSB_first
+	 */
+	void setByteOrder(byte_order order);
 
 	/**
 	 * Enable error checking for this bus
@@ -155,16 +186,18 @@ public:
 	/**
 	 * Reads n bytes from the I2C device
 	 *
-	 * @param rbuf[] Character buffer to read into
-	 * @param length Number of bytes to read
+	 * @param rbuf[] Character buffer to read into (big-endian).
+	 * @param length Number of bytes to read.
 	 * @param noAck If set to true, no read acknowledgment is sent.
 	 * 					Defaults to false.
 	 * @param showErrors If set to false, errors will not be displayed.
-	 * 					Only really used when proving devices.
 	 * 					Defaults to true.
 	 * 					Errors will not display if IOOO_ERROR_LEVEL is 0
 	 *
 	 * @return Number of bytes successfully read, or -1 for error.
+	 * 			If called in the middle of a transaction, the function
+	 * 			will return 0 on success as the bytes have not yet
+	 * 			been committed.
 	 * 			errno is updated.
 	 */
 	int read(void *rbuf, size_t length, bool noAck = false, bool showErrors =
@@ -173,16 +206,23 @@ public:
 	/**
 	 * Writes n bytes to the I2C device\
 	 *
-	 * @param wbuf[] Character buffer to write from
-	 * @param length Number of bytes to write
+	 * @param wbuf[] Character buffer to write from (big-endian).
+	 * @param length Number of bytes to write.
 	 * @param ignoreNack If set to true, the master will not require
 	 * 						a read acknowledgment from the slave.
 	 * 						Defaults to false.
+	 * @param showErrors If set to false, errors will not be displayed.
+	 * 					Defaults to true.
+	 * 					Errors will not display if IOOO_ERROR_LEVEL is 0
 	 *
 	 * @return Number of bytes successfully written, or -1 for error.
+	 * 			If called in the middle of a transaction, the function
+	 * 			will return 0 on success as the bytes have not yet
+	 * 			been committed.
 	 * 			errno is updated.
 	 */
-	int write(const void *wbuf, size_t length, bool ignoreNack = false);
+	int write(const void *wbuf, size_t length, bool ignoreNack = false,
+			bool showErrors = true);
 
 	/**
 	 * Writes n bytes to the device, then reads m bytes and waits
@@ -196,21 +236,28 @@ public:
 	 *
 	 * There will be a reset between read and write.
 	 *
-	 * @param wbuf[] Character buffer to write from
-	 * @param wlength Number of bytes to write
-	 * @param rbuf[] Character buffer to read to
-	 * @param rlength Number of bytes to read
+	 * @param wbuf[] Character buffer to write from (big-endian).
+	 * @param wlength Number of bytes to write.
+	 * @param rbuf[] Character buffer to read to (big-endian).
+	 * @param rlength Number of bytes to read.
 	 * @param noAck If set to true, no read acknowledgment is sent.
 	 * 					Defaults to false.
 	 * @param ignoreNack If set to true, the master will not require
 	 * 						a read acknowledgment from the slave.
 	 * 						Defaults to false.
+	 * @param showErrors If set to false, errors will not be displayed.
+	 * 					Defaults to true.
+	 * 					Errors will not display if IOOO_ERROR_LEVEL is 0
 	 *
 	 * @return Number of bytes successfully read, or -1 for error.
+	 * 			If called in the middle of a transaction, the function
+	 * 			will return 0 on success as the bytes have not yet
+	 * 			been committed.
 	 * 			errno is updated.
 	 */
 	int writeRead(const void *wbuf, size_t wlength, void *rbuf, size_t rlength,
-			bool noAck = false, bool ignoreNack = false);
+			bool noAck = false, bool ignoreNack = false,
+			bool showErrors = true);
 
 	/**
 	 * Writes n + m bytes to the device in a single transaction
@@ -224,52 +271,72 @@ public:
 	 *
 	 * There is no reset between the writes.
 	 *
-	 * @param w1buf[] Character buffer to write from in first write
-	 * @param w1length Number of bytes to write in first write
-	 * @param w2buf[] Character buffer to read to in second write
-	 * @param w2length Number of bytes to read in second write
+	 * @param w1buf[] Character buffer to write from in first write (big-endian).
+	 * @param w1length Number of bytes to write in first write.
+	 * @param w2buf[] Character buffer to read to in second write (big-endian).
+	 * @param w2length Number of bytes to read in second write.
 	 * @param ignoreNack If set to true, the master will not require
 	 * 						a read acknowledgment from the slave.
 	 * 						Defaults to false.
+	 * @param showErrors If set to false, errors will not be displayed.
+	 * 					Defaults to true.
+	 * 					Errors will not display if IOOO_ERROR_LEVEL is 0
 	 *
 	 * @return Number of bytes successfully written in the second write,
 	 * 			or -1 for error.
+	 * 			If called in the middle of a transaction, the function
+	 * 			will return 0 on success as the bytes have not yet
+	 * 			been committed.
 	 * 			errno is updated.
 	 */
 	int writeWrite(const void *w1buf, size_t w1length, const void *w2buf,
-			size_t w2length, bool ignoreNack = false);
+			size_t w2length, bool ignoreNack = false, bool showErrors = true);
 
 	/**
 	 * Reads a value from a given register address on the device.
 	 *
-	 * This is shorthand for #writeRead(&regAddr, 1, rbuf, length)
+	 * This is syntactic sugar for the #writeRead() function.
+	 * For multi-byte addresses, use the aforementioned function
+	 * in conjunction with htons()/htonl() for correct byte ordering.
 	 *
-	 * @param regAddr The single-byte register address to read from
-	 * 					If larger addresses need to be used, use the
-	 * 					#writeRead() function
-	 * @param rbuf[] Character buffer to read to
-	 * @param length Number of bytes to read
+	 * @param regAddr The register address to read from.
+	 * @param rbuf[] Character buffer to read to (big-endian).
+	 * @param length Number of bytes to read.
+	 * @param showErrors If set to false, errors will not be displayed.
+	 * 					Defaults to true.
+	 * 					Errors will not display if IOOO_ERROR_LEVEL is 0
 	 *
 	 * @return Number of bytes successfully read, or -1 for error.
+	 * 			If called in the middle of a transaction, the function
+	 * 			will return 0 on success as the bytes have not yet
+	 * 			been committed.
 	 * 			errno is updated.
 	 */
-	int readRegister(unsigned char regAddr, void *rbuf, size_t length);
+	int readRegister(unsigned char regAddr, void *rbuf, size_t length,
+				bool showErrors = true);
 
 	/**
 	 * Writes a value to a given register address on the device.
 	 *
-	 * This is shorthand for #writeWrite(&regAddr, 1, wbuf, length)
+	 * This is syntactic sugar for the #writeWrite() function.
+	 * For multi-byte addresses, use the aforementioned function
+	 * in conjunction with htons()/htonl() for correct byte ordering.
 	 *
-	 * @param regAddr The single-byte register address to read from
-	 * 					If larger addresses need to be used, use the
-	 * 					#writeRead() function
-	 * @param wbuf[] Character buffer to write from
-	 * @param length Number of bytes to write
+	 * @param regAddr The register address to read from.
+	 * @param wbuf[] Character buffer to write from (big-endian).
+	 * @param length Number of bytes to write.
+	 * @param showErrors If set to false, errors will not be displayed.
+	 * 					Defaults to true.
+	 * 					Errors will not display if IOOO_ERROR_LEVEL is 0
 	 *
 	 * @return Number of bytes successfully written, or -1 for error.
+	 * 			If called in the middle of a transaction, the function
+	 * 			will return 0 on success as the bytes have not yet
+	 * 			been committed.
 	 * 			errno is updated.
 	 */
-	int writeRegister(unsigned char regAddr, const void *wbuf, size_t length);
+	int writeRegister(unsigned char regAddr, const void *wbuf, size_t length,
+			bool showErrors = true);
 
 	/**
 	 * Begin a transaction for all following I2C commands
@@ -278,30 +345,42 @@ public:
 	 * #end_transaction() is called, where all reads and writes will be committed
 	 * in order.
 	 *
+	 * @param showErrors If set to false, errors will not be displayed.
+	 * 					Defaults to true.
+	 * 					Errors will not display if IOOO_ERROR_LEVEL is 0
+	 *
 	 * @return 0 on success or -1 on error.
 	 * 			errno is updated.
 	 */
-	int beginTransaction();
+	int beginTransaction(bool showErrors = true);
 
 	/**
 	 * Commits all reads and writes since #beginTransaction()
 	 *
 	 * The I2C instance will then return to normal read/write mode
 	 *
-	 * @return 0 on success or -1 on error.
+	 * @param showErrors If set to false, errors will not be displayed.
+	 * 					Defaults to true.
+	 * 					Errors will not display if IOOO_ERROR_LEVEL is 0
+	 *
+	 * @return Number of bytes successfully written and read, or -1 on error.
 	 * 			If the transaction could not be completed because the
 	 * 			slave address was not set, the transaction can be tried again.
 	 * 			Otherwise, the transaction will be cleared on error.
 	 * 			errno is updated.
 	 */
-	int endTransaction();
+	int endTransaction(bool showErrors = true);
 
 	/**
 	 * Destroys all reads and writes since #beginTransaction()
 	 *
+	 * @param showErrors If set to false, errors will not be displayed.
+	 * 					Defaults to true.
+	 * 					Errors will not display if IOOO_ERROR_LEVEL is 0
+	 *
 	 * The I2C instance will then return to normal read/write mode
 	 */
-	void abortTransaction();
+	void abortTransaction(bool showErrors = true);
 
 	/**
 	 * Destructor for I2C class
