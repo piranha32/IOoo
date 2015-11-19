@@ -94,7 +94,7 @@ public:
 	 * @return Number of bytes successfully read, or -1 for error.
 	 * 			errno is updated.
 	 */
-	int read(size_t pos, size_t size, void *rbuf);
+	long int read(size_t pos, size_t size, void *rbuf);
 
 	/**
 	 * Writes n bytes to the EEPROM device
@@ -106,7 +106,7 @@ public:
 	 * @return Number of bytes successfully written, or -1 for error.
 	 * 			errno is updated.
 	 */
-	int write(size_t pos, size_t size, const void *wbuf);
+	long int write(size_t pos, size_t size, const void *wbuf);
 
 	/**
 	 * Erases the EEPROM.
@@ -116,7 +116,7 @@ public:
 	 * @return Number of bytes successfully overwritten, or -1 for error.
 	 * 			errno is updated.
 	 */
-	int erase();
+	long int erase();
 
 	/*
 	 * @return Size of the EEPROM in bytes

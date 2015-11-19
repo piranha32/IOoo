@@ -43,7 +43,7 @@ int EEPROM24CX::close()
 	return handle->close();
 }
 
-int EEPROM24CX::read(size_t pos, size_t size, void* rbuf)
+long int EEPROM24CX::read(size_t pos, size_t size, void* rbuf)
 {
 	if (eepromSize != EEPROM_UNKNOWN && pos >= eepromSize)
 	{
@@ -85,7 +85,7 @@ int EEPROM24CX::read(size_t pos, size_t size, void* rbuf)
 	}
 }
 
-int EEPROM24CX::write(size_t pos, size_t size, const void* wbuf)
+long int EEPROM24CX::write(size_t pos, size_t size, const void* wbuf)
 {
 	if (eepromSize != EEPROM_UNKNOWN && pos >= eepromSize)
 	{
@@ -155,7 +155,7 @@ int EEPROM24CX::write(size_t pos, size_t size, const void* wbuf)
 	return written;
 }
 
-int EEPROM24CX::erase()
+long int EEPROM24CX::erase()
 {
 	std::vector<unsigned char> buf(pageSize, 0xFF);
 	int written = 0;
