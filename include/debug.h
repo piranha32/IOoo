@@ -27,18 +27,22 @@
  *   @param ... Format arguments
  */
 #if IOOO_DEBUG_LEVEL > 0
-	// This used to use ##__VA_ARGS__, but this is classed as too ambiguous in G++11
-	#define iooo_debugfva(level, format, ...) { \
-		if(level <= DEBUG_LEVEL){ \
-			printf("%s:%i:"#format"\n", __FILE__, __LINE__, __VA_ARGS__); \
-		} \
+	#include <stdarg.h>
+	#include <string.h>
+
+	inline void iooo_debug(const char* file, int line, int level, const char* format, ...)
+	{
+		if (level <= IOOO_DEBUG_LEVEL)
+		{
+			va_list args;
+			va_start(args, format);
+			fprintf(stdout, "%s:%i:", strrchr(file, '/') + 1, line);
+			vfprintf(stdout, format, args);
+			va_end(args);
+		}
 	}
 
-	#define iooo_debugf(level, format) iooo_debug(level, format, NULL)
-
-	// Manual sneaky macro overloading
-	#define GET_DEBUG(_1, _2, _3, NAME, ...) NAME
-	#define iooo_debug(...) GET_DEBUG(__VA_ARGS__, iooo_debugfva, iooo_debugf)(__VA_ARGS__)
+	#define iooo_debug(...) iooo_debug(__FILE__, __LINE__, __VA_ARGS__)
 #else
 	#define iooo_debug(...) ((void) 0)
 #endif
