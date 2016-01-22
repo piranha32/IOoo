@@ -126,8 +126,8 @@ libgpiooo_a_AR = $(AR) $(ARFLAGS)
 libgpiooo_a_LIBADD =
 am_libgpiooo_a_OBJECTS = I2C.$(OBJEXT) SPI.$(OBJEXT) GPIOoo.$(OBJEXT) \
 	BeagleGoo.$(OBJEXT) BeagleGooP.$(OBJEXT) ADC.$(OBJEXT) \
-	NativeADC.$(OBJEXT) BeagleADC.$(OBJEXT) LTC248X.$(OBJEXT) \
-	HD44780.$(OBJEXT) HD44780gpioPhy.$(OBJEXT) \
+	NativeADC.$(OBJEXT) BeagleADC.$(OBJEXT) EEPROM24CX.$(OBJEXT) \
+	LTC248X.$(OBJEXT) HD44780.$(OBJEXT) HD44780gpioPhy.$(OBJEXT) \
 	TLC5946phy.$(OBJEXT) TLC5946chain.$(OBJEXT) \
 	TLC5946PRUSSphy.$(OBJEXT) JDT18003T01.$(OBJEXT) \
 	ST7735.$(OBJEXT) ST7735phy.$(OBJEXT)
@@ -289,7 +289,7 @@ AM_CPPFLAGS = -I${top_srcdir}/include/ -D_HW_PLATFORM_BEAGLEBONE -DDEBUG_LEVEL=$
 AM_LDFLAGS = -Llib
 AM_ARFLAGS = rvs
 lib_LIBRARIES = libgpiooo.a
-libgpiooo_a_SOURCES = I2C.cpp SPI.cpp GPIOoo.cpp BeagleGoo.cpp BeagleGooP.cpp ADC.cpp NativeADC.cpp BeagleADC.cpp LTC248X.cpp HD44780.cpp HD44780gpioPhy.cpp TLC5946phy.cpp TLC5946chain.cpp TLC5946PRUSSphy.cpp JDT18003T01.cpp ST7735.cpp ST7735phy.cpp
+libgpiooo_a_SOURCES = I2C.cpp SPI.cpp GPIOoo.cpp BeagleGoo.cpp BeagleGooP.cpp ADC.cpp NativeADC.cpp BeagleADC.cpp EEPROM24CX.cpp LTC248X.cpp HD44780.cpp HD44780gpioPhy.cpp TLC5946phy.cpp TLC5946chain.cpp TLC5946PRUSSphy.cpp JDT18003T01.cpp ST7735.cpp ST7735phy.cpp
 all: all-am
 
 .SUFFIXES:
@@ -371,6 +371,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/BeagleADC.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/BeagleGoo.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/BeagleGooP.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/EEPROM24CX.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/GPIOoo.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/HD44780.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/HD44780gpioPhy.Po@am__quote@
