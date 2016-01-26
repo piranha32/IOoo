@@ -42,7 +42,7 @@ TestLCD::TestLCD(int bits)
 	}
 	else
 	{
-		debug(0, "Incorrect number of bits in LCD interface");
+		iooo_debug(0, "Incorrect number of bits in LCD interface");
 		return;
 	}
 

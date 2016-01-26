@@ -23,7 +23,7 @@
  * Maximum number of tries after waiting for the conversion
  * to read the result
  */
-#define LTC248X_TRY_COUNT 3
+#define LTC248X_TRY_COUNT 10
 /*
  * The interval in fractional seconds between tries
  */
@@ -102,9 +102,6 @@ public:
 	 * @param handle Reference to I2C instance connected to
 	 * 					the LTC chip. The I2C instance must
 	 * 					be open and ready.
-	 * @param vref The maximum input voltage of the chip
-	 * @param vground The minimum input voltage of the chip
-	 * 					Defaults to 0v
 	 */
 	LTC2485(I2C *handle);
 

@@ -9,6 +9,7 @@
 
 #include <stdint.h>
 #include <unistd.h>
+#include <netinet/in.h>
 
 #define LTC2485_MAX_VALUE 16777216
 #define LTC2485_MIN_VALUE -16777216
@@ -132,11 +133,10 @@ long LTC2485::takeMeasurement()
 					> LTC248X_MAX_CONVERSION_AGE)
 		init();
 
-	int32_t raw = 0, result = 0;
-
+	char *raw = new char[4];
+	int32_t result = 0;
 
 	waitForConversion();
-
 
 	// Try multiple times to read the value from the ADC, just in case it's taking
 	// longer than usual
@@ -144,7 +144,7 @@ long LTC2485::takeMeasurement()
 	int success;
 	do
 	{
-		success = handle->read(&raw, 4, false, false);
+		success = handle->read(raw, 4, false, false);
 		usleep(LTC248X_TRY_INTERVAL * 1000000L);
 	} while (success < 0 && --i > 0);
 
@@ -161,16 +161,15 @@ long LTC2485::takeMeasurement()
 	// A conversion is initialized when all 32 bits are successfully read
 	lastConv = clock();
 
-	// Flip byte order
-	result = raw & 0xFF;
-	result = (result << 8) | ((raw >> 8) & 0xFF);
-	result = (result << 8) | ((raw >> 16) & 0xFF);
-	result = (result << 8) | ((raw >> 24) & 0xFF);
+	// Correct byte order (char* -> net uint32 -> host uint32 -> char*)
+	uint32_t temp = ntohl(*(uint32_t*) raw);
+	raw = (char *) &temp;
 
 	// Convert the result data format to C-compatible integer
 	// 31   30   ...   6   5    ...  0
 	// SGN  MSB  ...  LSB  SUB  ...  SUB
 	// ------------------------------------
+	result = *(int32_t*) raw;
 	// MSB to LSB is 2s complement
 	// Sign of 1 is positive, 0 is negative: flip bit
 	result ^= 0x80000000;

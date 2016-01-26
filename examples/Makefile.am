@@ -1,7 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 ## ./examples/Makefile.am
 
-AM_CPPFLAGS=-I${top_srcdir}/include/  -D_HW_PLATFORM_BEAGLEBONE #-DDEBUG=2
+AM_CPPFLAGS=-I${top_srcdir}/include/ -D_HW_PLATFORM_BEAGLEBONE
 AM_LDFLAGS=-L../lib -L../src
 LDADD = ../src/libgpiooo.a
 
@@ -22,4 +22,5 @@ test_jd_t18003_t01_SOURCES = test_jd-t18003-t01.cpp
 
 #	 pasm -lb $^ $(patsubst %.bin,%,$@)
 
-
+clean-local:
+	-rm -f *.o

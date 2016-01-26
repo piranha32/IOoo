@@ -684,6 +684,8 @@ CPPFLAGS
 LDFLAGS
 CXXFLAGS
 CXX
+DEBUG_LEVEL
+DTC
 target_alias
 host_alias
 build_alias
@@ -725,6 +727,8 @@ SHELL'
 ac_subst_files=''
 ac_user_opts='
 enable_option_checking
+with_dtc
+enable_debug
 enable_dependency_tracking
 enable_silent_rules
 '
@@ -1354,12 +1358,20 @@ Optional Features:
   --disable-option-checking  ignore unrecognized --enable/--with options
   --disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
   --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
+  --enable-debug          enable debugging, default: no
   --enable-dependency-tracking
                           do not reject slow dependency extractors
   --disable-dependency-tracking
                           speeds up one-time build
   --enable-silent-rules   less verbose build output (undo: "make V=1")
   --disable-silent-rules  verbose build output (undo: "make V=0")
+
+Optional Packages:
+  --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
+  --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --with-confdir=/path/to/dtc
+                          compiler for .dts files - must be compatible with
+                          overlay (-@) option
 
 Some influential environment variables:
   CXX         C++ compiler command
@@ -2307,6 +2319,36 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 ac_config_headers="$ac_config_headers config.h"
+
+
+# Allow for non-standard DTC compiler to be supplied
+
+
+
+# Check whether --with-dtc was given.
+if test "${with_dtc+set}" = set; then :
+  withval=$with_dtc; DTC="$withval"
+else
+  DTC=dtc
+
+fi
+
+
+# Debugging option --enable-debug[=level]
+# Check whether --enable-debug was given.
+if test "${enable_debug+set}" = set; then :
+  enableval=$enable_debug; case "${enableval}" in
+             yes)		debug=3 ;;
+             no)		debug=0 ;;
+             0-6)		debug=${enableval} ;;
+             *)			as_fn_error $? "bad value ${enableval} for --enable-debug" "$LINENO" 5 ;;
+	esac
+else
+  debug=0
+fi
+
+
+DEBUG_LEVEL="$debug"
 
 
 # Checks for programs.

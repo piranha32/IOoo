@@ -169,22 +169,24 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = aclocal-1.14
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AR = ar
+AR = arm-linux-gnueabihf-ar
 AUTOCONF = autoconf
 AUTOHEADER = autoheader
 AUTOMAKE = automake-1.14
 AWK = mawk
-CC = gcc
+CC = arm-linux-gnueabihf-gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -g -O2
+CFLAGS = -march=armv7-a -mtune=cortex-a8
 CPPFLAGS = 
-CXX = g++
-CXXCPP = g++ -E
+CXX = arm-linux-gnueabihf-g++
+CXXCPP = arm-linux-gnueabihf-g++ -E
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -g -O2 -std=gnu++11
+CXXFLAGS = -march=armv7-a -mtune=cortex-a8 -std=gnu++11
 CYGPATH_W = echo
+DEBUG_LEVEL = 0
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
+DTC = /home/chris/workspace/ibm-gas-sensor/third-party/dtc/dtc
 ECHO_C = 
 ECHO_N = -n
 ECHO_T = 
@@ -212,18 +214,18 @@ PACKAGE_TARNAME = iooo
 PACKAGE_URL = 
 PACKAGE_VERSION = 0.1
 PATH_SEPARATOR = :
-RANLIB = ranlib
+RANLIB = arm-linux-gnueabihf-ranlib
 SET_MAKE = 
 SHELL = /bin/bash
-STRIP = 
+STRIP = arm-linux-gnueabihf-strip
 VERSION = 0.1
-abs_builddir = /media/sf_RBM/IOoo/examples
-abs_srcdir = /media/sf_RBM/IOoo/examples
-abs_top_builddir = /media/sf_RBM/IOoo
-abs_top_srcdir = /media/sf_RBM/IOoo
-ac_ct_AR = ar
-ac_ct_CC = gcc
-ac_ct_CXX = g++
+abs_builddir = /home/chris/workspace/ibm-gas-sensor/third-party/iooo/examples
+abs_srcdir = /home/chris/workspace/ibm-gas-sensor/third-party/iooo/examples
+abs_top_builddir = /home/chris/workspace/ibm-gas-sensor/third-party/iooo
+abs_top_srcdir = /home/chris/workspace/ibm-gas-sensor/third-party/iooo
+ac_ct_AR = 
+ac_ct_CC = 
+ac_ct_CXX = 
 am__include = include
 am__leading_dot = .
 am__quote = 
@@ -237,11 +239,11 @@ datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host_alias = 
+host_alias = arm-linux-gnueabihf
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /root/install-sh
+install_sh = ${SHELL} /home/chris/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -261,7 +263,7 @@ target_alias =
 top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
-AM_CPPFLAGS = -I${top_srcdir}/include/  -D_HW_PLATFORM_BEAGLEBONE #-DDEBUG=2
+AM_CPPFLAGS = -I${top_srcdir}/include/ -D_HW_PLATFORM_BEAGLEBONE
 AM_LDFLAGS = -L../lib -L../src
 LDADD = ../src/libgpiooo.a
 gpio_lcd_SOURCES = TestLCD.cpp gpio_lcd.cpp
@@ -468,7 +470,8 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-generic clean-noinstPROGRAMS mostlyclean-am
+clean-am: clean-generic clean-local clean-noinstPROGRAMS \
+	mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -538,17 +541,17 @@ uninstall-am:
 .MAKE: install-am install-strip
 
 .PHONY: CTAGS GTAGS TAGS all all-am check check-am clean clean-generic \
-	clean-noinstPROGRAMS cscopelist-am ctags ctags-am distclean \
-	distclean-compile distclean-generic distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-info install-info-am install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic pdf pdf-am ps ps-am tags tags-am uninstall \
-	uninstall-am
+	clean-local clean-noinstPROGRAMS cscopelist-am ctags ctags-am \
+	distclean distclean-compile distclean-generic distclean-tags \
+	distdir dvi dvi-am html html-am info info-am install \
+	install-am install-data install-data-am install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-info install-info-am install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic pdf pdf-am ps ps-am \
+	tags tags-am uninstall uninstall-am
 
 
 #tlc5946_SOURCES = tlc5946.cpp TestTLC5946.cpp
@@ -557,6 +560,9 @@ uninstall-am:
 #tlc5946_clock_bin_LDADD = libprussdrv.a libpthread
 
 #	 pasm -lb $^ $(patsubst %.bin,%,$@)
+
+clean-local:
+	-rm -f *.o
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
