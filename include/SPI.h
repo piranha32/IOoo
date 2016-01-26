@@ -9,6 +9,7 @@
 #include <linux/spi/spidev.h>
 
 #include <mutex>
+#include <map>
 
 #include "GPIOpin.h"
 
@@ -25,10 +26,16 @@ class SPI
 		int active_bus;
 		int active_channel;
 		int fd;
-		GPIOpin *cspin;
-		int csbit;
-		int cspol;
-		std::recursive_mutex rwlock;
+
+		struct SharedResources {
+			volatile GPIOpin *cspin = nullptr;
+			volatile int csbit = -1;
+			volatile int cspol = -1;
+			std::recursive_mutex rwlock;
+		};
+
+		static std::map<int, std::map<int, SharedResources>> share;
+		SharedResources *resources;
 	public:
 
 		/**
