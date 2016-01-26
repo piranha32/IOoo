@@ -20,6 +20,8 @@
 #define MAX_PATH_LEN  40
 #define SPI_DEVICE_PATH_BASE "/dev/spidev"
 
+std::map<int, std::map<int, SPI::SharedResources>> SPI::share;
+
 SPI::SPI()
 {
 	active_bus = -1;
@@ -29,20 +31,22 @@ SPI::SPI()
 	speed = 0;
 	fd = -1;
 	lsb_first = false;
-	cspin = nullptr;
-	csbit = -1;
-	cspol = -1;
+	resources = nullptr;
 }
 
 int SPI::open(int bus, int channel)
 {
-	std::lock_guard<std::recursive_mutex> lock(rwlock);
-
-	if (active_bus >= 0)
-		close();
-
+	// Check for valid bus and channel
 	if (bus < 0 || channel < 0)
 		return -ENODEV;
+
+	// Obtain locking and chip select resources
+	SharedResources *resources_tmp = &share[bus][channel];
+	std::lock_guard<std::recursive_mutex> lock(resources_tmp->rwlock);
+
+	// If a device is already open, close it before continuing further
+	if (active_bus >= 0)
+		close();
 
 	iooo_debug(3, "SPI::open(): bus=%d, channel=%d\n", bus, channel);
 
@@ -90,15 +94,24 @@ int SPI::open(int bus, int channel)
 
 	active_bus = bus;
 	active_channel = channel;
+	resources = resources_tmp;
 	return 1;
 }
 
 int SPI::close()
 {
-	std::lock_guard<std::recursive_mutex> lock(rwlock);
+	// Check if chip select and mutex lock resources have been initialized
+	if (resources == nullptr)
+	{
+		iooo_error("SPI::close(): failed - no device has been opened\n");
+		return -EDESTADDRREQ;
+	}
+	// Mutex lock on this bus and channel
+	std::lock_guard<std::recursive_mutex> lock(resources->rwlock);
 
 	if (!isReady()) {
 		active_bus = active_channel = -1;
+		resources = nullptr;
 		return -ENODEV;
 	}
 
@@ -107,6 +120,7 @@ int SPI::close()
 	bpw = 0;
 	speed = 0;
 	active_bus = active_channel = -1;
+	resources = nullptr;
 	int tmpfd = fd;
 	fd = -1;
 	return ::close(tmpfd);
@@ -117,24 +131,32 @@ int SPI::chipSelect(GPIOpin* pin, int bit, int polarity)
 	if (bit < 0)
 		return -ENODEV;
 
-	std::lock_guard<std::recursive_mutex> lock(rwlock);
+	if (resources == nullptr)
+	{
+		iooo_error("SPI::chipSelect(): failed - no device has been opened\n");
+		return -EDESTADDRREQ;
+	}
+
+	std::lock_guard<std::recursive_mutex> lock(resources->rwlock);
 
 	// If the same chip is being selected, return
-	if (cspin == pin && csbit == bit && cspol == polarity)
+	if (resources->cspin == pin
+			&& resources->csbit == bit
+			&& resources->cspol == polarity)
 		return 1;
 
 	// Deselect last chip
 	chipDeselect();
 
 	// Select new chip
-	cspin = pin;
-	csbit = bit;
-	cspol = polarity;
+	resources->cspin = pin;
+	resources->csbit = bit;
+	resources->cspol = polarity;
 
-	if (cspol == 0)
-		cspin->clearBit(csbit);
+	if (resources->cspol == 0)
+		resources->cspin->clearBit(resources->csbit);
 	else
-		cspin->setBit(csbit);
+		resources->cspin->setBit(resources->csbit);
 	usleep(10000);
 
 	return 1;
@@ -142,50 +164,62 @@ int SPI::chipSelect(GPIOpin* pin, int bit, int polarity)
 
 void SPI::chipDeselect()
 {
-	std::lock_guard<std::recursive_mutex> lock(rwlock);
+	if (resources == nullptr)
+	{
+		iooo_error("SPI::chipDeselect(): failed - no device has been opened\n");
+		return;
+	}
 
-	if (cspin == nullptr)
+	std::lock_guard<std::recursive_mutex> lock(resources->rwlock);
+
+	if (resources->cspin == nullptr)
 		return;
 
-	if (cspol == 0)
-		cspin->setBit(csbit);
+	if (resources->cspol == 0)
+		resources->cspin->setBit(resources->csbit);
 	else
-		cspin->clearBit(csbit);
+		resources->cspin->clearBit(resources->csbit);
 	usleep(10000);
 
-	cspin = nullptr;
-	csbit = -1;
-	cspol = -1;
+	resources->cspin = nullptr;
+	resources->csbit = -1;
+	resources->cspol = -1;
 }
 
 bool SPI::busReady()
 {
-	return active_bus >= 0;
+	return resources != nullptr && active_bus >= 0;
 }
 
 bool SPI::slaveReady()
 {
-	return cspin != nullptr;
+	return resources != nullptr && resources->cspin != nullptr;
 }
 
 bool SPI::isReady()
 {
-	return active_bus >= 0 && active_channel >= 0;
+	return resources != nullptr && active_bus >= 0 && active_channel >= 0;
 }
 
 int SPI::getActiveBus()
 {
-	return active_bus;
+	return resources != nullptr ? active_bus : -1;
 }
 
 int SPI::getActiveChannel()
 {
-	return active_channel;
+	return resources != nullptr ? active_channel : -1;
 }
 
 int SPI::setMode(uint8_t mode)
 {
-	std::lock_guard<std::recursive_mutex> lock(rwlock);
+	if (resources == nullptr)
+	{
+		iooo_error("SPI::setMode(): failed - no device has been opened\n");
+		return -EDESTADDRREQ;
+	}
+
+	std::lock_guard<std::recursive_mutex> lock(resources->rwlock);
 
 	mode &= SPI_CPHA | SPI_CPOL;
 	mode = (this->mode & ~(SPI_CPHA | SPI_CPOL)) | mode;
@@ -205,7 +239,13 @@ int SPI::setMode(uint8_t mode)
 
 int SPI::setClockPolarity(uint8_t pol)
 {
-	std::lock_guard<std::recursive_mutex> lock(rwlock);
+	if (resources == nullptr)
+	{
+		iooo_error("SPI::setClockPolarity(): failed - no device has been opened\n");
+		return -EDESTADDRREQ;
+	}
+
+	std::lock_guard<std::recursive_mutex> lock(resources->rwlock);
 
 	pol &= SPI_CPOL;
 	uint8_t mode = (this->mode & ~(SPI_CPOL)) | pol;
@@ -214,7 +254,13 @@ int SPI::setClockPolarity(uint8_t pol)
 
 int SPI::setClockPhase(uint8_t phase)
 {
-	std::lock_guard<std::recursive_mutex> lock(rwlock);
+	if (resources == nullptr)
+	{
+		iooo_error("SPI::setClockPhase(): failed - no device has been opened\n");
+		return -EDESTADDRREQ;
+	}
+
+	std::lock_guard<std::recursive_mutex> lock(resources->rwlock);
 
 	phase &= SPI_CPHA;
 	uint8_t mode = (this->mode & ~(SPI_CPHA)) | phase;
@@ -223,7 +269,13 @@ int SPI::setClockPhase(uint8_t phase)
 
 int SPI::setLSBFirst(bool lsb_first)
 {
-	std::lock_guard<std::recursive_mutex> lock(rwlock);
+	if (resources == nullptr)
+	{
+		iooo_error("SPI::setLSBFirst(): failed - no device has been opened\n");
+		return -EDESTADDRREQ;
+	}
+
+	std::lock_guard<std::recursive_mutex> lock(resources->rwlock);
 
 	if (!isReady())
 		return -ENODEV;
@@ -236,7 +288,13 @@ int SPI::setLSBFirst(bool lsb_first)
 
 int SPI::setBitsPerWord(int bits)
 {
-	std::lock_guard<std::recursive_mutex> lock(rwlock);
+	if (resources == nullptr)
+	{
+		iooo_error("SPI::setBitsPerWord(): failed - no device has been opened\n");
+		return -EDESTADDRREQ;
+	}
+
+	std::lock_guard<std::recursive_mutex> lock(resources->rwlock);
 
 	if (!isReady())
 		return -ENODEV;
@@ -249,7 +307,13 @@ int SPI::setBitsPerWord(int bits)
 
 int SPI::setSpeed(uint32_t speed)
 {
-	std::lock_guard<std::recursive_mutex> lock(rwlock);
+	if (resources == nullptr)
+	{
+		iooo_error("SPI::setSpeed(): failed - no device has been opened\n");
+		return -EDESTADDRREQ;
+	}
+
+	std::lock_guard<std::recursive_mutex> lock(resources->rwlock);
 
 	int r;
 	if (!isReady())
@@ -275,14 +339,26 @@ int SPI::setSpeed(uint32_t speed)
 
 int SPI::write(const void *wbuf, int len)
 {
-	std::lock_guard<std::recursive_mutex> lock(rwlock);
+	if (resources == nullptr)
+	{
+		iooo_error("SPI::write(): failed - no device has been opened\n");
+		return -EDESTADDRREQ;
+	}
+
+	std::lock_guard<std::recursive_mutex> lock(resources->rwlock);
 
 	return ::write(fd, wbuf, len);
 }
 
 int SPI::read(void *rbuf, int len)
 {
-	std::lock_guard<std::recursive_mutex> lock(rwlock);
+	if (resources == nullptr)
+	{
+		iooo_error("SPI::read(): failed - no device has been opened\n");
+		return -EDESTADDRREQ;
+	}
+
+	std::lock_guard<std::recursive_mutex> lock(resources->rwlock);
 
 	memset(rbuf, 0, len);
 	return ::read(fd, rbuf, len);
@@ -290,7 +366,13 @@ int SPI::read(void *rbuf, int len)
 
 int SPI::xfer1(const void *wbuf, void *rbuf, int len)
 {
-	std::lock_guard<std::recursive_mutex> lock(rwlock);
+	if (resources == nullptr)
+	{
+		iooo_error("SPI::xfer1(): failed - no device has been opened\n");
+		return -EDESTADDRREQ;
+	}
+
+	std::lock_guard<std::recursive_mutex> lock(resources->rwlock);
 
 	struct spi_ioc_transfer txinfo;
 	txinfo.tx_buf = (__u64 ) wbuf;
@@ -299,7 +381,7 @@ int SPI::xfer1(const void *wbuf, void *rbuf, int len)
 	txinfo.delay_usecs = 0;
 	txinfo.speed_hz = speed;
 	txinfo.bits_per_word = bpw;
-	txinfo.cs_change = 1;
+	txinfo.cs_change = 0;
 
 	int r = ioctl(fd, SPI_IOC_MESSAGE(1), &txinfo);
 	if (r < 0)
@@ -309,9 +391,6 @@ int SPI::xfer1(const void *wbuf, void *rbuf, int len)
 		return r;
 	}
 
-	//deactivate CS line
-	//uint8_t tmp;
-	//::read(fd, &tmp, 0);
 	return len;
 }
 
