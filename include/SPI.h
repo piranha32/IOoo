@@ -28,7 +28,7 @@ class SPI
 		int fd;
 
 		struct SharedResources {
-			volatile GPIOpin *cspin = nullptr;
+			GPIOpin *volatile cspin = nullptr;
 			volatile int csbit = -1;
 			volatile int cspol = -1;
 			std::recursive_mutex rwlock;
