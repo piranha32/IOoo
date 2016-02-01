@@ -72,10 +72,12 @@ public:
 	/**
 	 * Convenience function to re-open the I2C instance of the EEPROM
 	 *
+	 * @param ignoreChecks If true, no errors will be thrown if the device
+	 * 			is being used by another driver. Defaults to true.
 	 * @return 0 on success or -1 for error.
 	 * 			errno is updated.
 	 */
-	int open();
+	int open(bool ignoreChecks = true);
 	/**
 	 * Convenience function to close the I2C instance of the EEPROM
 	 *

@@ -212,26 +212,12 @@ bool I2C::probe()
 
 bool I2C::busReady()
 {
-	if (activeBus < 0)
-	{
-		iooo_error("I2C::busReady() error: No I2C bus has been opened.\n");
-		errno = EDESTADDRREQ;
-		return false;
-	}
-
-	return true;
+	return activeBus < 0 ? false : true;
 }
 
 bool I2C::slaveReady()
 {
-	if (activeAddr < 0)
-	{
-		iooo_error("I2C::slaveReady() error: No slave address has been set.\n");
-		errno = EDESTADDRREQ;
-		return false;
-	}
-
-	return true;
+	return activeAddr < 0 ? false : true;
 }
 
 bool I2C::isReady()
