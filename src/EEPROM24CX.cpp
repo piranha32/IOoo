@@ -26,7 +26,7 @@ EEPROM24CX::EEPROM24CX(I2C *handle, size_t eepromSize, size_t pageSize,
 	addrCache = handle->getActiveAddress();
 }
 
-int EEPROM24CX::open()
+int EEPROM24CX::open(bool ignoreChecks)
 {
 	if (handle->isReady())
 		return 0;
@@ -35,7 +35,7 @@ int EEPROM24CX::open()
 	if (rc < 0)
 		return rc;
 	else
-		return handle->setSlave(addrCache);
+		return handle->setSlave(addrCache, ignoreChecks);
 }
 
 int EEPROM24CX::close()
