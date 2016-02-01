@@ -28,6 +28,14 @@ public:
 	static NativeADC *getNativeADC(int adcNumber);
 
 	/*
+	 * Initializes or calibrates the ADC if functionality is available
+	 *
+	 * @return 0 if initialization succeeded, otherwise a negative error
+	 * 			number and errno is updated.
+	 */
+	virtual int init() { return 0; }
+
+	/*
 	 * Takes a raw measurement directly from the ADC
 	 * What this measurement represents is implementation dependent
 	 * It's common to see a value in millivolts here, but to be

@@ -125,10 +125,12 @@ am__v_AR_1 =
 libgpiooo_a_AR = $(AR) $(ARFLAGS)
 libgpiooo_a_LIBADD =
 am_libgpiooo_a_OBJECTS = I2C.$(OBJEXT) SPI.$(OBJEXT) GPIOoo.$(OBJEXT) \
-	BeagleGoo.$(OBJEXT) BeagleGooP.$(OBJEXT) HD44780.$(OBJEXT) \
-	HD44780gpioPhy.$(OBJEXT) TLC5946phy.$(OBJEXT) \
-	TLC5946chain.$(OBJEXT) TLC5946PRUSSphy.$(OBJEXT) \
-	JDT18003T01.$(OBJEXT) ST7735.$(OBJEXT) ST7735phy.$(OBJEXT)
+	BeagleGoo.$(OBJEXT) BeagleGooP.$(OBJEXT) ADC.$(OBJEXT) \
+	NativeADC.$(OBJEXT) BeagleADC.$(OBJEXT) LTC248X.$(OBJEXT) \
+	HD44780.$(OBJEXT) HD44780gpioPhy.$(OBJEXT) \
+	TLC5946phy.$(OBJEXT) TLC5946chain.$(OBJEXT) \
+	TLC5946PRUSSphy.$(OBJEXT) JDT18003T01.$(OBJEXT) \
+	ST7735.$(OBJEXT) ST7735phy.$(OBJEXT)
 libgpiooo_a_OBJECTS = $(am_libgpiooo_a_OBJECTS)
 AM_V_P = $(am__v_P_$(V))
 am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
@@ -189,22 +191,24 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = aclocal-1.14
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AR = ar
+AR = arm-linux-gnueabihf-ar
 AUTOCONF = autoconf
 AUTOHEADER = autoheader
 AUTOMAKE = automake-1.14
 AWK = mawk
-CC = gcc
+CC = arm-linux-gnueabihf-gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -g -O2
+CFLAGS = -march=armv7-a -mtune=cortex-a8
 CPPFLAGS = 
-CXX = g++
-CXXCPP = g++ -E
+CXX = arm-linux-gnueabihf-g++
+CXXCPP = arm-linux-gnueabihf-g++ -E
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -g -O2 -std=gnu++11
+CXXFLAGS = -march=armv7-a -mtune=cortex-a8 -std=gnu++11
 CYGPATH_W = echo
+DEBUG_LEVEL = 0
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
+DTC = /home/chris/workspace/ibm-gas-sensor/third-party/dtc/dtc
 ECHO_C = 
 ECHO_N = -n
 ECHO_T = 
@@ -232,18 +236,18 @@ PACKAGE_TARNAME = iooo
 PACKAGE_URL = 
 PACKAGE_VERSION = 0.1
 PATH_SEPARATOR = :
-RANLIB = ranlib
+RANLIB = arm-linux-gnueabihf-ranlib
 SET_MAKE = 
 SHELL = /bin/bash
-STRIP = 
+STRIP = arm-linux-gnueabihf-strip
 VERSION = 0.1
-abs_builddir = /media/sf_RBM/IOoo/src
-abs_srcdir = /media/sf_RBM/IOoo/src
-abs_top_builddir = /media/sf_RBM/IOoo
-abs_top_srcdir = /media/sf_RBM/IOoo
-ac_ct_AR = ar
-ac_ct_CC = gcc
-ac_ct_CXX = g++
+abs_builddir = /home/chris/workspace/ibm-gas-sensor/third-party/iooo/src
+abs_srcdir = /home/chris/workspace/ibm-gas-sensor/third-party/iooo/src
+abs_top_builddir = /home/chris/workspace/ibm-gas-sensor/third-party/iooo
+abs_top_srcdir = /home/chris/workspace/ibm-gas-sensor/third-party/iooo
+ac_ct_AR = 
+ac_ct_CC = 
+ac_ct_CXX = 
 am__include = include
 am__leading_dot = .
 am__quote = 
@@ -257,11 +261,11 @@ datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host_alias = 
+host_alias = arm-linux-gnueabihf
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /root/install-sh
+install_sh = ${SHELL} /home/chris/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -281,12 +285,11 @@ target_alias =
 top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
-DEBUG_LEVEL = 3
-AM_CPPFLAGS = -I${top_srcdir}/include/  -D_HW_PLATFORM_BEAGLEBONE -DDEBUG_LEVEL=$(DEBUG_LEVEL)
+AM_CPPFLAGS = -I${top_srcdir}/include/ -D_HW_PLATFORM_BEAGLEBONE -DDEBUG_LEVEL=$(DEBUG_LEVEL)
 AM_LDFLAGS = -Llib
 AM_ARFLAGS = rvs
 lib_LIBRARIES = libgpiooo.a
-libgpiooo_a_SOURCES = I2C.cpp SPI.cpp GPIOoo.cpp BeagleGoo.cpp BeagleGooP.cpp HD44780.cpp HD44780gpioPhy.cpp TLC5946phy.cpp TLC5946chain.cpp TLC5946PRUSSphy.cpp JDT18003T01.cpp ST7735.cpp ST7735phy.cpp
+libgpiooo_a_SOURCES = I2C.cpp SPI.cpp GPIOoo.cpp BeagleGoo.cpp BeagleGooP.cpp ADC.cpp NativeADC.cpp BeagleADC.cpp LTC248X.cpp HD44780.cpp HD44780gpioPhy.cpp TLC5946phy.cpp TLC5946chain.cpp TLC5946PRUSSphy.cpp JDT18003T01.cpp ST7735.cpp ST7735phy.cpp
 all: all-am
 
 .SUFFIXES:
@@ -364,6 +367,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+include ./$(DEPDIR)/ADC.Po
+include ./$(DEPDIR)/BeagleADC.Po
 include ./$(DEPDIR)/BeagleGoo.Po
 include ./$(DEPDIR)/BeagleGooP.Po
 include ./$(DEPDIR)/GPIOoo.Po
@@ -371,6 +376,8 @@ include ./$(DEPDIR)/HD44780.Po
 include ./$(DEPDIR)/HD44780gpioPhy.Po
 include ./$(DEPDIR)/I2C.Po
 include ./$(DEPDIR)/JDT18003T01.Po
+include ./$(DEPDIR)/LTC248X.Po
+include ./$(DEPDIR)/NativeADC.Po
 include ./$(DEPDIR)/SPI.Po
 include ./$(DEPDIR)/ST7735.Po
 include ./$(DEPDIR)/ST7735phy.Po
