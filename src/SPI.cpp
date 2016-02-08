@@ -157,7 +157,6 @@ int SPI::chipSelect(GPIOpin* pin, int bit, int polarity)
 		resources->cspin->clearBit(resources->csbit);
 	else
 		resources->cspin->setBit(resources->csbit);
-	usleep(10000);
 
 	return 1;
 }
@@ -179,7 +178,6 @@ void SPI::chipDeselect()
 		resources->cspin->setBit(resources->csbit);
 	else
 		resources->cspin->clearBit(resources->csbit);
-	usleep(10000);
 
 	resources->cspin = nullptr;
 	resources->csbit = -1;
