@@ -9,10 +9,20 @@ AC_CONFIG_HEADERS([config.h])
 AC_SUBST([DTC])
 
 AC_ARG_WITH(dtc,
-    AS_HELP_STRING([--with-confdir=/path/to/dtc],
+    AS_HELP_STRING([--with-dtc=/path/to/dtc],
 		[compiler for .dts files - must be compatible with overlay (-@) option]),
     [DTC="$withval"],
     [DTC=dtc]
+)
+
+# Kernel version setting
+AC_SUBST([KERNEL_VERSION])
+
+AC_ARG_WITH(kernel-version,
+    AS_HELP_STRING([--with-kernel-version=4.x],
+		[set the kernel version to be compatible with - affects the numbering of I2C buses]),
+    [KERNEL_VERSION="$withval"],
+    [KERNEL_VERSION=4.x]
 )
 
 # Debugging option --enable-debug[=level]
@@ -22,7 +32,7 @@ AC_ARG_ENABLE(debug,
 	[case "${enableval}" in
              yes)		debug=3 ;;
              no)		debug=0 ;;
-             [0-6])		debug=${enableval} ;;
+             [[0-6]])	debug=${enableval} ;;
              *)			AC_MSG_ERROR([bad value ${enableval} for --enable-debug]) ;;
 	esac],
 	[debug=0])

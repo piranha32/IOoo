@@ -14,6 +14,16 @@
 #define MAX_PATH_LEN 20
 #define I2C_DEVICE_PATH_BASE "/dev/i2c-"
 
+#define KERNEL_BUS(bus) bus
+#ifdef _HW_PLATFORM_BEAGLEBONE
+#ifdef _KERNEL_VERSION
+// I2C1 and I2C2 are switched in BeagleBone kernel 3.x, but not 4.x
+#undef KERNEL_BUS
+#define KERNEL_MAJ_VER _KERNEL_VERSION[0]
+#define KERNEL_BUS(bus) KERNEL_MAJ_VER == '3' ? (bus == 2 ? 1 : (bus == 1 ? 2 : bus)) : bus
+#endif
+#endif
+
 I2C::I2C()
 {
 	activeBus = -1;
@@ -53,7 +63,7 @@ int I2C::open(int bus)
 	// Check device path
 	char path[MAX_PATH_LEN];
 	if (snprintf(path, MAX_PATH_LEN, "%s%d", I2C_DEVICE_PATH_BASE,
-			bus) >= MAX_PATH_LEN)
+			KERNEL_BUS(bus)) >= MAX_PATH_LEN)
 	{
 		iooo_error("I2C::open() error: Bus number is too long.\n");
 		errno = ENAMETOOLONG;

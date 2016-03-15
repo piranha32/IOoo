@@ -685,6 +685,7 @@ LDFLAGS
 CXXFLAGS
 CXX
 DEBUG_LEVEL
+KERNEL_VERSION
 DTC
 target_alias
 host_alias
@@ -728,6 +729,7 @@ ac_subst_files=''
 ac_user_opts='
 enable_option_checking
 with_dtc
+with_kernel_version
 enable_debug
 enable_dependency_tracking
 enable_silent_rules
@@ -1369,9 +1371,11 @@ Optional Features:
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
-  --with-confdir=/path/to/dtc
-                          compiler for .dts files - must be compatible with
+  --with-dtc=/path/to/dtc compiler for .dts files - must be compatible with
                           overlay (-@) option
+  --with-kernel-version=4.x
+                          set the kernel version to be compatible with -
+                          affects the numbering of I2C buses
 
 Some influential environment variables:
   CXX         C++ compiler command
@@ -2334,13 +2338,26 @@ else
 fi
 
 
+# Kernel version setting
+
+
+
+# Check whether --with-kernel-version was given.
+if test "${with_kernel_version+set}" = set; then :
+  withval=$with_kernel_version; KERNEL_VERSION="$withval"
+else
+  KERNEL_VERSION=4.x
+
+fi
+
+
 # Debugging option --enable-debug[=level]
 # Check whether --enable-debug was given.
 if test "${enable_debug+set}" = set; then :
   enableval=$enable_debug; case "${enableval}" in
              yes)		debug=3 ;;
              no)		debug=0 ;;
-             0-6)		debug=${enableval} ;;
+             [0-6])	debug=${enableval} ;;
              *)			as_fn_error $? "bad value ${enableval} for --enable-debug" "$LINENO" 5 ;;
 	esac
 else

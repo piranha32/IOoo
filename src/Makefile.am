@@ -1,8 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 ## ./src/Makefile.am
 
-DEBUG_LEVEL=@DEBUG_LEVEL@
-AM_CPPFLAGS=-I${top_srcdir}/include/ -D_HW_PLATFORM_BEAGLEBONE -DDEBUG_LEVEL=$(DEBUG_LEVEL)
+AM_CPPFLAGS=-I${top_srcdir}/include/ -D_HW_PLATFORM_BEAGLEBONE -D_KERNEL_VERSION=\"$(KERNEL_VERSION)\" -DDEBUG_LEVEL=$(DEBUG_LEVEL)
 AM_LDFLAGS=-Llib
 AM_ARFLAGS=rvs
 
