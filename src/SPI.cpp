@@ -20,6 +20,16 @@
 #define MAX_PATH_LEN  40
 #define SPI_DEVICE_PATH_BASE "/dev/spidev"
 
+#define KERNEL_BUS(bus) bus
+#ifdef _HW_PLATFORM_BEAGLEBONE
+#ifdef _KERNEL_VERSION
+// SPIDEV1 and SPIDEV2 are switched in BeagleBone kernel 4.x, but not 3.x
+#undef KERNEL_BUS
+#define KERNEL_MAJ_VER _KERNEL_VERSION[0]
+#define KERNEL_BUS(bus) KERNEL_MAJ_VER == '4' ? (bus == 2 ? 1 : (bus == 1 ? 2 : bus)) : bus
+#endif
+#endif
+
 std::map<int, std::map<int, SPI::SharedResources>> SPI::share;
 
 SPI::SPI()
@@ -51,7 +61,7 @@ int SPI::open(int bus, int channel)
 	iooo_debug(3, "SPI::open(): bus=%d, channel=%d\n", bus, channel);
 
 	char path[MAX_PATH_LEN];
-	if (snprintf(path, MAX_PATH_LEN, "%s%d.%d", SPI_DEVICE_PATH_BASE, bus,
+	if (snprintf(path, MAX_PATH_LEN, "%s%d.%d", SPI_DEVICE_PATH_BASE, KERNEL_BUS(bus),
 			channel) >= MAX_PATH_LEN)
 		return -EINVAL;
 
