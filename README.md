@@ -49,9 +49,14 @@ Splitting the driver into two parts  completely isolates the high-level module f
 Building and Installation Instructions
 ======
   You need to have the following tools installed.
+- git
 - gcc-4.7 or higher
 - automake
 - autoconf
+
+Clone the source code from github:
+
+    git clone https://github.com/piranha32/IOoo.git
 
 After cloning the repository and cd'ing into the new folder, run the following commands in the terminal.
   

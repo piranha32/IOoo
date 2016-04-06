@@ -320,7 +320,7 @@ int I2C::read(void *rbuf, size_t length, bool noAck, bool showErrors)
 	msg.flags = I2C_M_RD;
 	msg.flags |= noAck ? I2C_M_NO_RD_ACK : 0;
 	msg.flags |= tenbit ? I2C_M_TEN : 0;
-	msg.buf = (unsigned char *) rbuf;
+	msg.buf = (typeof(msg.buf)) rbuf;
 
 	msgs.push_back(msg);
 
@@ -369,7 +369,7 @@ int I2C::write(const void *wbuf, size_t length, bool ignoreNack,
 	msg.flags = 0;
 	msg.flags |= ignoreNack ? I2C_M_IGNORE_NAK : 0;
 	msg.flags |= tenbit ? I2C_M_TEN : 0;
-	msg.buf = (unsigned char *) wbuf;
+	msg.buf = (typeof(msg.buf)) wbuf;
 
 	// Swap write byte order if required
 	if (byteOrder == LSB_first)
