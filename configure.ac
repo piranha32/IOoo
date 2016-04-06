@@ -19,10 +19,10 @@ AC_ARG_WITH(dtc,
 AC_SUBST([KERNEL_VERSION])
 
 AC_ARG_WITH(kernel-version,
-    AS_HELP_STRING([--with-kernel-version=4.x],
+    AS_HELP_STRING([--with-kernel-version=3.x],
 		[set the kernel version to be compatible with - affects the numbering of I2C buses]),
     [KERNEL_VERSION="$withval"],
-    [KERNEL_VERSION=4.x]
+    [KERNEL_VERSION=0.0]
 )
 
 # Debugging option --enable-debug[=level]
