@@ -12,7 +12,7 @@ AC_ARG_WITH(dtc,
     AS_HELP_STRING([--with-dtc=/path/to/dtc],
 		[compiler for .dts files - must be compatible with overlay (-@) option]),
     [DTC="$withval"],
-    [DTC=dtc]
+    [DTC=]
 )
 
 # Kernel version setting
