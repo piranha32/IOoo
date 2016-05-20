@@ -4,6 +4,9 @@ AC_PREREQ([2.69])
 AC_INIT([IOoo], [0.1], [james.zapico@gmail.com])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_MACRO_DIR([m4])
+AC_SUBST([MAJOR_VERSION], 0)
+AC_SUBST([MINOR_VERSION], 1)
 
 # Allow for non-standard DTC compiler to be supplied
 AC_SUBST([DTC])
@@ -45,10 +48,13 @@ AC_PROG_CC
 AC_PROG_INSTALL
 AC_PROG_AWK
 AC_PROG_MKDIR_P
-AC_PROG_RANLIB
 AM_PROG_AR
 
+# Use libtool for static and shared libraries
+LT_INIT
+
 AC_LANG_PUSH([C++])
+
 
 # Checks for libraries.
 
@@ -82,6 +88,8 @@ AM_INIT_AUTOMAKE([-Wall foreign])
 
 AC_CONFIG_FILES([
  Makefile
+ lib/Makefile
+ lib/pruss/Makefile
  src/Makefile
  examples/Makefile
  dts/Makefile

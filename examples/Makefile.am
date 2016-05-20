@@ -2,8 +2,8 @@
 ## ./examples/Makefile.am
 
 AM_CPPFLAGS=-I${top_srcdir}/include/ -D_HW_PLATFORM_BEAGLEBONE
-AM_LDFLAGS=-L../lib -L../src
-LDADD = ../src/libgpiooo.a
+AM_LDFLAGS=-L${top_srcdir}/lib
+LDADD=../src/.libs/libgpiooo.a
 
 noinst_PROGRAMS = gpio_lcd gpio_buttons gpio_leds test_jd-t18003-t01 # tlc5946 tlc5946_clock.bin
 
