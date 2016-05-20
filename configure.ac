@@ -50,6 +50,16 @@ AC_PROG_AWK
 AC_PROG_MKDIR_P
 AM_PROG_AR
 
+# Find a compatible DTC
+AC_CACHE_CHECK([for dtc that supports -@], [ac_cv_path_DTC],
+    [AC_PATH_PROGS_FEATURE_CHECK([DTC], [dtc],
+        [[$ac_path_DTC -@ --version > /dev/null 2>&1 \
+            && ac_cv_path_DTC=$ac_path_DTC ac_path_DTC_found=:]],
+        [AC_MSG_ERROR([could not find dtc that supports overlays with the -@ option])]
+    )]
+)
+AC_SUBST([DTC], [$ac_cv_path_DTC])
+
 # Use libtool for static and shared libraries
 LT_INIT
 
@@ -72,16 +82,6 @@ AC_TYPE_UINT8_T
 # Checks for library functions.
 AC_FUNC_MMAP
 AC_CHECK_FUNCS([memset munmap strerror])
-
-# Checks for a compatible DTC
-AC_CACHE_CHECK([for dtc that supports -@], [ac_cv_path_DTC],
-    [AC_PATH_PROGS_FEATURE_CHECK([DTC], [dtc],
-        [[$ac_path_DTC -@ --version > /dev/null 2>&1 \
-            && ac_cv_path_DTC=$ac_path_DTC ac_path_DTC_found=:]],
-        [AC_MSG_ERROR([could not find dtc that supports overlays with the -@ option])]
-    )]
-)
-AC_SUBST([DTC], [$ac_cv_path_DTC])
 
 AM_INIT_AUTOMAKE([-Wall foreign])
 
