@@ -1,1 +1,1 @@
-nobase_include_HEADERS = beaglebone/BeagleGoo.h beaglebone/BeagleGooP.h device/HD44780.h device/HD44780gpioPhy.h device/HD44780phy.h device/JDT18003T01.h device/ST7735.h device/ST7735phy.h device/TLC5946PRUSSphy.h device/TLC5946chain.h device/TLC5946phy.h pruss/pruss_intc_mapping.h pruss/prussdrv.h
+nobase_include_HEADERS = beaglebone/BeagleGoo.h beaglebone/BeagleGooP.h device/HD44780.h device/HD44780gpioPhy.h device/HD44780phy.h device/JDT18003T01.h device/ST7735.h device/ST7735phy.h device/TLC5946PRUSSphy.h device/TLC5946chain.h device/TLC5946phy.h

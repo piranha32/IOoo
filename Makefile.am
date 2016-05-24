@@ -3,7 +3,7 @@
 
 ACLOCAL_AMFLAGS=-I m4
 
-SUBDIRS = lib src examples dts include
+SUBDIRS = src examples dts include
 
 ## Include the library headers
 # AM_CPPFLAGS = "-Iinclude/"

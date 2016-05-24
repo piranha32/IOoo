@@ -27,6 +27,12 @@
 /* Define to 1 if you have the `munmap' function. */
 #undef HAVE_MUNMAP
 
+/* Define to 1 if you have the <prussdrv.h> header file. */
+#undef HAVE_PRUSSDRV_H
+
+/* Define to 1 if you have the <pruss_intc_mapping.h> header file. */
+#undef HAVE_PRUSS_INTC_MAPPING_H
+
 /* Define to 1 if you have the <stdint.h> header file. */
 #undef HAVE_STDINT_H
 

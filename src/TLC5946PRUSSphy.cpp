@@ -8,8 +8,8 @@
 #include "device/TLC5946PRUSSphy.h"
 #include <errno.h>
 #include <stdio.h>
-#include <pruss/prussdrv.h>
-#include <pruss/pruss_intc_mapping.h>
+#include <prussdrv.h>
+#include <pruss_intc_mapping.h>d
 #include "debug.h"
 
 TLC5946PRUSSphy::TLC5946PRUSSphy(SPI *spi, GPIOpin *ctrl, char *pruBinFile) :

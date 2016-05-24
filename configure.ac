@@ -18,6 +18,20 @@ AC_ARG_WITH(dtc,
     [DTC=]
 )
 
+# Allow for prussdrv to be given in a separate location
+AC_ARG_WITH([prussdrv-lib],
+    AS_HELP_STRING([--with-prussdrv-lib=DIR],
+		[directory containing PRUSS library files (e.g. libprussdrv.a, preferably compiled with -fPIC)]),
+    [LDFLAGS="$LDFLAGS -L$withval"]
+)
+
+AC_ARG_WITH([prussdrv-include],
+    AS_HELP_STRING([--with-prussdrv-include=DIR],
+		[directory containing prussdrv.h and pruss_intc_mapping.h]),
+    [CFLAGS="$CFLAGS -I$withval"
+    CPPFLAGS="$CPPFLAGS -I$withval"]
+)
+
 # Kernel version setting
 AC_SUBST([KERNEL_VERSION])
 
@@ -67,9 +81,18 @@ AC_LANG_PUSH([C++])
 
 
 # Checks for libraries.
+AC_CHECK_LIB([prussdrv], [prussdrv_open],
+    [has_pruss=true],
+    [has_pruss=false]
+)
 
 # Checks for header files.
 AC_CHECK_HEADERS([fcntl.h stdint.h stdlib.h string.h sys/ioctl.h unistd.h])
+AC_CHECK_HEADERS([prussdrv.h pruss_intc_mapping.h],
+	[],
+	[has_pruss=false]
+)
+AM_CONDITIONAL([HAS_PRUSS], [test x$has_pruss = xtrue])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AX_CXX_COMPILE_STDCXX_11
@@ -88,8 +111,6 @@ AM_INIT_AUTOMAKE([-Wall foreign])
 
 AC_CONFIG_FILES([
  Makefile
- lib/Makefile
- lib/pruss/Makefile
  src/Makefile
  examples/Makefile
  dts/Makefile

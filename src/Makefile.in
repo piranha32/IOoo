@@ -78,6 +78,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@HAS_PRUSS_TRUE@am__append_1 = TLC5946PRUSSphy.cpp
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/depcomp
@@ -121,11 +122,17 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libgpiooo_la_DEPENDENCIES = ../lib/pruss/libpruss.la
+libgpiooo_la_DEPENDENCIES =
+am__libgpiooo_la_SOURCES_DIST = I2C.cpp SPI.cpp GPIOoo.cpp \
+	BeagleGoo.cpp BeagleGooP.cpp ADC.cpp NativeADC.cpp \
+	BeagleADC.cpp EEPROM24CX.cpp HD44780.cpp HD44780gpioPhy.cpp \
+	TLC5946phy.cpp TLC5946chain.cpp JDT18003T01.cpp ST7735.cpp \
+	ST7735phy.cpp TLC5946PRUSSphy.cpp
+@HAS_PRUSS_TRUE@am__objects_1 = TLC5946PRUSSphy.lo
 am_libgpiooo_la_OBJECTS = I2C.lo SPI.lo GPIOoo.lo BeagleGoo.lo \
 	BeagleGooP.lo ADC.lo NativeADC.lo BeagleADC.lo EEPROM24CX.lo \
 	HD44780.lo HD44780gpioPhy.lo TLC5946phy.lo TLC5946chain.lo \
-	TLC5946PRUSSphy.lo JDT18003T01.lo ST7735.lo ST7735phy.lo
+	JDT18003T01.lo ST7735.lo ST7735phy.lo $(am__objects_1)
 libgpiooo_la_OBJECTS = $(am_libgpiooo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -169,7 +176,7 @@ am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
 SOURCES = $(libgpiooo_la_SOURCES)
-DIST_SOURCES = $(libgpiooo_la_SOURCES)
+DIST_SOURCES = $(am__libgpiooo_la_SOURCES_DIST)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -322,10 +329,14 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -I${top_srcdir}/include/ -D_HW_PLATFORM_BEAGLEBONE -D_KERNEL_VERSION=\"$(KERNEL_VERSION)\" -DDEBUG_LEVEL=$(DEBUG_LEVEL)
 lib_LTLIBRARIES = libgpiooo.la
-libgpiooo_la_LDFLAGS = -version-info $(MAJOR_VERSION):$(MINOR_VERSION) -L${top_srcdir}/lib
-libgpiooo_la_LIBADD = ../lib/pruss/libpruss.la
+libgpiooo_la_LDFLAGS = -version-info $(MAJOR_VERSION):$(MINOR_VERSION)
 libgpiooo_la_ARFLAGS = rvs
-libgpiooo_la_SOURCES = I2C.cpp SPI.cpp GPIOoo.cpp BeagleGoo.cpp BeagleGooP.cpp ADC.cpp NativeADC.cpp BeagleADC.cpp EEPROM24CX.cpp HD44780.cpp HD44780gpioPhy.cpp TLC5946phy.cpp TLC5946chain.cpp TLC5946PRUSSphy.cpp JDT18003T01.cpp ST7735.cpp ST7735phy.cpp
+libgpiooo_la_SOURCES = I2C.cpp SPI.cpp GPIOoo.cpp BeagleGoo.cpp \
+	BeagleGooP.cpp ADC.cpp NativeADC.cpp BeagleADC.cpp \
+	EEPROM24CX.cpp HD44780.cpp HD44780gpioPhy.cpp TLC5946phy.cpp \
+	TLC5946chain.cpp JDT18003T01.cpp ST7735.cpp ST7735phy.cpp \
+	$(am__append_1)
+@HAS_PRUSS_TRUE@libgpiooo_la_LIBADD = -lprussdrv
 all: all-am
 
 .SUFFIXES:

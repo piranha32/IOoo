@@ -672,6 +672,8 @@ PACKAGE
 CYGPATH_W
 am__isrc
 HAVE_CXX11
+HAS_PRUSS_FALSE
+HAS_PRUSS_TRUE
 CXXCPP
 CPP
 OTOOL64
@@ -766,6 +768,8 @@ ac_subst_files=''
 ac_user_opts='
 enable_option_checking
 with_dtc
+with_prussdrv_lib
+with_prussdrv_include
 with_kernel_version
 enable_debug
 enable_shared
@@ -1427,6 +1431,11 @@ Optional Packages:
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
   --with-dtc=/path/to/dtc compiler for .dts files - must be compatible with
                           overlay (-@) option
+  --with-prussdrv-lib=DIR directory containing PRUSS library files (e.g.
+                          libprussdrv.a, preferably compiled with -fPIC)
+  --with-prussdrv-include=DIR
+                          directory containing prussdrv.h and
+                          pruss_intc_mapping.h
   --with-kernel-version=3.x
                           set the kernel version to be compatible with -
                           affects the numbering of I2C buses
@@ -2622,6 +2631,24 @@ if test "${with_dtc+set}" = set; then :
   withval=$with_dtc; DTC="$withval"
 else
   DTC=
+
+fi
+
+
+# Allow for prussdrv to be given in a separate location
+
+# Check whether --with-prussdrv-lib was given.
+if test "${with_prussdrv_lib+set}" = set; then :
+  withval=$with_prussdrv_lib; LDFLAGS="$LDFLAGS -L$withval"
+
+fi
+
+
+
+# Check whether --with-prussdrv-include was given.
+if test "${with_prussdrv_include+set}" = set; then :
+  withval=$with_prussdrv_include; CFLAGS="$CFLAGS -I$withval"
+    CPPFLAGS="$CPPFLAGS -I$withval"
 
 fi
 
@@ -14991,6 +15018,49 @@ ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
 
 
 # Checks for libraries.
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for prussdrv_open in -lprussdrv" >&5
+$as_echo_n "checking for prussdrv_open in -lprussdrv... " >&6; }
+if ${ac_cv_lib_prussdrv_prussdrv_open+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lprussdrv  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char prussdrv_open ();
+int
+main ()
+{
+return prussdrv_open ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_link "$LINENO"; then :
+  ac_cv_lib_prussdrv_prussdrv_open=yes
+else
+  ac_cv_lib_prussdrv_prussdrv_open=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_prussdrv_prussdrv_open" >&5
+$as_echo "$ac_cv_lib_prussdrv_prussdrv_open" >&6; }
+if test "x$ac_cv_lib_prussdrv_prussdrv_open" = xyes; then :
+  has_pruss=true
+else
+  has_pruss=false
+
+fi
+
 
 # Checks for header files.
 
@@ -15006,6 +15076,30 @@ _ACEOF
 fi
 
 done
+
+for ac_header in prussdrv.h pruss_intc_mapping.h
+do :
+  as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`
+ac_fn_cxx_check_header_mongrel "$LINENO" "$ac_header" "$as_ac_Header" "$ac_includes_default"
+if eval test \"x\$"$as_ac_Header"\" = x"yes"; then :
+  cat >>confdefs.h <<_ACEOF
+#define `$as_echo "HAVE_$ac_header" | $as_tr_cpp` 1
+_ACEOF
+
+else
+  has_pruss=false
+
+fi
+
+done
+
+ if test x$has_pruss = xtrue; then
+  HAS_PRUSS_TRUE=
+  HAS_PRUSS_FALSE='#'
+else
+  HAS_PRUSS_TRUE='#'
+  HAS_PRUSS_FALSE=
+fi
 
 
 # Checks for typedefs, structures, and compiler characteristics.
@@ -16242,7 +16336,7 @@ END
 fi
 
 
-ac_config_files="$ac_config_files Makefile lib/Makefile lib/pruss/Makefile src/Makefile examples/Makefile dts/Makefile include/Makefile"
+ac_config_files="$ac_config_files Makefile src/Makefile examples/Makefile dts/Makefile include/Makefile"
 
 
 cat >confcache <<\_ACEOF
@@ -16354,6 +16448,10 @@ LIBOBJS=$ac_libobjs
 LTLIBOBJS=$ac_ltlibobjs
 
 
+if test -z "${HAS_PRUSS_TRUE}" && test -z "${HAS_PRUSS_FALSE}"; then
+  as_fn_error $? "conditional \"HAS_PRUSS\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking that generated files are newer than configure" >&5
 $as_echo_n "checking that generated files are newer than configure... " >&6; }
    if test -n "$am_sleep_pid"; then
@@ -17353,8 +17451,6 @@ do
     "libtool") CONFIG_COMMANDS="$CONFIG_COMMANDS libtool" ;;
     "depfiles") CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
-    "lib/Makefile") CONFIG_FILES="$CONFIG_FILES lib/Makefile" ;;
-    "lib/pruss/Makefile") CONFIG_FILES="$CONFIG_FILES lib/pruss/Makefile" ;;
     "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
     "examples/Makefile") CONFIG_FILES="$CONFIG_FILES examples/Makefile" ;;
     "dts/Makefile") CONFIG_FILES="$CONFIG_FILES dts/Makefile" ;;

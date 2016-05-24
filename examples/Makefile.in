@@ -305,7 +305,6 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -I${top_srcdir}/include/ -D_HW_PLATFORM_BEAGLEBONE
-AM_LDFLAGS = -L${top_srcdir}/lib
 LDADD = ../src/.libs/libgpiooo.a
 gpio_lcd_SOURCES = TestLCD.cpp gpio_lcd.cpp
 gpio_leds_SOURCES = gpio_leds.cpp TestGPIOLeds.cpp
