@@ -9,7 +9,7 @@
 #include <errno.h>
 #include <stdio.h>
 #include <prussdrv.h>
-#include <pruss_intc_mapping.h>d
+#include <pruss_intc_mapping.h>
 #include "debug.h"
 
 TLC5946PRUSSphy::TLC5946PRUSSphy(SPI *spi, GPIOpin *ctrl, char *pruBinFile) :
