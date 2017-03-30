@@ -4,6 +4,57 @@ AC_PREREQ([2.69])
 AC_INIT([IOoo], [0.1], [james.zapico@gmail.com])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_MACRO_DIR([m4])
+AC_SUBST([MAJOR_VERSION], 0)
+AC_SUBST([MINOR_VERSION], 1)
+
+# Allow for non-standard DTC compiler to be supplied
+AC_SUBST([DTC])
+
+AC_ARG_WITH(dtc,
+    AS_HELP_STRING([--with-dtc=/path/to/dtc],
+		[compiler for .dts files - must be compatible with overlay (-@) option]),
+    [DTC="$withval"],
+    [DTC=]
+)
+
+# Allow for prussdrv to be given in a separate location
+AC_ARG_WITH([prussdrv-lib],
+    AS_HELP_STRING([--with-prussdrv-lib=DIR],
+		[directory containing PRUSS library files (e.g. libprussdrv.a, preferably compiled with -fPIC)]),
+    [LDFLAGS="$LDFLAGS -L$withval"]
+)
+
+AC_ARG_WITH([prussdrv-include],
+    AS_HELP_STRING([--with-prussdrv-include=DIR],
+		[directory containing prussdrv.h and pruss_intc_mapping.h]),
+    [CFLAGS="$CFLAGS -I$withval"
+    CPPFLAGS="$CPPFLAGS -I$withval"]
+)
+
+# Kernel version setting
+AC_SUBST([KERNEL_VERSION])
+
+AC_ARG_WITH(kernel-version,
+    AS_HELP_STRING([--with-kernel-version=3.x],
+		[set the kernel version to be compatible with - affects the numbering of I2C buses]),
+    [KERNEL_VERSION="$withval"],
+    [KERNEL_VERSION=0.0]
+)
+
+# Debugging option --enable-debug[=level]
+AC_ARG_ENABLE(debug,
+	AS_HELP_STRING([--enable-debug],
+               [enable debugging, default: no]),
+	[case "${enableval}" in
+             yes)		debug=3 ;;
+             no)		debug=0 ;;
+             [[0-6]])	debug=${enableval} ;;
+             *)			AC_MSG_ERROR([bad value ${enableval} for --enable-debug]) ;;
+	esac],
+	[debug=0])
+
+AC_SUBST(DEBUG_LEVEL, "$debug")
 
 # Checks for programs.
 AC_PROG_CXX
@@ -11,15 +62,37 @@ AC_PROG_CC
 AC_PROG_INSTALL
 AC_PROG_AWK
 AC_PROG_MKDIR_P
-AC_PROG_RANLIB
 AM_PROG_AR
+
+# Find a compatible DTC
+AC_CACHE_CHECK([for dtc that supports -@], [ac_cv_path_DTC],
+    [AC_PATH_PROGS_FEATURE_CHECK([DTC], [dtc],
+        [[$ac_path_DTC -@ --version > /dev/null 2>&1 \
+            && ac_cv_path_DTC=$ac_path_DTC ac_path_DTC_found=:]],
+        [AC_MSG_ERROR([could not find dtc that supports overlays with the -@ option])]
+    )]
+)
+AC_SUBST([DTC], [$ac_cv_path_DTC])
+
+# Use libtool for static and shared libraries
+LT_INIT
 
 AC_LANG_PUSH([C++])
 
+
 # Checks for libraries.
+AC_CHECK_LIB([prussdrv], [prussdrv_open],
+    [has_pruss=true],
+    [has_pruss=false]
+)
 
 # Checks for header files.
 AC_CHECK_HEADERS([fcntl.h stdint.h stdlib.h string.h sys/ioctl.h unistd.h])
+AC_CHECK_HEADERS([prussdrv.h pruss_intc_mapping.h],
+	[],
+	[has_pruss=false]
+)
+AM_CONDITIONAL([HAS_PRUSS], [test x$has_pruss = xtrue])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AX_CXX_COMPILE_STDCXX_11

@@ -13,10 +13,19 @@
 #include <string.h>
 
 #define MAX_PATH_LEN 40
+
+#ifndef ADC_DEVICE_PATH_BASE
 #define ADC_DEVICE_PATH_BASE "/sys/devices/ocp.3/helper.12/AIN"
+#endif
+#ifndef ADC_MAX_VOLTAGE
 #define ADC_MAX_VOLTAGE 1.799
+#endif
+#ifndef ADC_MAX_VALUE
 #define ADC_MAX_VALUE 1799
+#endif
+#ifndef ADC_CHAR_LENGTH
 #define ADC_CHAR_LENGTH 4
+#endif
 
 NativeADC::NativeADC()
 {
@@ -42,20 +51,19 @@ int NativeADC::init(int adcNumber)
 	{
 		iooo_error("NativeADC::open() error: ADC number is too long.\n");
 		errno = ENAMETOOLONG;
-		return -1;
+		return -ENAMETOOLONG;
 	}
 
 	// Open device to test reading
 	int success = open();
 	if (success < 0) {
 		activeADC = -1;
+		errno = -success;
 		return success;
 	}
 	close();
 
-
-
-	return 0;
+	return true;
 }
 
 int NativeADC::open()
@@ -63,7 +71,7 @@ int NativeADC::open()
 	if (activeADC < 0) {
 		iooo_error("NativeADC::open() error: No ADC device has been initialized.\n");
 		errno = EDESTADDRREQ;
-		return 0;
+		return -EDESTADDRREQ;
 	}
 
 	if ((fd = ::open(adcPath, O_RDONLY)) < 0)
@@ -81,13 +89,13 @@ int NativeADC::close()
 	if (activeADC < 0) {
 		iooo_error("NativeADC::close() error: No ADC device has been initialized.\n");
 		errno = EDESTADDRREQ;
-		return 0;
+		return -EDESTADDRREQ;
 	}
 
 	if ((::close(fd)) != 0)
 	{
 		iooo_error("NativeADC::close() close() error: %s (%d)\n", strerror(errno), errno);
-		return -1;
+		return -errno;
 	}
 
 	return 0;
